@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--AuthorizationVC-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="AuthorizationVC" customModule="VkTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jiQ-7v-hNG">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="9YL-vC-20q">
+                                <rect key="frame" x="197" y="438" width="20" height="20"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="jiQ-7v-hNG" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="5fL-4e-Em7"/>
+                            <constraint firstItem="9YL-vC-20q" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="66K-Bh-s6B"/>
+                            <constraint firstItem="9YL-vC-20q" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="88q-yN-amc"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="jiQ-7v-hNG" secondAttribute="trailing" id="8S6-pw-PZj"/>
+                            <constraint firstItem="jiQ-7v-hNG" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="axe-ah-kAF"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="jiQ-7v-hNG" secondAttribute="bottom" id="nh2-5a-piW"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="activityIndicator" destination="9YL-vC-20q" id="PKs-eF-qYw"/>
+                        <outlet property="webView" destination="jiQ-7v-hNG" id="KH6-wJ-HCY"/>
+                        <segue destination="lIf-d6-snb" kind="show" identifier="vc" id="xTV-1H-poE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-159" y="-56"/>
+        </scene>
+        <!--Друзья-->
+        <scene sceneID="g8d-Bk-pJU">
+            <objects>
+                <viewController id="IrJ-HD-cTH" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JmY-h0-31V">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="kz4-NF-edP"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Друзья" id="dvB-x8-Iwo"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eHQ-XK-kQ3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2757.971014492754" y="267.85714285714283"/>
+        </scene>
+        <!--Профиль-->
+        <scene sceneID="zR8-yP-Q1B">
+            <objects>
+                <viewController id="Vsi-gE-46W" customClass="ShowProfileVC" customModule="VkTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="oMI-Ag-YTE">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Abq-sV-cLO">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Vsi-gE-46W" id="Hod-W4-KuO"/>
+                                    <outlet property="delegate" destination="Vsi-gE-46W" id="bhe-di-InH"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Abq-sV-cLO" firstAttribute="leading" secondItem="MG4-s6-b4y" secondAttribute="leading" id="SXV-y8-NY8"/>
+                            <constraint firstItem="MG4-s6-b4y" firstAttribute="bottom" secondItem="Abq-sV-cLO" secondAttribute="bottom" id="aVL-OU-fdN"/>
+                            <constraint firstItem="Abq-sV-cLO" firstAttribute="top" secondItem="MG4-s6-b4y" secondAttribute="top" id="khP-lE-5Tj"/>
+                            <constraint firstItem="MG4-s6-b4y" firstAttribute="trailing" secondItem="Abq-sV-cLO" secondAttribute="trailing" id="pDc-md-S3L"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="MG4-s6-b4y"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Профиль" id="DdZ-cm-x4A"/>
+                    <connections>
+                        <outlet property="table" destination="Abq-sV-cLO" id="RJu-qZ-T4Z"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sfK-XZ-tOf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2757.971014492754" y="-379.01785714285711"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="fvi-Jv-xxU">
+            <objects>
+                <tabBarController id="lIf-d6-snb" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="PqG-Mk-FaO">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="GwK-pc-DcC" kind="relationship" relationship="viewControllers" id="nuz-Xw-4wb"/>
+                        <segue destination="rMW-mp-p1J" kind="relationship" relationship="viewControllers" id="umx-7P-dhC"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FfH-G5-NbV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="927" y="-55"/>
+        </scene>
+        <!--Item 2-->
+        <scene sceneID="Pby-39-b9P">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rMW-mp-p1J" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item 2" id="R1i-ie-Ohb"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="0oy-YW-PKZ">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="IrJ-HD-cTH" kind="relationship" relationship="rootViewController" id="txg-6W-KUY"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fsW-cR-eQC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1847.826086956522" y="267.85714285714283"/>
+        </scene>
+        <!--Item 1-->
+        <scene sceneID="CCa-Yh-jpC">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="GwK-pc-DcC" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item 1" id="H0D-rW-1mH"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="hja-et-dAQ">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Vsi-gE-46W" kind="relationship" relationship="rootViewController" id="XMf-X8-8Am"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Gz6-js-Bkl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1847.826086956522" y="-379.01785714285711"/>
+        </scene>
+    </scenes>
+</document>
