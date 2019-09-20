@@ -12,7 +12,16 @@ class ShowProfileVC: UIViewController {
 
     @IBOutlet weak var table: UITableView!
     private let mainMenu = DataBase.shared.getMainMenu()
-    private let secondMenu = DataBase.shared.getSecondMainMenu()
+    
+    private var secondMenu: [SecondElementMenu]  = []{
+        
+        didSet {
+            table.reloadData()
+        }
+    }
+
+        
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,8 +29,22 @@ class ShowProfileVC: UIViewController {
         table.register(UINib(nibName: "ElementMenuTableViewCell", bundle: nil), forCellReuseIdentifier: "ElementMenu")
         
         table.register(UINib(nibName: "SecondElementTableViewCell", bundle: nil), forCellReuseIdentifier: "SecondElementMenu")
-    
+        
+        NetworkManager.shared.getInfoAboutMyProfile { result in
+            
+            switch result {
+                
+            case .success(let mainProfile):
+                self.secondMenu.append(SecondElementMenu(name: "\(mainProfile.response[0].firstName) \(mainProfile.response[0].lastName)", discription: "Открыть профиль", picture: "\(mainProfile.response[0].photoMax)"))
+                
+            case .failure(let error):
+                print(error)
+                
+            }
+        }
+        
     }
+  
     
     func numberOfSections(in tableView: UITableView) -> Int {
         
@@ -57,6 +80,8 @@ extension ShowProfileVC: UITableViewDataSource {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "SecondElementMenu") as? SecondElementTableViewCell {
                 
                 cell.secondElementMenu = secondMenu[indexPath.row]
+                let s = URL(string: secondMenu[indexPath.row].picture)
+                cell.loadPictureImage(url: s!)
                 
                 return cell
             }
@@ -68,6 +93,7 @@ extension ShowProfileVC: UITableViewDataSource {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "ElementMenu") as? ElementMenuTableViewCell {
                 cell.elementMenu = mainMenu[indexPath.row]
                 
+                
                 return cell
             }
             
@@ -77,10 +103,10 @@ extension ShowProfileVC: UITableViewDataSource {
         
      
         return UITableViewCell()
-            }
-
-
     }
+
+
+}
 
 
 extension ShowProfileVC: UITableViewDelegate {

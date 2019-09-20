@@ -90,7 +90,7 @@
 			children = (
 				9065A29523313FEA00C2EE49 /* DataBase */,
 				90FEC05D232F51A2000E26BD /* Authorization */,
-				900A8DC3232D295300180021 /* ShowProfile */,
+				900A8DC3232D295300180021 /* ShowMainProfile */,
 				900A8DC2232D234D00180021 /* ShowFriends */,
 				900A8DBB232D217E00180021 /* NetworkManager */,
 				900A8DA9232D16C600180021 /* AppDelegate.swift */,
@@ -119,7 +119,7 @@
 			path = ShowFriends;
 			sourceTree = "<group>";
 		};
-		900A8DC3232D295300180021 /* ShowProfile */ = {
+		900A8DC3232D295300180021 /* ShowMainProfile */ = {
 			isa = PBXGroup;
 			children = (
 				9065A28D23313AA300C2EE49 /* ShowProfileVC.swift */,
@@ -131,7 +131,7 @@
 				9065A2A12331537100C2EE49 /* SecondElementTableViewCell.xib */,
 				90833A0923323F9000C8C52B /* MainProfile.swift */,
 			);
-			path = ShowProfile;
+			path = ShowMainProfile;
 			sourceTree = "<group>";
 		};
 		9065A29523313FEA00C2EE49 /* DataBase */ = {

@@ -14,6 +14,7 @@ class ElementMenuTableViewCell: UITableViewCell {
     @IBOutlet weak var pictureMenu: UIImageView!
     @IBOutlet weak var nameMenu: UILabel!
     
+    
      var elementMenu: ElementMenu? {
         
         didSet {

@@ -51,7 +51,6 @@ class AuthorizationVC: UIViewController, WKNavigationDelegate {
             NetworkManager.shared.setUser_id(user_id: Int(fragmentItems["user_id"]!.first!)!)
             NetworkManager.shared.setToken(token: String(fragmentItems["access_token"]!.first!))
             NetworkManager.shared.setExpiresIn(expiresIn: Int(fragmentItems["expires_in"]!.first!)!)
-            
             performSegue(withIdentifier: "vc", sender: nil)
             activityIndicator.stopAnimating()
             
