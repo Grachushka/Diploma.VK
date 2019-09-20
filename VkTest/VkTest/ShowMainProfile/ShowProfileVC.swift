@@ -19,9 +19,6 @@ class ShowProfileVC: UIViewController {
             table.reloadData()
         }
     }
-
-        
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -111,6 +108,14 @@ extension ShowProfileVC: UITableViewDataSource {
 
 extension ShowProfileVC: UITableViewDelegate {
 
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if indexPath == IndexPath(item: 0, section: 1) {
+
+            performSegue(withIdentifier: "friends", sender: nil)
+            
+        }
+    }
 }
 
 

@@ -11,8 +11,7 @@ import Alamofire
 
 class NetworkManager {
     
-    //new appId 7139503
-    private let appId = "7134582"
+    private let appId = "7139503"
     private var user_id: Int = 0
     private var expiresIn: Int = 0
     private var token = String()
@@ -40,7 +39,7 @@ class NetworkManager {
     
     func authorization(result: @escaping (Result<URLRequest, Error>) -> Void) {
         
-          let url = "https://oauth.vk.com/authorize?client_id=7139503&display=mobile&redirect_uri=&scope=friends,photos,audio,video,stories,pages,status,groups,wall,notifications&response_type=token&v=5.52"
+          let url = "https://oauth.vk.com/authorize?client_id=\(appId)&display=mobile&redirect_uri=&scope=friends,photos,audio,video,stories,pages,status,groups,wall,notifications&response_type=token&v=5.52"
         
         AF.request(url).responseString { response in
             
@@ -67,18 +66,16 @@ class NetworkManager {
     }
     
     func getFriends() {
-       let request = "\(baseURL)friends.search?count=1000&fields=photo_50,photo_100,photo_200_orig,online&access_token=\(token)&v=5.52"
-        
+     
+        let url = "\(baseURL)friends.get?fields=nickname,domain,sex,bdate,city,country,timezone,photo_50,photo_100,photo_200_orig,has_mobile,contacts,education,online,relation,last_seen,status,can_write_private_message,can_see_all_posts,can_post,universities&access_token=\(token)&v=5.52"
+    
         
    
     }
     
     func getInfoAboutMyProfile(result: @escaping (Result<RequestMainProfile, Error>) -> Void) {
+        
       let url = "\(baseURL)users.get?&fields=photo_id,verified,sex,bdate,city,country,home_town,has_photo,photo_50,photo_100,photo_200_orig,photo_200,photo_400_orig,photo_max,photo_max_orig,online,domain,has_mobile,contacts,site,education,universities,schools,status,last_seen,followers_count,common_count,occupation,nickname,relatives,relation,personal,connections,exports,activities,interests,music,movies,tv,books,games,about,quotes,can_post,can_see_all_posts,can_see_audio,can_write_private_message,can_send_friend_request,is_favorite,is_hidden_from_feed,timezone,screen_name,maiden_name,crop_photo,is_friend,friend_status,career,military,blacklisted,blacklisted_by_me,can_be_invited_group&access_token=\(token)&v=5.52"
-        
-        
-        
-        
  
         AF.request(url).responseData { response in
             

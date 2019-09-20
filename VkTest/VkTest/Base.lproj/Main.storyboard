@@ -51,7 +51,7 @@
             </objects>
             <point key="canvasLocation" x="-159" y="-56"/>
         </scene>
-        <!--Друзья-->
+        <!--Новости-->
         <scene sceneID="g8d-Bk-pJU">
             <objects>
                 <viewController id="IrJ-HD-cTH" sceneMemberID="viewController">
@@ -61,7 +61,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="kz4-NF-edP"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Друзья" id="dvB-x8-Iwo"/>
+                    <navigationItem key="navigationItem" title="Новости" id="dvB-x8-Iwo"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eHQ-XK-kQ3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -96,11 +96,43 @@
                     <navigationItem key="navigationItem" title="Профиль" id="DdZ-cm-x4A"/>
                     <connections>
                         <outlet property="table" destination="Abq-sV-cLO" id="RJu-qZ-T4Z"/>
+                        <segue destination="sNO-v4-evz" kind="show" identifier="friends" id="Lpj-yI-Zq3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sfK-XZ-tOf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2757.971014492754" y="-379.01785714285711"/>
+        </scene>
+        <!--Друзья-->
+        <scene sceneID="5tD-2b-NSt">
+            <objects>
+                <viewController id="sNO-v4-evz" customClass="ShowFriendsVC" customModule="VkTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="e49-rh-Hgc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="maW-FL-CZc">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="m5i-AK-6nS" firstAttribute="trailing" secondItem="maW-FL-CZc" secondAttribute="trailing" id="1yI-G4-kG8"/>
+                            <constraint firstItem="maW-FL-CZc" firstAttribute="top" secondItem="m5i-AK-6nS" secondAttribute="top" id="Gtn-HK-kwc"/>
+                            <constraint firstItem="maW-FL-CZc" firstAttribute="leading" secondItem="m5i-AK-6nS" secondAttribute="leading" id="Irp-Xb-W0g"/>
+                            <constraint firstItem="m5i-AK-6nS" firstAttribute="bottom" secondItem="maW-FL-CZc" secondAttribute="bottom" id="afF-aH-TEt"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="m5i-AK-6nS"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Друзья" id="xyx-n7-rtq"/>
+                    <connections>
+                        <outlet property="table" destination="maW-FL-CZc" id="TcM-CQ-fdL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wtV-os-XN0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3714" y="-379"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="fvi-Jv-xxU">
@@ -137,7 +169,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fsW-cR-eQC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1847.826086956522" y="267.85714285714283"/>
+            <point key="canvasLocation" x="1848" y="268"/>
         </scene>
         <!--Item 1-->
         <scene sceneID="CCa-Yh-jpC">

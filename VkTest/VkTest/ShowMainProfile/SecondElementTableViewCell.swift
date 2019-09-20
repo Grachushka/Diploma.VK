@@ -19,7 +19,6 @@ class SecondElementTableViewCell: UITableViewCell {
         super.prepareForReuse()
         
         pictureTask?.cancel()
-        
         pictureMenu.image = nil
         
         
