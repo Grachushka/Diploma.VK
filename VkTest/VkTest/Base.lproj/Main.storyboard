@@ -111,10 +111,36 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="wjw-d7-PvL">
+                                <rect key="frame" x="0.0" y="438" width="414" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </activityIndicatorView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="maW-FL-CZc">
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="sNO-v4-evz" id="Fuo-vB-RgD"/>
+                                    <outlet property="delegate" destination="sNO-v4-evz" id="y9f-LD-RXJ"/>
+                                </connections>
                             </tableView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Twc-Wx-BOE">
+                                <rect key="frame" x="0.0" y="769" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem id="gEU-Rn-YwH">
+                                        <connections>
+                                            <action selector="currentFriends:" destination="sNO-v4-evz" id="Pyz-I4-sfq"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="vxX-yB-pH9"/>
+                                    <barButtonItem id="6nh-Te-5Vq">
+                                        <connections>
+                                            <action selector="currentOnline:" destination="sNO-v4-evz" id="hcv-uI-qYy"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -125,9 +151,15 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="m5i-AK-6nS"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Друзья" id="xyx-n7-rtq"/>
+                    <navigationItem key="navigationItem" title="Друзья" id="xyx-n7-rtq">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="TZ9-8M-iPO"/>
+                    </navigationItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="wjw-d7-PvL" id="aIq-QH-QWW"/>
                         <outlet property="table" destination="maW-FL-CZc" id="TcM-CQ-fdL"/>
+                        <outlet property="toolbar" destination="Twc-Wx-BOE" id="ViA-SF-eec"/>
+                        <outlet property="toolbarFriendsCount" destination="gEU-Rn-YwH" id="slC-pQ-g97"/>
+                        <outlet property="toolbarFriendsCurrentOnline" destination="6nh-Te-5Vq" id="3iO-ix-lsj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wtV-os-XN0" userLabel="First Responder" sceneMemberID="firstResponder"/>

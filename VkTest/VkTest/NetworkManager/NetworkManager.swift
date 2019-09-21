@@ -11,7 +11,7 @@ import Alamofire
 
 class NetworkManager {
     
-    private let appId = "7139503"
+    private let appId = "7143320"
     private var user_id: Int = 0
     private var expiresIn: Int = 0
     private var token = String()
@@ -65,10 +65,30 @@ class NetworkManager {
         
     }
     
-    func getFriends() {
-     
+    func getFriends(result: @escaping (Result<Friends, Error>) -> Void) {
+        
         let url = "\(baseURL)friends.get?fields=nickname,domain,sex,bdate,city,country,timezone,photo_50,photo_100,photo_200_orig,has_mobile,contacts,education,online,relation,last_seen,status,can_write_private_message,can_see_all_posts,can_post,universities&access_token=\(token)&v=5.52"
-    
+        
+        AF.request(url).responseData { response in
+            
+            switch response.result {
+                
+            case .success(let data):
+                
+                do {
+                    
+                    let friends = try JSONDecoder().decode(Friends.self, from: data)
+                    
+                    result(.success(friends))
+                    
+                } catch {
+                    
+                    print(error)
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
         
    
     }
@@ -84,7 +104,6 @@ class NetworkManager {
             case .success(let data):
                 
                 do {
-                    //   let welcome = try? newJSONDecoder().decode(Welcome.self, from: jsonData)
 
                     let mainProfile = try JSONDecoder().decode(RequestMainProfile.self, from: data)
                     

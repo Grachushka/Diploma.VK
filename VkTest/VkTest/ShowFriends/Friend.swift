@@ -10,18 +10,18 @@ import Foundation
 
 
 // MARK: - Welcome
-struct Items: Codable {
+struct Friends: Codable {
     let response: Response
 }
 
 // MARK: - Response
 struct Response: Codable {
     let count: Int
-    let items: [Item]
+    let items: [Friend]
 }
 
 // MARK: - Item
-struct Item: Codable {
+struct Friend: Codable {
     let id: Int
     let firstName, lastName: String
     let sex: Int

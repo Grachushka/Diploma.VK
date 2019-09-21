@@ -14,33 +14,62 @@ class SecondElementTableViewCell: UITableViewCell {
     @IBOutlet weak var nameMenu: UILabel!
     @IBOutlet weak var descriptionMenu: UILabel!
     private weak var pictureTask: URLSessionDataTask?
+    @IBOutlet weak var isOnlinePicture: UIImageView!
+    
+    var name: String? {
+        didSet {
+            
+            nameMenu.text = name
+         
+            }
+        }
+    var isOnlineFromMobile: Bool? {
+        
+        didSet {
+            
+            
+            if isOnlineFromMobile == true {
+                
+                isOnlinePicture.image = UIImage(named: "phone")
+                isOnlinePicture.isHidden = false
+                
+            } else if isOnlineFromMobile == false {
+                
+                isOnlinePicture.image = UIImage(named: "pc")
+                isOnlinePicture.isHidden = false
+                
+            }
+        }
+    }
+    
+    var discription: String? {
+        
+        didSet {
+            
+            descriptionMenu.text = discription
+        }
+    }
+    var imageName: String? {
+        
+        didSet {
+            
+            if let imageName = imageName {
+                pictureMenu.image = UIImage(named: "\(imageName)")
+                 pictureMenu.layer.cornerRadius = 50
+                
+        }
+    }
+}
     
     override func prepareForReuse() {
         super.prepareForReuse()
         
         pictureTask?.cancel()
         pictureMenu.image = nil
+        isOnlinePicture.image = nil
+       
+
         
-        
-    }
-    
-    
-    var secondElementMenu: SecondElementMenu? {
-        
-        didSet {
-            nameMenu.text = secondElementMenu?.name
-            descriptionMenu.text = secondElementMenu?.discription
-            pictureMenu.layer.cornerRadius = 50
-            if let imageName = secondElementMenu?.picture {
-                pictureMenu.image = UIImage(named: "\(imageName)")
-                
-                
-            } else {
-                
-                pictureMenu.image = nil
-            }
-            
-        }
     }
     
     func loadPictureImage(url: URL) {

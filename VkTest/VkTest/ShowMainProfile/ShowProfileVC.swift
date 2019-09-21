@@ -76,7 +76,10 @@ extension ShowProfileVC: UITableViewDataSource {
             
             if let cell = tableView.dequeueReusableCell(withIdentifier: "SecondElementMenu") as? SecondElementTableViewCell {
                 
-                cell.secondElementMenu = secondMenu[indexPath.row]
+                cell.name = secondMenu[indexPath.row].name
+                cell.discription = secondMenu[indexPath.row].discription
+                cell.imageName = secondMenu[indexPath.row].picture
+                
                 let s = URL(string: secondMenu[indexPath.row].picture)
                 cell.loadPictureImage(url: s!)
                 
