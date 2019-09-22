@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -56,7 +54,7 @@
             <objects>
                 <viewController id="IrJ-HD-cTH" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JmY-h0-31V">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="kz4-NF-edP"/>
@@ -72,11 +70,11 @@
             <objects>
                 <viewController id="Vsi-gE-46W" customClass="ShowProfileVC" customModule="VkTest" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oMI-Ag-YTE">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Abq-sV-cLO">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="56" width="414" height="703"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="dataSource" destination="Vsi-gE-46W" id="Hod-W4-KuO"/>
@@ -108,25 +106,23 @@
             <objects>
                 <viewController id="sNO-v4-evz" customClass="ShowFriendsVC" customModule="VkTest" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="e49-rh-Hgc">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="wjw-d7-PvL">
-                                <rect key="frame" x="0.0" y="438" width="414" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="wjw-d7-PvL">
+                                <rect key="frame" x="197" y="411" width="20" height="20"/>
                                 <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </activityIndicatorView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="maW-FL-CZc">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="112" width="414" height="647"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="dataSource" destination="sNO-v4-evz" id="Fuo-vB-RgD"/>
                                     <outlet property="delegate" destination="sNO-v4-evz" id="y9f-LD-RXJ"/>
                                 </connections>
                             </tableView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Twc-Wx-BOE">
-                                <rect key="frame" x="0.0" y="769" width="414" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Twc-Wx-BOE">
+                                <rect key="frame" x="0.0" y="710" width="414" height="49"/>
                                 <items>
                                     <barButtonItem id="gEU-Rn-YwH">
                                         <connections>
@@ -141,13 +137,33 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
+                            <searchBar contentMode="redraw" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2uP-mC-fXD">
+                                <rect key="frame" x="0.0" y="56" width="414" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <scopeButtonTitles>
+                                    <string>Title</string>
+                                    <string>Title</string>
+                                </scopeButtonTitles>
+                                <connections>
+                                    <outlet property="delegate" destination="sNO-v4-evz" id="w3a-B9-xE3"/>
+                                </connections>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="m5i-AK-6nS" firstAttribute="trailing" secondItem="maW-FL-CZc" secondAttribute="trailing" id="1yI-G4-kG8"/>
-                            <constraint firstItem="maW-FL-CZc" firstAttribute="top" secondItem="m5i-AK-6nS" secondAttribute="top" id="Gtn-HK-kwc"/>
+                            <constraint firstItem="wjw-d7-PvL" firstAttribute="centerX" secondItem="e49-rh-Hgc" secondAttribute="centerX" id="2Zv-Jp-4oJ"/>
+                            <constraint firstItem="Twc-Wx-BOE" firstAttribute="leading" secondItem="m5i-AK-6nS" secondAttribute="leading" id="6TY-I5-sm2"/>
+                            <constraint firstItem="Twc-Wx-BOE" firstAttribute="bottom" secondItem="m5i-AK-6nS" secondAttribute="bottom" id="Bzq-cE-FDA"/>
+                            <constraint firstItem="wjw-d7-PvL" firstAttribute="centerY" secondItem="e49-rh-Hgc" secondAttribute="centerY" id="IbQ-K6-5r5"/>
                             <constraint firstItem="maW-FL-CZc" firstAttribute="leading" secondItem="m5i-AK-6nS" secondAttribute="leading" id="Irp-Xb-W0g"/>
+                            <constraint firstItem="2uP-mC-fXD" firstAttribute="leading" secondItem="m5i-AK-6nS" secondAttribute="leading" id="L2n-Zu-QIe"/>
+                            <constraint firstItem="2uP-mC-fXD" firstAttribute="top" secondItem="m5i-AK-6nS" secondAttribute="top" id="Q3H-mC-rjD"/>
                             <constraint firstItem="m5i-AK-6nS" firstAttribute="bottom" secondItem="maW-FL-CZc" secondAttribute="bottom" id="afF-aH-TEt"/>
+                            <constraint firstItem="2uP-mC-fXD" firstAttribute="trailing" secondItem="m5i-AK-6nS" secondAttribute="trailing" id="dSq-0y-paW"/>
+                            <constraint firstItem="Twc-Wx-BOE" firstAttribute="trailing" secondItem="m5i-AK-6nS" secondAttribute="trailing" id="fSE-Bq-baj"/>
+                            <constraint firstItem="maW-FL-CZc" firstAttribute="top" secondItem="2uP-mC-fXD" secondAttribute="bottom" id="nwY-Xs-lNF"/>
+                            <constraint firstItem="maW-FL-CZc" firstAttribute="top" secondItem="2uP-mC-fXD" secondAttribute="bottom" id="qcd-wq-VGZ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="m5i-AK-6nS"/>
                     </view>
@@ -156,6 +172,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="activityIndicator" destination="wjw-d7-PvL" id="aIq-QH-QWW"/>
+                        <outlet property="friendSearchBar" destination="2uP-mC-fXD" id="vpp-oy-k1t"/>
                         <outlet property="table" destination="maW-FL-CZc" id="TcM-CQ-fdL"/>
                         <outlet property="toolbar" destination="Twc-Wx-BOE" id="ViA-SF-eec"/>
                         <outlet property="toolbarFriendsCount" destination="gEU-Rn-YwH" id="slC-pQ-g97"/>
@@ -164,7 +181,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wtV-os-XN0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3714" y="-379"/>
+            <point key="canvasLocation" x="3713.04347826087" y="-379.01785714285711"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="fvi-Jv-xxU">
@@ -191,7 +208,7 @@
                     <tabBarItem key="tabBarItem" title="Item 2" id="R1i-ie-Ohb"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="0oy-YW-PKZ">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -210,7 +227,7 @@
                     <tabBarItem key="tabBarItem" title="Item 1" id="H0D-rW-1mH"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="hja-et-dAQ">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

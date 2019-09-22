@@ -11,11 +11,11 @@ import Foundation
 
 // MARK: - Welcome
 struct Friends: Codable {
-    let response: Response
+    let response: Response1
 }
 
 // MARK: - Response
-struct Response: Codable {
+struct Response1: Codable {
     let count: Int
     let items: [Friend]
 }

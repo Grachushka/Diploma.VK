@@ -12,6 +12,7 @@ class ShowFriendsVC: UIViewController {
 
     @IBOutlet weak var table: UITableView!
     
+    @IBOutlet weak var friendSearchBar: UISearchBar!
     @IBOutlet weak var toolbarFriendsCurrentOnline: UIBarButtonItem!
     @IBOutlet weak var toolbarFriendsCount: UIBarButtonItem!
     @IBOutlet weak var toolbar: UIToolbar!
@@ -24,46 +25,21 @@ class ShowFriendsVC: UIViewController {
         didSet {
             let orderByOnlineFriends = friends.filter { $0.online == 1 }
             self.toolbarFriendsCurrentOnline.title = "\(orderByOnlineFriends.count) друзей"
-            
-             
-                
-            
+            print("x1 \(friends.count)")
             table.reloadData()
+            print("x2 \(friends.count)")
             activityIndicator.stopAnimating()
+            print("x3 \(friends.count)")
             table.isHidden = false
+            print("x4 \(friends.count)")
         }
-    }
-    
-    
-    @IBAction func currentFriends(_ sender: Any) {
-         barButtonItem = sender as? UIBarButtonItem
-        
-        NetworkManager.shared.getFriends { result in
-            
-            switch result {
-                
-            case .success(let friends):
-                
-                self.friends = friends.response.items
-                self.toolbarFriendsCount.title = "\(friends.response.count) друзей"
-                
-            case .failure(let error):
-                print(error)
-                
-            }
-        }
-    }
-    @IBAction func currentOnline(_ sender: Any) {
-        barButtonItem = sender as? UIBarButtonItem
-
-        let orderByOnlineFriends = friends.filter { $0.online == 1 }
-        friends = orderByOnlineFriends
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        barButtonItem = toolbar.items?.first
         
+        barButtonItem = toolbar.items?.first
+        friendSearchBar.placeholder = "Поиск"
         table.isHidden = true
         activityIndicator.startAnimating()
         table.register(UINib(nibName: "SecondElementTableViewCell", bundle: nil), forCellReuseIdentifier: "SecondElementMenu")
@@ -95,11 +71,12 @@ class ShowFriendsVC: UIViewController {
             switch result {
                 
             case .success(let friends):
+                
                 if self.barButtonItem == self.toolbar.items?.last {
                     
                     let orderByOnlineFriends = friends.response.items.filter { $0.online == 1 }
                     self.friends = orderByOnlineFriends
-                    //self.friends = orderByOnlineFriends
+                    
                 } else if self.barButtonItem == self.toolbar.items?.first {
                     
                     self.friends = friends.response.items
@@ -112,10 +89,43 @@ class ShowFriendsVC: UIViewController {
                 
             }
         }
-        
-        
     }
+    
+    
+    @IBAction func currentFriends(_ sender: Any) {
+        
+         barButtonItem = sender as? UIBarButtonItem
+        
+        NetworkManager.shared.getFriends { result in
+            
+            switch result {
+                
+            case .success(let friends):
+                
+                self.friends = friends.response.items
+                self.toolbarFriendsCount.title = "\(friends.response.count) друзей"
+                
+            case .failure(let error):
+                print(error)
+                
+            }
+        }
+    }
+    
+    
+    @IBAction func currentOnline(_ sender: Any) {
+        
+        barButtonItem = sender as? UIBarButtonItem
+
+        let orderByOnlineFriends = friends.filter { $0.online == 1 }
+        friends = orderByOnlineFriends
+    }
+    
+    
+    
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
         return 100
     }
 
@@ -156,5 +166,57 @@ extension ShowFriendsVC: UITableViewDataSource{
 
 extension ShowFriendsVC: UITableViewDelegate {
     
+}
+
+extension ShowFriendsVC: UISearchBarDelegate {
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+            searchBar.showsCancelButton = true
+        }
+        func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+
+        }
+        
+        func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+            
+            searchBar.text = nil
+            searchBar.endEditing(true)
+            searchBar.showsCancelButton = false
+            
+        }
+ 
+        func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
+
+            return true
+            
+        }
+      
+        func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+          print("tut")
+            NetworkManager.shared.getFriends { result in
+                
+                switch result {
+                    
+                case .success(let friends):
+                    
+                   self.friends = friends.response.items
+                   self.toolbarFriendsCount.title = "\(friends.response.count) друзей"
+                   self.friends = friends.response.items.filter { $0.firstName.localizedCaseInsensitiveContains("\(searchText)")
+                    || $0.lastName.localizedCaseInsensitiveContains("\(searchText)")
+                    || $0.firstName.localizedCaseInsensitiveContains("\(searchText)")
+                    && $0.lastName.localizedCaseInsensitiveContains("\(searchText)")
+                    
+                    }
+                   
+                    
+                case .failure(let error):
+                    print(error)
+                    
+                }
+            }
+           
+            print(searchText)
+            
+        }
 }
 
