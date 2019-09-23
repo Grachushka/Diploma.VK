@@ -94,9 +94,8 @@ class NetworkManager {
     }
     
     func getInfoAboutMyProfile(result: @escaping (Result<RequestMainProfile, Error>) -> Void) {
-        //https://api.vk.com/method/
       let url = "\(baseURL)users.get?&fields=photo_id,verified,sex,bdate,city,country,home_town,has_photo,photo_50,photo_100,photo_200_orig,photo_200,photo_400_orig,photo_max,photo_max_orig,online,domain,has_mobile,contacts,site,education,universities,schools,status,last_seen,followers_count,common_count,occupation,nickname,relatives,relation,personal,connections,exports,activities,interests,music,movies,tv,books,games,about,quotes,can_post,can_see_all_posts,can_see_audio,can_write_private_message,can_send_friend_request,is_favorite,is_hidden_from_feed,timezone,screen_name,maiden_name,crop_photo,is_friend,friend_status,career,military,blacklisted,blacklisted_by_me,can_be_invited_group&access_token=\(token)&v=5.52"
-        //let url = "https://api.vk.com/method/users.get?&fields=photo_id,verified,sex,bdate,city,country,home_town,has_photo,photo_50,photo_100,photo_200_orig,photo_200,photo_400_orig,photo_max,photo_max_orig,online,domain,has_mobile,contacts,site,education,universities,schools,status,last_seen,followers_count,common_count,occupation,nickname,relatives,relation,personal,connections,exports,activities,interests,music,movies,tv,books,games,about,quotes,can_post,can_see_all_posts,can_see_audio,can_write_private_message,can_send_friend_request,is_favorite,is_hidden_from_feed,timezone,screen_name,maiden_name,crop_photo,is_friend,friend_status,career,military,blacklisted,blacklisted_by_me,can_be_invited_group&access_token=2ed49bb8608a4b39307494e86ff69b8ec0cf80babefda111d6382a4f45d23f837529b34ee3ee2c6608aa3&v=5.52"
+        //let url = "https://api.vk.com/method/users.search?&access_token=9593ca33a4695736a6fe93070e0b8ca0e2c93f4f921e5d3506a75c96a824b9c2e0573f2d2e017c38de00b&v=5.52"
  
         AF.request(url).responseData { response in
             
@@ -130,18 +129,3 @@ class NetworkManager {
     
     
 }
-
-
-
-
-
-
-
-
-//https://api.vk.com/method/users.get?&fields=photo_id,verified,sex,bdate,city,country,home_town,has_photo,photo_50,photo_100,photo_200_orig,photo_200,photo_400_orig,photo_max,photo_max_orig,online,domain,has_mobile,contacts,site,education,universities,schools,status,last_seen,followers_count,common_count,occupation,nickname,relatives,relation,personal,connections,exports,activities,interests,music,movies,tv,books,games,about,quotes,can_post,can_see_all_posts,can_see_audio,can_write_private_message,can_send_friend_request,is_favorite,is_hidden_from_feed,timezone,screen_name,maiden_name,crop_photo,is_friend,friend_status,career,military,blacklisted,blacklisted_by_me,can_be_invited_group&access_token=c324e62029dc6b4fdb4ba836852193c1eeecad26ddd971b999e8407631f0366291a57cb25dbbbef287a81&v=5.52
-
-
-//private let privateKey = "A4Z0gNbCUsIpBtzhJPMZ"
-//private let serviceKey = "f06360fff06360fff06360ff47f00fbd89ff063f06360ffad1fbe1024ddc76a24792b41"
-
-//let procenkoToken = "af6c4f88d910b40b6763deeea9f0120011b2184b6e8aca439a528332e68e777430808ddba6f57957e38a9"

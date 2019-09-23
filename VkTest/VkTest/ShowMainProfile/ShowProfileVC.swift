@@ -13,7 +13,7 @@ class ShowProfileVC: UIViewController {
     @IBOutlet weak var table: UITableView!
     private let mainMenu = DataBase.shared.getMainMenu()
     
-    private var secondMenu: [SecondElementMenu]  = []{
+    private var secondMenu: MainProfile? {
         
         didSet {
             table.reloadData()
@@ -32,7 +32,9 @@ class ShowProfileVC: UIViewController {
             switch result {
                 
             case .success(let mainProfile):
-                self.secondMenu.append(SecondElementMenu(name: "\(mainProfile.response[0].firstName) \(mainProfile.response[0].lastName)", discription: "Открыть профиль", picture: "\(mainProfile.response[0].photoMax)"))
+                
+                self.secondMenu = mainProfile.response[0]
+                
                 
             case .failure(let error):
                 print(error)
@@ -61,7 +63,7 @@ extension ShowProfileVC: UITableViewDataSource {
        
         switch section {
         case 0:
-            return secondMenu.count
+            return 1
         case 1:
             return mainMenu.count
         default:
@@ -76,12 +78,14 @@ extension ShowProfileVC: UITableViewDataSource {
             
             if let cell = tableView.dequeueReusableCell(withIdentifier: "SecondElementMenu") as? SecondElementTableViewCell {
                 
-                cell.name = secondMenu[indexPath.row].name
-                cell.discription = secondMenu[indexPath.row].discription
-                cell.imageName = secondMenu[indexPath.row].picture
+                cell.name = secondMenu?.firstName
+                cell.discription = "Открыть профиль"
+                cell.imageName = secondMenu?.photoMax
+                if let photo = secondMenu?.photoMax {
+                        let photoURL = URL(string: "\(photo)")
+                    cell.loadPictureImage(url: photoURL!)
+                }
                 
-                let s = URL(string: secondMenu[indexPath.row].picture)
-                cell.loadPictureImage(url: s!)
                 
                 return cell
             }
@@ -91,7 +95,8 @@ extension ShowProfileVC: UITableViewDataSource {
         else if indexPath.section == 1 {
             
             if let cell = tableView.dequeueReusableCell(withIdentifier: "ElementMenu") as? ElementMenuTableViewCell {
-                cell.elementMenu = mainMenu[indexPath.row]
+                cell.name = mainMenu[indexPath.row].name
+                cell.picture = mainMenu[indexPath.row].picture
                 
                 
                 return cell
