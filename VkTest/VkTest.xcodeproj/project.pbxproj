@@ -19,7 +19,6 @@
 		9065A28E23313AA300C2EE49 /* ShowProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9065A28D23313AA300C2EE49 /* ShowProfileVC.swift */; };
 		9065A29423313F3400C2EE49 /* ElementMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9065A29323313F3400C2EE49 /* ElementMenu.swift */; };
 		9065A29723313FFB00C2EE49 /* DataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9065A29623313FFB00C2EE49 /* DataBase.swift */; };
-		9065A29B2331522800C2EE49 /* SecondElementMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9065A29A2331522800C2EE49 /* SecondElementMenu.swift */; };
 		9065A29E2331534700C2EE49 /* ElementMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9065A29C2331534700C2EE49 /* ElementMenuTableViewCell.swift */; };
 		9065A29F2331534800C2EE49 /* ElementMenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9065A29D2331534700C2EE49 /* ElementMenuTableViewCell.xib */; };
 		9065A2A22331537100C2EE49 /* SecondElementTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9065A2A02331537100C2EE49 /* SecondElementTableViewCell.swift */; };
@@ -44,7 +43,6 @@
 		9065A28D23313AA300C2EE49 /* ShowProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowProfileVC.swift; sourceTree = "<group>"; };
 		9065A29323313F3400C2EE49 /* ElementMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementMenu.swift; sourceTree = "<group>"; };
 		9065A29623313FFB00C2EE49 /* DataBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBase.swift; sourceTree = "<group>"; };
-		9065A29A2331522800C2EE49 /* SecondElementMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondElementMenu.swift; sourceTree = "<group>"; };
 		9065A29C2331534700C2EE49 /* ElementMenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementMenuTableViewCell.swift; sourceTree = "<group>"; };
 		9065A29D2331534700C2EE49 /* ElementMenuTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ElementMenuTableViewCell.xib; sourceTree = "<group>"; };
 		9065A2A02331537100C2EE49 /* SecondElementTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondElementTableViewCell.swift; sourceTree = "<group>"; };
@@ -90,6 +88,7 @@
 		900A8DA8232D16C600180021 /* VkTest */ = {
 			isa = PBXGroup;
 			children = (
+				9079E4F32338C9E1001820A5 /* reusableCellsForTables */,
 				9065A29523313FEA00C2EE49 /* DataBase */,
 				90FEC05D232F51A2000E26BD /* Authorization */,
 				900A8DC3232D295300180021 /* ShowMainProfile */,
@@ -127,11 +126,8 @@
 			children = (
 				9065A28D23313AA300C2EE49 /* ShowProfileVC.swift */,
 				9065A29323313F3400C2EE49 /* ElementMenu.swift */,
-				9065A29A2331522800C2EE49 /* SecondElementMenu.swift */,
 				9065A29C2331534700C2EE49 /* ElementMenuTableViewCell.swift */,
 				9065A29D2331534700C2EE49 /* ElementMenuTableViewCell.xib */,
-				9065A2A02331537100C2EE49 /* SecondElementTableViewCell.swift */,
-				9065A2A12331537100C2EE49 /* SecondElementTableViewCell.xib */,
 				90833A0923323F9000C8C52B /* MainProfile.swift */,
 			);
 			path = ShowMainProfile;
@@ -143,6 +139,15 @@
 				9065A29623313FFB00C2EE49 /* DataBase.swift */,
 			);
 			path = DataBase;
+			sourceTree = "<group>";
+		};
+		9079E4F32338C9E1001820A5 /* reusableCellsForTables */ = {
+			isa = PBXGroup;
+			children = (
+				9065A2A02331537100C2EE49 /* SecondElementTableViewCell.swift */,
+				9065A2A12331537100C2EE49 /* SecondElementTableViewCell.xib */,
+			);
+			path = reusableCellsForTables;
 			sourceTree = "<group>";
 		};
 		90FEC05D232F51A2000E26BD /* Authorization */ = {
@@ -299,7 +304,6 @@
 				900A8DAA232D16C600180021 /* AppDelegate.swift in Sources */,
 				90FEC05F232F51C1000E26BD /* AuthorizationVC.swift in Sources */,
 				900A8DC1232D234800180021 /* Friend.swift in Sources */,
-				9065A29B2331522800C2EE49 /* SecondElementMenu.swift in Sources */,
 				9065A29E2331534700C2EE49 /* ElementMenuTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

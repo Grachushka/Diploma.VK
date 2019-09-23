@@ -191,6 +191,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                     </tabBar>
                     <connections>
                         <segue destination="GwK-pc-DcC" kind="relationship" relationship="viewControllers" id="nuz-Xw-4wb"/>
@@ -201,11 +202,11 @@
             </objects>
             <point key="canvasLocation" x="927" y="-55"/>
         </scene>
-        <!--Item 2-->
+        <!--Navigation Controller-->
         <scene sceneID="Pby-39-b9P">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rMW-mp-p1J" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item 2" id="R1i-ie-Ohb"/>
+                    <tabBarItem key="tabBarItem" title="" image="tabNews" id="R1i-ie-Ohb"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="0oy-YW-PKZ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
@@ -220,11 +221,11 @@
             </objects>
             <point key="canvasLocation" x="1848" y="268"/>
         </scene>
-        <!--Item 1-->
+        <!--Navigation Controller-->
         <scene sceneID="CCa-Yh-jpC">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="GwK-pc-DcC" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item 1" id="H0D-rW-1mH"/>
+                    <tabBarItem key="tabBarItem" title="" image="tabMainMenu" id="H0D-rW-1mH"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="hja-et-dAQ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
@@ -240,4 +241,8 @@
             <point key="canvasLocation" x="1847.826086956522" y="-379.01785714285711"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="tabMainMenu" width="30" height="30"/>
+        <image name="tabNews" width="30" height="30"/>
+    </resources>
 </document>
