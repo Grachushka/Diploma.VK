@@ -114,8 +114,8 @@ struct RelationPartner: Codable {
 
 // MARK: - University
 struct University: Codable {
-    let id, country, city: Int
-    let name: String
+    let id, country, city: Int?
+    let name: String?
     let faculty: Int?
     let facultyName: String?
     let chair: Int?

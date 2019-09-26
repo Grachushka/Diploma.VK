@@ -126,6 +126,7 @@ class ShowFriendsVC: UIViewController {
         
         barButtonItem = sender as? UIBarButtonItem
         self.friendSearchBar.text = nil
+        
         let orderByOnlineFriends = friends.filter { $0.online == 1 }
         self.toolbarFriendsCurrentOnline.title = "\(orderByOnlineFriends.count) онлайн"
 
@@ -133,13 +134,14 @@ class ShowFriendsVC: UIViewController {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
-        return 100
+
+        return 50
     }
+    
 
 }
 
-extension ShowFriendsVC: UITableViewDataSource{
+extension ShowFriendsVC: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -180,6 +182,8 @@ extension ShowFriendsVC: UISearchBarDelegate {
     
         func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
             searchBar.showsCancelButton = true
+            toolbarFriendsCurrentOnline.isEnabled = false
+            toolbarFriendsCount.isEnabled = false
         }
         
         func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
@@ -204,7 +208,8 @@ extension ShowFriendsVC: UISearchBarDelegate {
             searchBar.showsCancelButton = false
             searchBar.text = nil
             searchBar.endEditing(true)
-            searchBar.showsCancelButton = false
+            toolbarFriendsCurrentOnline.isEnabled = true
+            toolbarFriendsCount.isEnabled = true
             
         }
  

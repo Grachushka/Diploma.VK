@@ -106,14 +106,14 @@ struct MainProfile: Codable {
 
 // MARK: - City
 struct City: Codable {
-    let id: Int
-    let title: String
+    let id: Int?
+    let title: String?
 }
 
 // MARK: - CropPhoto
 struct CropPhoto: Codable {
-    let photo: Photo
-    let crop, rect: Crop
+    let photo: Photo?
+    let crop, rect: Crop?
 }
 
 // MARK: - Crop
@@ -123,12 +123,12 @@ struct Crop: Codable {
 
 // MARK: - Photo
 struct Photo: Codable {
-    let id, albumID, ownerID: Int
-    let photo75, photo130, photo604, photo807: String
-    let photo1280, photo2560: String
-    let width, height: Int
-    let text: String
-    let date, postID: Int
+    let id, albumID, ownerID: Int?
+    let photo75, photo130, photo604, photo807: String?
+    let photo1280, photo2560: String?
+    let width, height: Int?
+    let text: String?
+    let date, postID: Int?
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -147,14 +147,14 @@ struct Photo: Codable {
 
 // MARK: - LastSeen
 struct LastSeen: Codable {
-    let time, platform: Int
+    let time, platform: Int?
 }
 
 // MARK: - Occupation
 struct Occupation: Codable {
-    let type: String
-    let id: Int
-    let name: String
+    let type: String?
+    let id: Int?
+    let name: String?
 }
 
 // MARK: - Personal
@@ -180,13 +180,13 @@ struct Relative: Codable {
 
 // MARK: - School
 struct School: Codable {
-    let id: String
-    let country, city: Int
-    let name: String
-    let yearFrom, yearTo: Int
-    let schoolClass: String
-    let type: Int
-    let typeStr: String
+    let id: String?
+    let country, city: Int?
+    let name: String?
+    let yearFrom, yearTo: Int?
+    let schoolClass: String?
+    let type: Int?
+    let typeStr: String?
 
     enum CodingKeys: String, CodingKey {
         case id, country, city, name

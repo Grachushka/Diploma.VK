@@ -50,9 +50,12 @@ class ShowProfileVC: UIViewController {
         return 2
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100.0
+        
+        if indexPath.section == 0 {
+        return 60.0
+        }
+        return 50.0
     }
-    
 }
 
 extension ShowProfileVC: UITableViewDataSource {
@@ -78,7 +81,11 @@ extension ShowProfileVC: UITableViewDataSource {
             
             if let cell = tableView.dequeueReusableCell(withIdentifier: "SecondElementMenu") as? SecondElementTableViewCell {
                 
-                cell.name = secondMenu?.firstName
+               
+                if let firstName = secondMenu?.firstName, let lastName = secondMenu?.lastName {
+                    cell.name = "\(firstName) \(lastName)"
+                }
+                
                 cell.discription = "Открыть профиль"
                 cell.imageName = secondMenu?.photoMax
                 if let photo = secondMenu?.photoMax {

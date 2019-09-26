@@ -55,8 +55,7 @@ class SecondElementTableViewCell: UITableViewCell {
             
             if let imageName = imageName {
                 pictureMenu.image = UIImage(named: "\(imageName)")
-                 pictureMenu.layer.cornerRadius = 50
-                
+            
         }
     }
 }
@@ -77,6 +76,8 @@ class SecondElementTableViewCell: UITableViewCell {
             guard let data = data else { return }
             DispatchQueue.main.async { [weak self] in
                 self?.pictureMenu.image = UIImage(data: data)
+                self!.pictureMenu.layer.cornerRadius = self!.pictureMenu.layer.preferredFrameSize().height/2
+
             }
         }
         pictureTask = task

@@ -168,7 +168,11 @@
                         <viewLayoutGuide key="safeArea" id="m5i-AK-6nS"/>
                     </view>
                     <navigationItem key="navigationItem" title="Друзья" id="xyx-n7-rtq">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="TZ9-8M-iPO"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="TZ9-8M-iPO">
+                            <connections>
+                                <segue destination="xqK-ld-A2E" kind="show" id="maq-qI-cUS"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="activityIndicator" destination="wjw-d7-PvL" id="aIq-QH-QWW"/>
@@ -182,6 +186,57 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wtV-os-XN0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3713.04347826087" y="-379.01785714285711"/>
+        </scene>
+        <!--Добавить друга-->
+        <scene sceneID="A5l-0b-iRB">
+            <objects>
+                <viewController id="xqK-ld-A2E" customClass="addFriendVC" customModule="VkTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="a0D-PG-Jdp">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="medium" id="775-Eh-53o">
+                                <rect key="frame" x="0.0" y="399" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="S0X-Gj-aua">
+                                <rect key="frame" x="0.0" y="112" width="414" height="647"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="xqK-ld-A2E" id="vPC-Wl-dX7"/>
+                                    <outlet property="delegate" destination="xqK-ld-A2E" id="9RA-Fo-MO4"/>
+                                </connections>
+                            </tableView>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="9JB-l2-pVi">
+                                <rect key="frame" x="0.0" y="56" width="414" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="xqK-ld-A2E" id="etB-KA-d0W"/>
+                                </connections>
+                            </searchBar>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="9JB-l2-pVi" firstAttribute="top" secondItem="bsK-WY-cUs" secondAttribute="top" id="CEa-WU-h1X"/>
+                            <constraint firstItem="9JB-l2-pVi" firstAttribute="leading" secondItem="bsK-WY-cUs" secondAttribute="leading" id="D8D-0S-Gwp"/>
+                            <constraint firstItem="S0X-Gj-aua" firstAttribute="leading" secondItem="bsK-WY-cUs" secondAttribute="leading" id="YxQ-21-qI0"/>
+                            <constraint firstItem="S0X-Gj-aua" firstAttribute="top" secondItem="9JB-l2-pVi" secondAttribute="bottom" id="cwq-CB-XFI"/>
+                            <constraint firstItem="9JB-l2-pVi" firstAttribute="trailing" secondItem="bsK-WY-cUs" secondAttribute="trailing" id="fyX-ch-vCX"/>
+                            <constraint firstItem="bsK-WY-cUs" firstAttribute="trailing" secondItem="S0X-Gj-aua" secondAttribute="trailing" id="y3A-fJ-WmD"/>
+                            <constraint firstItem="bsK-WY-cUs" firstAttribute="bottom" secondItem="S0X-Gj-aua" secondAttribute="bottom" id="z64-x3-Wfd"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="bsK-WY-cUs"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Добавить друга" id="c3z-OB-Tf1"/>
+                    <connections>
+                        <outlet property="activityIndicator" destination="775-Eh-53o" id="mcV-MO-G4y"/>
+                        <outlet property="searchBar" destination="9JB-l2-pVi" id="EyW-Ic-Gyk"/>
+                        <outlet property="table" destination="S0X-Gj-aua" id="wQH-cP-F0j"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ejE-Ub-RfF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4798.5507246376819" y="-382.36607142857139"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="fvi-Jv-xxU">
