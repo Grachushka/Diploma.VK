@@ -88,14 +88,14 @@ extension ShowProfileVC: UITableViewDataSource {
                 
                 cell.discription = "Открыть профиль"
                 cell.imageName = secondMenu?.photoMax
-                if let photo = secondMenu?.photoMax {
+                if let photo = secondMenu?.photo200_Orig {
                         let photoURL = URL(string: "\(photo)")
                     cell.loadPictureImage(url: photoURL!)
                 }
                 
                 
                 return cell
-            }
+            } 
             
             return ElementMenuTableViewCell()
         }
@@ -125,11 +125,22 @@ extension ShowProfileVC: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        
         if indexPath == IndexPath(item: 0, section: 1) {
 
             performSegue(withIdentifier: "friends", sender: nil)
             
+        } else if indexPath == IndexPath(item: 0, section: 0) {
+            
+            let next: ProfileVC = self.storyboard?.instantiateViewController(withIdentifier: "profile") as! ProfileVC
+            next.object = secondMenu!
+            next.isMe = true
+            self.navigationController?.pushViewController(next, animated: true)
+
+            
         }
+        
+        
     }
 }
 

@@ -19,8 +19,10 @@ struct Response: Codable {
 }
 
 // MARK: - Item
-struct RecommendFriend: Codable {
-    let id: Int?
+struct RecommendFriend: Codable, ProfileProtocolVC {
+   
+    
+    let id: Int
     let firstName, lastName: String?
     let sex: Int?
     let nickname, domain, screenName: String?
@@ -32,7 +34,7 @@ struct RecommendFriend: Codable {
     let photoMaxOrig: String?
     let photoID: String?
     let hasPhoto, hasMobile, isFriend, friendStatus: Int?
-    let online: Int?
+    let online: Int
     let onlineApp, onlineMobile: Int?
     let wallComments, canPost, canSeeAllPosts, canSeeAudio: Int?
     let canWritePrivateMessage, canSendFriendRequest: Int?

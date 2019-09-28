@@ -13,24 +13,25 @@ struct RequestMainProfile: Codable {
 }
 
 // MARK: - Response
-struct MainProfile: Codable {
+struct MainProfile: Codable, ProfileProtocolVC {
+    
     let id: Int
-    let firstName, lastName: String
+    let firstName, lastName: String?
     let sex: Int
     let nickname: String
     let maidenName: String?
     let domain, screenName: String
     let bdate: String
-    let city, country: City
+    let city, country: City?
     let timezone: Int
     let photo50, photo100, photo200, photoMax: String
-    let photo200_Orig, photo400_Orig, photoMaxOrig: String
+    let photo200_Orig, photo400_Orig, photoMaxOrig: String?
     let photoID: String
-    let hasPhoto, hasMobile, isFriend, friendStatus: Int
+    let hasPhoto, hasMobile, isFriend, friendStatus: Int?
     let online, canPost, canSeeAllPosts, canSeeAudio: Int
     let canWritePrivateMessage, canSendFriendRequest: Int
     let mobilePhone, homePhone, site, status: String
-    let lastSeen: LastSeen
+    let lastSeen: LastSeen?
     let cropPhoto: CropPhoto
     let verified: Int
     let canBeInvitedGroup: Bool
@@ -122,6 +123,7 @@ struct Crop: Codable {
 }
 
 // MARK: - Photo
+
 struct Photo: Codable {
     let id, albumID, ownerID: Int?
     let photo75, photo130, photo604, photo807: String?

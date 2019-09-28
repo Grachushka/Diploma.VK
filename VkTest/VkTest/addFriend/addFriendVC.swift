@@ -104,6 +104,12 @@ extension addFriendVC: UITableViewDataSource {
 
 extension addFriendVC: UITableViewDelegate {
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let next: ProfileVC = self.storyboard?.instantiateViewController(withIdentifier: "profile") as! ProfileVC
+        next.object = recommendFriends[indexPath.row]
+        self.navigationController?.pushViewController(next, animated: true)
+    }
 }
 
 extension addFriendVC: UISearchBarDelegate {

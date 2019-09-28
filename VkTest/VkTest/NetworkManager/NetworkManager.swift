@@ -11,7 +11,7 @@ import Alamofire
 
 class NetworkManager {
     
-    private let appId = "7145297"
+    private let appId = "7151237"
     private var user_id: Int = 0
     private var expiresIn: Int = 0
     private var token = String()
@@ -40,7 +40,7 @@ class NetworkManager {
     func getRecommendFriends(result: @escaping (Result<RecommendFriends, Error>) -> Void) {
         
           let url = "\(baseURL)users.search?fields=photo_id,verified,sex,bdate,city,country,home_town,has_photo,photo_50,photo_100,photo_200_orig,photo_200,photo_400_orig,photo_max,photo_max_orig,online,lists,domain,has_mobile,contacts,site,education,universities,schools,status,last_seen,followers_count,common_count,occupation,nickname,relatives,relation,personal,connections,exports,wall_comments,activities,interests,music,movies,tv,books,games,about,quotes,can_post,can_see_all_posts,can_see_audio,can_write_private_message,can_send_friend_request,is_favorite,is_hidden_from_feed,timezone,screen_name,maiden_name,crop_photo,is_friend,friend_status,career,military,blacklisted,blacklisted_by_me&access_token=\(token)&v=5.52"
-        //let url = "https://api.vk.com/method/users.search?q=П&fields=photo_id,verified,sex,bdate,city,country,home_town,has_photo,photo_50,photo_100,photo_200_orig,photo_200,photo_400_orig,photo_max,photo_max_orig,online,lists,domain,has_mobile,contacts,site,education,universities,schools,status,last_seen,followers_count,common_count,occupation,nickname,relatives,relation,personal,connections,exports,wall_comments,activities,interests,music,movies,tv,books,games,about,quotes,can_post,can_see_all_posts,can_see_audio,can_write_private_message,can_send_friend_request,is_favorite,is_hidden_from_feed,timezone,screen_name,maiden_name,crop_photo,is_friend,friend_status,career,military,blacklisted,blacklisted_by_me&access_token=deff27826b50ca98d9abf7679580649d882b279ac0e0cdc142525103f5dc65bb782ab02e024a2e3b694f1&v=5.52"
+        //let url = "https://api.vk.com/method/users.search?q=П&fields=photo_id,verified,sex,bdate,city,country,home_town,has_photo,photo_50,photo_100,photo_200_orig,photo_200,photo_400_orig,photo_max,photo_max_orig,online,lists,domain,has_mobile,contacts,site,education,universities,schools,status,last_seen,followers_count,common_count,occupation,nickname,relatives,relation,personal,connections,exports,wall_comments,activities,interests,music,movies,tv,books,games,about,quotes,can_post,can_see_all_posts,can_see_audio,can_write_private_message,can_send_friend_request,is_favorite,is_hidden_from_feed,timezone,screen_name,maiden_name,crop_photo,is_friend,friend_status,career,military,blacklisted,blacklisted_by_me&access_token=40b2db9491b5ac8630a580d64b586cd6fa671ef47f021d835fee6293b0630cf22578e1e40ef0d21634bdf&v=5.52"
         
         AF.request(url).responseData { response in
             
@@ -101,18 +101,12 @@ class NetworkManager {
             switch response.result {
                 
             case .success( _):
-                
-                do {
-                    
+
                     let url = URL(string: url)
                     let request = URLRequest(url: url!)
                     
-                     result(.success(request))
-                    
-                } catch {
-                    
-                    print(error)
-                }
+                    result(.success(request))
+            
             case .failure(let error):
                 print(error)
             }
@@ -175,13 +169,32 @@ class NetworkManager {
         }
         
     }
-    
-    func getMyPhotos() {
-        //https://api.vk.com/method/photos.getAll?&access_token=4beca86af6328e7795445a9c985d517b8f57d4748cebf1c3f7d9aab4be21b95b46726976a872056dc1bda&v=5.52
         
-        
-       
+        func getWallPhotos(id: Int, result: @escaping (Result<Parse123, Error>) -> Void) {
+            //15333310
+            let url="\(baseURL)photos.getAll?&extended=1&owner_id=\(id)&access_token=\(token)&v=5.52"
+            // let url="https://api.vk.com/method/photos.getAll?&extended=1&owner_id=15333310&access_token=127e866fb51a71e61e1b2c281b4a2fd6c1424ad559b72985aec5ade40848e93b1992e699fe6d222a66eef&v=5.52"
+                       
+            
+            AF.request(url).responseData { response in
+                
+                switch response.result {
+                    
+                case .success(let data):
+                    
+                    do {
+                        
+                        let profileWallPhotos = try JSONDecoder().decode(Parse123.self, from: data )
+                        result(.success(profileWallPhotos))
+                        
+                    } catch {
+                        
+                        print(error)
+                    }
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        }
     }
-    
-    
-}
+

@@ -152,7 +152,7 @@ extension ShowFriendsVC: UITableViewDataSource {
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: "SecondElementMenu") as? SecondElementTableViewCell {
             
-            cell.name = "\(friends[indexPath.row].firstName) \(friends[indexPath.row].lastName)"
+            cell.name = "\(friends[indexPath.row].firstName!) \(friends[indexPath.row].lastName!)"
             cell.imageName = friends[indexPath.row].photo200_Orig
             if friends[indexPath.row].online == 1 && friends[indexPath.row].onlineMobile == 1 {
 
@@ -164,7 +164,7 @@ extension ShowFriendsVC: UITableViewDataSource {
                 
             } 
             
-            let url = URL(string: friends[indexPath.row].photo200_Orig)
+            let url = URL(string: friends[indexPath.row].photo200_Orig!)
             cell.loadPictureImage(url: url!)
         
             return cell
@@ -176,6 +176,12 @@ extension ShowFriendsVC: UITableViewDataSource {
 
 extension ShowFriendsVC: UITableViewDelegate {
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let next: ProfileVC = self.storyboard?.instantiateViewController(withIdentifier: "profile") as! ProfileVC
+        next.object = friends[indexPath.row]
+        self.navigationController?.pushViewController(next, animated: true)
+    }
 }
 
 extension ShowFriendsVC: UISearchBarDelegate {
@@ -239,10 +245,10 @@ extension ShowFriendsVC: UISearchBarDelegate {
                 }
                     
                 if !searchText.isEmpty {
-                self.friends = self.friends.filter { $0.firstName.localizedCaseInsensitiveContains("\(searchText)")
-                    || $0.lastName.localizedCaseInsensitiveContains("\(searchText)")
-                    || $0.firstName.localizedCaseInsensitiveContains("\(searchText)")
-                    && $0.lastName.localizedCaseInsensitiveContains("\(searchText)")
+                    self.friends = self.friends.filter { $0.firstName!.localizedCaseInsensitiveContains("\(searchText)")
+                        || $0.lastName!.localizedCaseInsensitiveContains("\(searchText)")
+                        || $0.firstName!.localizedCaseInsensitiveContains("\(searchText)")
+                        && $0.lastName!.localizedCaseInsensitiveContains("\(searchText)")
                     
                     }
                 }

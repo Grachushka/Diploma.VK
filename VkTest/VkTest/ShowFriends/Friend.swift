@@ -21,15 +21,17 @@ struct Response1: Codable {
 }
 
 // MARK: - Item
-struct Friend: Codable {
+struct Friend: Codable, ProfileProtocolVC {    
+    
+    var isFriend: Int?
     let id: Int
-    let firstName, lastName: String
+    let firstName, lastName: String?
     let sex: Int
     let nickname: String?
     let domain: String
     let bdate: String?
     let city, country: City?
-    let photo50, photo100, photo200_Orig: String
+    let photo50, photo100, photo200_Orig: String?
     let hasMobile: Int?
     let online, canPost: Int
     let canSeeAllPosts: Int?
