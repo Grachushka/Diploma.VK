@@ -10,7 +10,7 @@ import Foundation
 
 struct ElementMenu {
     
-     let name: String
+     var name: String?
      let picture: String
     
 }

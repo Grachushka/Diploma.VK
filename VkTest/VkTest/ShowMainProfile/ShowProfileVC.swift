@@ -27,7 +27,7 @@ class ShowProfileVC: UIViewController {
         
         table.register(UINib(nibName: "SecondElementTableViewCell", bundle: nil), forCellReuseIdentifier: "SecondElementMenu")
         
-        NetworkManager.shared.getInfoAboutMyProfile { result in
+        NetworkManager.shared.getInfoAboutMyProfile(id: 0) { result in
             
             switch result {
                 
@@ -42,6 +42,7 @@ class ShowProfileVC: UIViewController {
             }
         }
         
+        
     }
   
     
@@ -52,9 +53,11 @@ class ShowProfileVC: UIViewController {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         if indexPath.section == 0 {
+            
         return 60.0
+            
         }
-        return 50.0
+    return 50.0
     }
 }
 
@@ -127,13 +130,15 @@ extension ShowProfileVC: UITableViewDelegate {
         
         
         if indexPath == IndexPath(item: 0, section: 1) {
-
-            performSegue(withIdentifier: "friends", sender: nil)
+            
+            let next: ShowFriendsVC = self.storyboard?.instantiateViewController(withIdentifier: "friends") as! ShowFriendsVC
+                       next.id = secondMenu!.id
+                       self.navigationController?.pushViewController(next, animated: true)            
             
         } else if indexPath == IndexPath(item: 0, section: 0) {
             
             let next: ProfileVC = self.storyboard?.instantiateViewController(withIdentifier: "profile") as! ProfileVC
-            next.object = secondMenu!
+            next.id = secondMenu!.id
             next.isMe = true
             self.navigationController?.pushViewController(next, animated: true)
 

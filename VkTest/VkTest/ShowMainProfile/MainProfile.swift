@@ -13,47 +13,48 @@ struct RequestMainProfile: Codable {
 }
 
 // MARK: - Response
-struct MainProfile: Codable, ProfileProtocolVC {
+struct MainProfile: Codable {
     
     let id: Int
+    let counters: [String: Int]?
     let firstName, lastName: String?
-    let sex: Int
-    let nickname: String
+    let sex: Int?
+    let nickname: String?
     let maidenName: String?
-    let domain, screenName: String
-    let bdate: String
+    let domain, screenName: String?
+    let bdate: String?
     let city, country: City?
-    let timezone: Int
-    let photo50, photo100, photo200, photoMax: String
+    let timezone: Int?
+    let photo50, photo100, photo200, photoMax: String?
     let photo200_Orig, photo400_Orig, photoMaxOrig: String?
-    let photoID: String
+    let photoID: String?
     let hasPhoto, hasMobile, isFriend, friendStatus: Int?
-    let online, canPost, canSeeAllPosts, canSeeAudio: Int
-    let canWritePrivateMessage, canSendFriendRequest: Int
-    let mobilePhone, homePhone, site, status: String
+    let online, canPost, canSeeAllPosts, canSeeAudio: Int?
+    let canWritePrivateMessage, canSendFriendRequest: Int?
+    let mobilePhone, homePhone, site, status: String?
     let lastSeen: LastSeen?
-    let cropPhoto: CropPhoto
-    let verified: Int
-    let canBeInvitedGroup: Bool
-    let followersCount, blacklisted, blacklistedByMe, isFavorite: Int
-    let isHiddenFromFeed, commonCount: Int
+    let cropPhoto: CropPhoto?
+    let verified: Int?
+    let canBeInvitedGroup: Bool?
+    let followersCount, blacklisted, blacklistedByMe, isFavorite: Int?
+    let isHiddenFromFeed, commonCount: Int?
     let occupation: Occupation?
-    let career, military: [JSONAny]
-    let university: Int
-    let universityName: String
-    let faculty: Int
-    let facultyName: String
-    let graduation: Int
-    let homeTown: String
-    let relation: Int
-    let personal: Personal
-    let interests, music, activities, movies: String
-    let tv, books, games: String
-    let universities: [University]
-    let schools: [School]
-    let about: String
-    let relatives: [Relative]
-    let quotes: String
+    let career, military: [JSONAny]?
+    let university: Int?
+    let universityName: String?
+    let faculty: Int?
+    let facultyName: String?
+    let graduation: Int?
+    let homeTown: String?
+    let relation: Int?
+    let personal: Personal?
+    let interests, music, activities, movies: String?
+    let tv, books, games: String?
+    let universities: [University]?
+    let schools: [School]?
+    let about: String?
+    let relatives: [Relative]?
+    let quotes: String?
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -95,7 +96,7 @@ struct MainProfile: Codable, ProfileProtocolVC {
         case isFavorite = "is_favorite"
         case isHiddenFromFeed = "is_hidden_from_feed"
         case commonCount = "common_count"
-        case occupation, career, military, university
+        case occupation, career, military, university, counters
         case universityName = "university_name"
         case faculty
         case facultyName = "faculty_name"

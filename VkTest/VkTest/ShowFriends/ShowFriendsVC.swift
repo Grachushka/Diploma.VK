@@ -19,6 +19,7 @@ class ShowFriendsVC: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     private var barButtonItem: UIBarButtonItem?
     
+    var id: Int?
     
     private var friends: [Friend]  = []{
         
@@ -43,7 +44,7 @@ class ShowFriendsVC: UIViewController {
         
         configureVC()
         
-        NetworkManager.shared.getFriends { result in
+        NetworkManager.shared.getFriends(id: id!) { result in
             
             switch result {
                 
@@ -68,7 +69,7 @@ class ShowFriendsVC: UIViewController {
     
     @objc private func refreshTable() {
         
-        NetworkManager.shared.getFriends { result in
+        NetworkManager.shared.getFriends(id: id!) { result in
             
             switch result {
                 
@@ -101,7 +102,7 @@ class ShowFriendsVC: UIViewController {
         
          barButtonItem = sender as? UIBarButtonItem
         
-        NetworkManager.shared.getFriends { result in
+        NetworkManager.shared.getFriends(id: id!) { result in
             
             switch result {
                 
@@ -179,7 +180,7 @@ extension ShowFriendsVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let next: ProfileVC = self.storyboard?.instantiateViewController(withIdentifier: "profile") as! ProfileVC
-        next.object = friends[indexPath.row]
+        next.id = friends[indexPath.row].id
         self.navigationController?.pushViewController(next, animated: true)
     }
 }
@@ -195,7 +196,7 @@ extension ShowFriendsVC: UISearchBarDelegate {
         func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
             
            
-            NetworkManager.shared.getFriends { result in
+            NetworkManager.shared.getFriends(id: id!) { result in
                 
                 switch result {
                     
@@ -227,7 +228,7 @@ extension ShowFriendsVC: UISearchBarDelegate {
       
         func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
             
-            NetworkManager.shared.getFriends { result in
+            NetworkManager.shared.getFriends(id: id!) { result in
                 
                 switch result {
                     

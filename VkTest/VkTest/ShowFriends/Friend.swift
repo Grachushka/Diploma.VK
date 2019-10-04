@@ -21,9 +21,8 @@ struct Response1: Codable {
 }
 
 // MARK: - Item
-struct Friend: Codable, ProfileProtocolVC {    
+struct Friend: Codable {    
     
-    var isFriend: Int?
     let id: Int
     let firstName, lastName: String?
     let sex: Int
