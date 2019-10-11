@@ -10,9 +10,11 @@ import UIKit
 
 class InfoVC: UIViewController {
 
-     var object: MainProfile?
+ 
+    
     @IBOutlet weak var table: UITableView!
     var arrayInfo = DataBase.shared.getInfoProfileMenu()
+    var object: MainProfile?
     
     func config() {
         
@@ -22,6 +24,10 @@ class InfoVC: UIViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+   
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -75,7 +81,6 @@ class InfoVC: UIViewController {
         
         self.arrayInfo = self.arrayInfo.filter { $0.name != nil && $0.name != ""}
         table.reloadData()
-        
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -121,12 +126,7 @@ extension InfoVC: UITableViewDataSource {
                 cell.name = "\(firstName) \(lastName)"
                 }
                 cell.discription = nil
-                cell.imageName = object?.photoMax
-                if let photo = object?.photo200_Orig {
-                        let photoURL = URL(string: "\(photo)")
-                    cell.loadPictureImage(url: photoURL!)
-                }
-                
+                cell.imageName = object?.photo100
                 
                 return cell
                 

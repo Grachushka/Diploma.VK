@@ -9,7 +9,8 @@
 import UIKit
 
 class ProfileVC: UIViewController {
-
+    
+    @IBOutlet weak var tableWall: UITableView!
     @IBOutlet weak var status: UILabel!
     @IBOutlet weak var buttonIsFriend: UIButton!
     @IBOutlet weak var ageCountry: UILabel!
@@ -33,6 +34,38 @@ class ProfileVC: UIViewController {
             collectionPhoto.reloadData()
         }
     }
+    
+    var wallItems: [Item333] = [] {
+        
+        didSet {
+            
+            tableWall.reloadData()
+        }
+    }
+    
+    var wallProfiles: [Profile]? = []
+    var wallGroups: [Group]? = []
+
+    var wall: Wall? {
+        
+        didSet {
+            
+            wallItems = self.wall!.response.items
+                   
+            if let profiles = self.wall!.response.profiles {
+                       
+                wallProfiles = profiles
+
+            }
+            if let groups = self.wall!.response.groups {
+                    
+                wallGroups = groups
+                    
+            }
+        }
+        
+    }
+    
     @IBAction func Info(_ sender: UIButton) {
         
         let next: InfoVC = self.storyboard?.instantiateViewController(withIdentifier: "info") as! InfoVC
@@ -55,6 +88,8 @@ class ProfileVC: UIViewController {
                status.text = "online"
                
            } else if object?.online == 0 {
+            
+//            print(Date(timeIntervalSince1970: TimeInterval(object!.lastSeen!.time!)))
             
             status.text = "заходил \(object!.lastSeen!.time!) минут назад"
            }
@@ -191,18 +226,60 @@ class ProfileVC: UIViewController {
 
             }
         }
-       
+        
+        NetworkManager.shared.getWall(id: id!) { result in
+
+            switch result {
+
+            case .success(let wall):
+
+                self.wall = wall
+
+            case .failure(let error):
+                print(error)
+
+            }
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        return 400
     }
 }
 
-   extension ProfileVC: UICollectionViewDelegate {
+extension ProfileVC: UITableViewDelegate {
+    
+}
+
+extension ProfileVC: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return wallItems.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as? WallTableViewCell {
+            cell.groups = wallGroups
+            cell.profile = wallProfiles
+            cell.wall = wallItems[indexPath.row]
+            
+            
+            return cell
+        }
+        return UITableViewCell()
+    }
+}
+
+extension ProfileVC: UICollectionViewDelegate {
        
    }
 
 extension ProfileVC: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
         
         return CGSize(width: collectionPhoto.frame.size.height, height: collectionPhoto.frame.size.height)
     }
@@ -223,7 +300,8 @@ extension ProfileVC: UICollectionViewDataSource {
             return profileMenu.count
             
         }
-    return 0
+        
+    return 4
     
     }
 
@@ -233,7 +311,7 @@ extension ProfileVC: UICollectionViewDataSource {
         if collectionView == collectionPhoto {
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoGalleryCollectionViewCell", for: indexPath) as! PhotoGalleryCollectionViewCell
-                  cell.targetPhoto = pictures[indexPath.row]
+            cell.targetPhoto = pictures[indexPath.row].photo1280
                   
                   if let photo = pictures[indexPath.row].photo604 {
                       let photoURL = URL(string: "\(photo)")
@@ -247,10 +325,12 @@ extension ProfileVC: UICollectionViewDataSource {
             cell.dataCounted = profileMenu[indexPath.row].picture
             
             return cell
-                  
-                 
+                
         }
-       return UICollectionViewCell()
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WallCollectionViewCell", for: indexPath) as! WallCollectionViewCell
+        cell.label2 = "fewfwef"
+        return cell
     }
 }
 

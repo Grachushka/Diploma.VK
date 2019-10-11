@@ -29,6 +29,24 @@ class addFriendVC: UIViewController {
            table.register(UINib(nibName: "SecondElementTableViewCell", bundle: nil), forCellReuseIdentifier: "SecondElementMenu")
            table.isHidden = true
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(true)
+        
+        NetworkManager.shared.getRecommendFriends { result in
+            
+            switch result {
+                
+            case .success(let recommendFriends):
+                
+                self.recommendFriends = recommendFriends.response.items
+               
+            case .failure(let error):
+                print(error)
+                
+            }
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -92,9 +110,6 @@ extension addFriendVC: UITableViewDataSource {
                        cell.isOnlineFromMobile = false
                        
                    }
-                   
-                let url = URL(string: recommendFriends[indexPath.row].photo200_Orig!)
-                   cell.loadPictureImage(url: url!)
                
                    return cell
                }

@@ -7,16 +7,17 @@
 //
 
 import UIKit
+import Kingfisher
 
 class SecondElementTableViewCell: UITableViewCell {
 
     @IBOutlet weak var pictureMenu: UIImageView!
     @IBOutlet weak var nameMenu: UILabel!
     @IBOutlet weak var descriptionMenu: UILabel!
-    private weak var pictureTask: URLSessionDataTask?
     @IBOutlet weak var isOnlinePicture: UIImageView!
-    
+
     var name: String? {
+        
         didSet {
             
             nameMenu.text = name
@@ -53,37 +54,38 @@ class SecondElementTableViewCell: UITableViewCell {
         
         didSet {
             
-            if let imageName = imageName {
-                pictureMenu.image = UIImage(named: "\(imageName)")
             
+            if let imageName = imageName {
+
+                let url = URL(string: imageName)
+                
+                pictureMenu.kf.setImage(
+                with: url
+               )
+                {
+                    result in
+                    switch result {
+                        
+                    case .success(_):
+                  
+                     self.pictureMenu.layer.cornerRadius = self.pictureMenu.layer.preferredFrameSize().height/2
+                
+                        
+                    case .failure(let error):
+                        
+                        print(error)
+                }
+            }
         }
     }
 }
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        
-        pictureTask?.cancel()
+       
         pictureMenu.image = nil
         isOnlinePicture.image = nil
-       
-
         
+       
     }
-    
-    func loadPictureImage(url: URL) {
-        let task = URLSession.shared.dataTask(with: url) { [weak self] data, _, _ in
-            guard let data = data else { return }
-            DispatchQueue.main.async { [weak self] in
-                self?.pictureMenu.image = UIImage(data: data)
-                self!.pictureMenu.layer.cornerRadius = self!.pictureMenu.layer.preferredFrameSize().height/2
-
-            }
-        }
-        pictureTask = task
-        task.resume()
-    }
-
-  
-    
 }

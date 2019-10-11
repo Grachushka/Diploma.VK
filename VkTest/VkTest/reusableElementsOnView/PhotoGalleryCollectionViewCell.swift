@@ -18,12 +18,15 @@ class PhotoGalleryCollectionViewCell: UICollectionViewCell {
 
     }
     
-    var targetPhoto: Item? {
+    var targetPhoto: String? {
         
     didSet {
         
-        if let photo = targetPhoto?.photo1280 {
+        if let photo = targetPhoto {
+            
             self.photo.image = UIImage(named: photo)
+            
+            
         } else {
             self.photo.image = nil
             }

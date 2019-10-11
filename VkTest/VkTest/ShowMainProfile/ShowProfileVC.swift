@@ -91,12 +91,7 @@ extension ShowProfileVC: UITableViewDataSource {
                 
                 cell.discription = "Открыть профиль"
                 cell.imageName = secondMenu?.photoMax
-                if let photo = secondMenu?.photo200_Orig {
-                        let photoURL = URL(string: "\(photo)")
-                    cell.loadPictureImage(url: photoURL!)
-                }
-                
-                
+               
                 return cell
             } 
             

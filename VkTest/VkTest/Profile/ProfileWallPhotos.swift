@@ -47,19 +47,19 @@ struct Item: Codable {
 }
 
 // MARK: - Likes
-struct Likes: Codable {
-    let userLikes, count: Int?
-
-    enum CodingKeys: String, CodingKey {
-        case userLikes = "user_likes"
-        case count
-    }
-}
+//struct Likes: Codable {
+//    let userLikes, count: Int?
+//
+//    enum CodingKeys: String, CodingKey {
+//        case userLikes = "user_likes"
+//        case count
+//    }
+//}
 
 // MARK: - Reposts
-struct Reposts: Codable {
-    let count: Int?
-}
+//struct Reposts: Codable {
+//    let count: Int?
+//}
 //struct Parse123: Codable {
 //    let response: Response123
 //}

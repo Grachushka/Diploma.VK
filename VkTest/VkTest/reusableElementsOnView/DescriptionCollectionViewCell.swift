@@ -9,6 +9,7 @@
 import UIKit
 
 class DescriptionCollectionViewCell: UICollectionViewCell {
+    
     @IBOutlet weak var count: UILabel!
     @IBOutlet weak var dataCount: UILabel!
     

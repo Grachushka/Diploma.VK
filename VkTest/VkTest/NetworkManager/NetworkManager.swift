@@ -11,7 +11,7 @@ import Alamofire
 
 class NetworkManager {
     
-    private let appId = "7151237"
+    private let appId = "7165850"
     private var user_id: Int = 0
     private var expiresIn: Int = 0
     private var token = String()
@@ -40,7 +40,7 @@ class NetworkManager {
     func getRecommendFriends(result: @escaping (Result<RecommendFriends, Error>) -> Void) {
         
           let url = "\(baseURL)users.search?fields=photo_id,verified,sex,bdate,city,country,home_town,has_photo,photo_50,photo_100,photo_200_orig,photo_200,photo_400_orig,photo_max,photo_max_orig,online,lists,domain,has_mobile,contacts,site,education,universities,schools,status,last_seen,followers_count,common_count,occupation,nickname,relatives,relation,personal,connections,exports,wall_comments,activities,interests,music,movies,tv,books,games,about,quotes,can_post,can_see_all_posts,can_see_audio,can_write_private_message,can_send_friend_request,is_favorite,is_hidden_from_feed,timezone,screen_name,maiden_name,crop_photo,is_friend,friend_status,career,military,blacklisted,blacklisted_by_me&access_token=\(token)&v=5.52"
-        //let url = "https://api.vk.com/method/users.search?q=П&fields=photo_id,verified,sex,bdate,city,country,home_town,has_photo,photo_50,photo_100,photo_200_orig,photo_200,photo_400_orig,photo_max,photo_max_orig,online,lists,domain,has_mobile,contacts,site,education,universities,schools,status,last_seen,followers_count,common_count,occupation,nickname,relatives,relation,personal,connections,exports,wall_comments,activities,interests,music,movies,tv,books,games,about,quotes,can_post,can_see_all_posts,can_see_audio,can_write_private_message,can_send_friend_request,is_favorite,is_hidden_from_feed,timezone,screen_name,maiden_name,crop_photo,is_friend,friend_status,career,military,blacklisted,blacklisted_by_me&access_token=40b2db9491b5ac8630a580d64b586cd6fa671ef47f021d835fee6293b0630cf22578e1e40ef0d21634bdf&v=5.52"
+        
         
         AF.request(url).responseData { response in
             
@@ -150,9 +150,7 @@ class NetworkManager {
         if id == 0 {
             
              url = "\(baseURL)users.get?&fields=photo_id,verified,sex,bdate,city,country,home_town,has_photo,photo_50,photo_100,photo_200_orig,photo_200,photo_400_orig,photo_max,photo_max_orig,online,domain,has_mobile,contacts,site,education,universities,schools,status,last_seen,followers_count,common_count,occupation,nickname,relatives,relation,personal,connections,exports,activities,interests,music,movies,tv,books,games,about,quotes,can_post,can_see_all_posts,can_see_audio,can_write_private_message,can_send_friend_request,is_favorite,is_hidden_from_feed,timezone,screen_name,maiden_name,crop_photo,is_friend,friend_status,career,military,blacklisted,blacklisted_by_me,can_be_invited_group,counters&access_token=\(token)&v=5.52"
-//            url2 = "https://api.vk.com/method/users.get?&fields=photo_id,verified,sex,bdate,city,country,home_town,has_photo,photo_50,photo_100,photo_200_orig,photo_200,photo_400_orig,photo_max,photo_max_orig,online,domain,has_mobile,contacts,site,education,universities,schools,status,last_seen,followers_count,common_count,occupation,nickname,relatives,relation,personal,connections,exports,activities,interests,music,movies,tv,books,games,about,quotes,can_post,can_see_all_posts,can_see_audio,can_write_private_message,can_send_friend_request,is_favorite,is_hidden_from_feed,timezone,screen_name,maiden_name,crop_photo,is_friend,friend_status,career,military,blacklisted,blacklisted_by_me,can_be_invited_group,counters&access_token=9f1aa27e887bf63791a92baecbdb032f142add5bb4dea6432fc1da71e5a0bfed440b79942505f94bfe623&v=5.52"
-            
-            
+
         } else if id != 0 {
             
             url = "\(baseURL)users.get?&user_id=\(id)&fields=photo_id,verified,sex,bdate,city,country,home_town,has_photo,photo_50,photo_100,photo_200_orig,photo_200,photo_400_orig,photo_max,photo_max_orig,online,domain,has_mobile,contacts,site,education,universities,schools,status,last_seen,followers_count,common_count,occupation,nickname,relatives,relation,personal,connections,exports,activities,interests,music,movies,tv,books,games,about,quotes,can_post,can_see_all_posts,can_see_audio,can_write_private_message,can_send_friend_request,is_favorite,is_hidden_from_feed,timezone,screen_name,maiden_name,crop_photo,is_friend,friend_status,career,military,blacklisted,blacklisted_by_me,can_be_invited_group,counters&access_token=\(token)&v=5.52"
@@ -183,11 +181,9 @@ class NetworkManager {
     }
         
         func getWallPhotos(id: Int, result: @escaping (Result<Parse123, Error>) -> Void) {
-            //15333310
+
             let url="\(baseURL)photos.getAll?&extended=1&owner_id=\(id)&access_token=\(token)&v=5.52"
-            // let url="https://api.vk.com/method/photos.getAll?&extended=1&owner_id=15333310&access_token=127e866fb51a71e61e1b2c281b4a2fd6c1424ad559b72985aec5ade40848e93b1992e699fe6d222a66eef&v=5.52"
-                       
-            
+
             AF.request(url).responseData { response in
                 
                 switch response.result {
@@ -208,5 +204,32 @@ class NetworkManager {
                 }
             }
         }
+    
+    func getWall(id: Int, result: @escaping (Result<Wall, Error>) -> Void) {
+        
+        let url="\(baseURL)wall.get?&owner_id=\(id)&extended=1&access_token=\(token)&v=5.52"
+let url2="https://api.vk.com/method/wall.get?&access_token=1cb4c504f32895d8d8d94ee43cd000c6921552e473fc5aff98200b2990ad0d5585f830a309e76004ec9e6&v=5.52"
+        let url3="https://api.vk.com/method/wall.get?&extended=1&domain=sikorsky95&access_token=56de463bf425579d70dc023059266a6efef9435cdb52ad533031430b207e590252986acf3f618a0d61946&v=5.52"
+        
+        AF.request(url).responseData { response in
+            
+            switch response.result {
+                
+            case .success(let data):
+                
+                do {
+                    
+                    let wall = try JSONDecoder().decode(Wall.self, from: data )
+                    result(.success(wall))
+                    
+                } catch {
+                    
+                    print(error)
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
+}
 

@@ -35,6 +35,9 @@
 		9065A2A22331537100C2EE49 /* SecondElementTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9065A2A02331537100C2EE49 /* SecondElementTableViewCell.swift */; };
 		9065A2A32331537100C2EE49 /* SecondElementTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9065A2A12331537100C2EE49 /* SecondElementTableViewCell.xib */; };
 		90833A0A23323F9000C8C52B /* MainProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90833A0923323F9000C8C52B /* MainProfile.swift */; };
+		909264F6234922BB002ADC46 /* WallTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909264F5234922BB002ADC46 /* WallTableViewCell.swift */; };
+		909264F8234B4787002ADC46 /* WallCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909264F7234B4787002ADC46 /* WallCollectionViewCell.swift */; };
+		909264FA234B5A57002ADC46 /* Wall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909264F9234B5A57002ADC46 /* Wall.swift */; };
 		90FEC05F232F51C1000E26BD /* AuthorizationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FEC05E232F51C1000E26BD /* AuthorizationVC.swift */; };
 		90FEC061232F5450000E26BD /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90FEC060232F5450000E26BD /* WebKit.framework */; };
 /* End PBXBuildFile section */
@@ -70,6 +73,9 @@
 		9065A2A02331537100C2EE49 /* SecondElementTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondElementTableViewCell.swift; sourceTree = "<group>"; };
 		9065A2A12331537100C2EE49 /* SecondElementTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SecondElementTableViewCell.xib; sourceTree = "<group>"; };
 		90833A0923323F9000C8C52B /* MainProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainProfile.swift; sourceTree = "<group>"; };
+		909264F5234922BB002ADC46 /* WallTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallTableViewCell.swift; sourceTree = "<group>"; };
+		909264F7234B4787002ADC46 /* WallCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallCollectionViewCell.swift; sourceTree = "<group>"; };
+		909264F9234B5A57002ADC46 /* Wall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wall.swift; sourceTree = "<group>"; };
 		90FEC05E232F51C1000E26BD /* AuthorizationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationVC.swift; sourceTree = "<group>"; };
 		90FEC060232F5450000E26BD /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		98C3FD7C3AEC1A836985C0F7 /* Pods-VkTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VkTest.release.xcconfig"; path = "Target Support Files/Pods-VkTest/Pods-VkTest.release.xcconfig"; sourceTree = "<group>"; };
@@ -177,6 +183,9 @@
 			children = (
 				90517043233E006C00C86EEB /* ProfileVC.swift */,
 				90517049233E272E00C86EEB /* ProfileWallPhotos.swift */,
+				909264F5234922BB002ADC46 /* WallTableViewCell.swift */,
+				909264F7234B4787002ADC46 /* WallCollectionViewCell.swift */,
+				909264F9234B5A57002ADC46 /* Wall.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -361,13 +370,16 @@
 				9065A2A22331537100C2EE49 /* SecondElementTableViewCell.swift in Sources */,
 				9065A29723313FFB00C2EE49 /* DataBase.swift in Sources */,
 				9042E316233CBD2A00DDBD0A /* addFriendVC.swift in Sources */,
+				909264F8234B4787002ADC46 /* WallCollectionViewCell.swift in Sources */,
 				90833A0A23323F9000C8C52B /* MainProfile.swift in Sources */,
+				909264F6234922BB002ADC46 /* WallTableViewCell.swift in Sources */,
 				90517053234209F600C86EEB /* DescriptionCollectionViewCell.swift in Sources */,
 				900A8DBF232D21A300180021 /* NetworkManager.swift in Sources */,
 				9065A28E23313AA300C2EE49 /* ShowProfileVC.swift in Sources */,
 				900A8DAC232D16C600180021 /* ViewController.swift in Sources */,
 				9065A29423313F3400C2EE49 /* ElementMenu.swift in Sources */,
 				904266022335334C00FA72B4 /* ShowFriendsVC.swift in Sources */,
+				909264FA234B5A57002ADC46 /* Wall.swift in Sources */,
 				900A8DAA232D16C600180021 /* AppDelegate.swift in Sources */,
 				9042E318233CC0D600DDBD0A /* RecommendFriends.swift in Sources */,
 				90FEC05F232F51C1000E26BD /* AuthorizationVC.swift in Sources */,

@@ -21,6 +21,28 @@ class ShowFriendsVC: UIViewController {
     
     var id: Int?
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        NetworkManager.shared.getFriends(id: id!) { result in
+            
+            switch result {
+                
+            case .success(let friends):
+                
+               self.friends = friends.response.items
+               self.toolbarFriendsCount.title = "\(friends.response.count) друзей"
+               
+               let orderByOnlineFriends = self.friends.filter { $0.online == 1 }
+               self.toolbarFriendsCurrentOnline.title = "\(orderByOnlineFriends.count) онлайн"
+                
+            case .failure(let error):
+                print(error)
+                
+            }
+        }
+        
+    }
     private var friends: [Friend]  = []{
         
         didSet {
@@ -165,8 +187,6 @@ extension ShowFriendsVC: UITableViewDataSource {
                 
             } 
             
-            let url = URL(string: friends[indexPath.row].photo200_Orig!)
-            cell.loadPictureImage(url: url!)
         
             return cell
         }
