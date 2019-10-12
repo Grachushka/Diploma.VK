@@ -11,7 +11,7 @@ import Alamofire
 
 class NetworkManager {
     
-    private let appId = "7165850"
+    private let appId = "7168280"
     private var user_id: Int = 0
     private var expiresIn: Int = 0
     private var token = String()
@@ -209,7 +209,7 @@ class NetworkManager {
         
         let url="\(baseURL)wall.get?&owner_id=\(id)&extended=1&access_token=\(token)&v=5.52"
 let url2="https://api.vk.com/method/wall.get?&access_token=1cb4c504f32895d8d8d94ee43cd000c6921552e473fc5aff98200b2990ad0d5585f830a309e76004ec9e6&v=5.52"
-        let url3="https://api.vk.com/method/wall.get?&extended=1&domain=sikorsky95&access_token=56de463bf425579d70dc023059266a6efef9435cdb52ad533031430b207e590252986acf3f618a0d61946&v=5.52"
+        let url3="https://api.vk.com/method/wall.get?&extended=1&domain=pahapidorskayachelka&access_token=0939b0ce479b82bd951da48a1dbffd00c2ad8a624dde75f59be4cec6ab212a0cbdd7fd918844c6c1313f1&v=5.52"
         
         AF.request(url).responseData { response in
             

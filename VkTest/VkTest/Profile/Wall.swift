@@ -54,7 +54,7 @@ struct Item333: Codable {
     let comments: Comments?
     let likes: Likes?
     let reposts: Reposts?
-    let attachments: [ItemAttachment]?
+    let attachments: [CopyHistoryAttachment]?
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -69,21 +69,79 @@ struct Item333: Codable {
     }
 }
 
-// MARK: - ItemAttachment
 struct ItemAttachment: Codable {
-    let type: String?
-    let photo: Photo1?
+    let type: AttachmentType?
+    let link: Link?
+    let photo: AttachmentPhoto?
+    let video: PurpleVideo?
+    let audio: Audio?
 }
 
-// MARK: - Photo
-struct Photo1: Codable {
+// MARK: - Audio
+struct Audio: Codable {
+    let artist: String?
+    let id, ownerID: Int?
+    let title: String?
+    let duration: Int?
+    let url: String?
+    let date, lyricsID, genreID, albumID: Int?
+    let contentRestricted: Int?
+
+    enum CodingKeys: String, CodingKey {
+        case artist, id
+        case ownerID = "owner_id"
+        case title, duration, url, date
+        case lyricsID = "lyrics_id"
+        case genreID = "genre_id"
+        case albumID = "album_id"
+        case contentRestricted = "content_restricted"
+    }
+}
+
+// MARK: - Link
+struct Link: Codable {
+    let url: String?
+    let title, caption, linkDescription: String?
+    let isExternal: Int?
+    let photo: LinkPhoto?
+
+    enum CodingKeys: String, CodingKey {
+        case url, title, caption
+        case linkDescription = "description"
+        case isExternal = "is_external"
+        case photo
+    }
+}
+
+// MARK: - LinkPhoto
+struct LinkPhoto: Codable {
+    let id, albumID, ownerID: Int?
+    let photo75, photo130, photo604: String?
+    let width, height: Int?
+    let text: String?
+    let date: Int?
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case albumID = "album_id"
+        case ownerID = "owner_id"
+        case photo75 = "photo_75"
+        case photo130 = "photo_130"
+        case photo604 = "photo_604"
+        case width, height, text, date
+    }
+}
+
+// MARK: - AttachmentPhoto
+struct AttachmentPhoto: Codable {
     let id, albumID, ownerID: Int?
     let photo75, photo130, photo604, photo807: String?
     let photo1280, photo2560: String?
     let width, height: Int?
     let text: String?
-    let date, postID, userID: Int?
+    let date: Int?
     let accessKey: String?
+    let postID, userID: Int?
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -96,9 +154,71 @@ struct Photo1: Codable {
         case photo1280 = "photo_1280"
         case photo2560 = "photo_2560"
         case width, height, text, date
+        case accessKey = "access_key"
         case postID = "post_id"
         case userID = "user_id"
+    }
+}
+
+enum AttachmentType: String, Codable {
+    case audio = "audio"
+    case doc = "doc"
+    case link = "link"
+    case photo = "photo"
+    case video = "video"
+    case graffiti = "graffiti"
+    case note = "note"
+    case app = "app"
+    case poll = "poll"
+    case page = "page"
+    case album = "album"
+    case photos_list = "photos_list"
+    case market = "market"
+    case market_album = "market_album"
+    case sticker = "sticker"
+    case pretty_cards = "pretty_cards"
+    case event = "event"
+    case posted_photo = "posted_photo"
+    
+    
+}
+
+// MARK: - PurpleVideo
+struct PurpleVideo: Codable {
+    let id, ownerID: Int?
+    let title: String?
+    let duration: Int?
+    let videoDescription: String?
+    let date, comments, views, width: Int?
+    let height: Int?
+    let photo130, photo320, photo800, photo1280: String?
+    let firstFrame320, firstFrame160, firstFrame4096, firstFrame130: String?
+    let firstFrame720, firstFrame1024, firstFrame1280, firstFrame800: String?
+    let accessKey: String?
+    let canAdd: Int?
+    let trackCode: String?
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case ownerID = "owner_id"
+        case title, duration
+        case videoDescription = "description"
+        case date, comments, views, width, height
+        case photo130 = "photo_130"
+        case photo320 = "photo_320"
+        case photo800 = "photo_800"
+        case photo1280 = "photo_1280"
+        case firstFrame320 = "first_frame_320"
+        case firstFrame160 = "first_frame_160"
+        case firstFrame4096 = "first_frame_4096"
+        case firstFrame130 = "first_frame_130"
+        case firstFrame720 = "first_frame_720"
+        case firstFrame1024 = "first_frame_1024"
+        case firstFrame1280 = "first_frame_1280"
+        case firstFrame800 = "first_frame_800"
         case accessKey = "access_key"
+        case canAdd = "can_add"
+        case trackCode = "track_code"
     }
 }
 
@@ -134,27 +254,54 @@ struct CopyHistory: Codable {
 
 // MARK: - CopyHistoryAttachment
 struct CopyHistoryAttachment: Codable {
-    let type: String?
-    let photo: Photo?
+    let type: AttachmentType?
     let audio: Audio?
+    let link: Link?
+    let photo: AttachmentPhoto?
+    let video: PurpleVideo?
+    let doc: Doc?
+    
 }
 
-// MARK: - Audio
-struct Audio: Codable {
-    let artist: String?
+struct Doc: Codable {
     let id, ownerID: Int?
     let title: String?
-    let duration: Int?
+    let size: Int?
+    let ext: String?
     let url: String?
-    let date, albumID: Int?
+    let date, type: Int?
+    let preview: Preview?
+    let accessKey: String?
 
     enum CodingKeys: String, CodingKey {
-        case artist, id
+        case id
         case ownerID = "owner_id"
-        case title, duration, url, date
-        case albumID = "album_id"
+        case title, size, ext, url, date, type, preview
+        case accessKey = "access_key"
     }
 }
+struct Preview: Codable {
+    let photo: PreviewPhoto?
+    let video: VideoElement?
+}
+
+struct PreviewPhoto: Codable {
+    let sizes: [VideoElement]?
+}
+
+// MARK: - VideoElement
+struct VideoElement: Codable {
+    let src: String?
+    let width, height: Int?
+    let type: String?
+    let fileSize: Int?
+
+    enum CodingKeys: String, CodingKey {
+        case src, width, height, type
+        case fileSize = "file_size"
+    }
+}
+
 
 // MARK: - CopyHistoryPostSource
 struct CopyHistoryPostSource: Codable {

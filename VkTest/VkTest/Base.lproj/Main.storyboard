@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -390,13 +390,13 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ps-0w-P8A">
+                                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ps-0w-P8A">
                                                     <rect key="frame" x="20" y="103" width="374" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="fwijefiowehfiowehfiowehfoiwhefiowehfiowhefiowehfiowefhiowefhiowehfoiwehfiowehfowihfiwoehfiowhefiowhfiowhefiowhfiowehfoiw" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lWr-nC-QXO">
+                                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="fwijefiowehfiowehfiowehfoiwhefiowehfiowhefiowehfiowefhiowefhiowehfoiwehfiowehfowihfiwoehfiowhefiowhfiowhefiowhfiowehfoiw" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lWr-nC-QXO">
                                                     <rect key="frame" x="20" y="129" width="374" height="61"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -405,31 +405,34 @@
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="n3F-Xo-WwB">
                                                     <rect key="frame" x="20" y="190" width="374" height="161"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ofH-Ci-i3E">
-                                                        <size key="itemSize" width="50" height="50"/>
+                                                    <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ofH-Ci-i3E">
+                                                        <size key="itemSize" width="95" height="91"/>
                                                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                     </collectionViewFlowLayout>
                                                     <cells>
                                                         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="WallCollectionViewCell" id="Gjz-7Y-eEX" customClass="WallCollectionViewCell" customModule="VkTest" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="95" height="91"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="2ok-Jg-SnZ">
-                                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="95" height="91"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="gg" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KZi-Wc-FKU">
-                                                                        <rect key="frame" x="4" y="8" width="20" height="21"/>
-                                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                        <nil key="textColor"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dBG-DH-xQA">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="95" height="91"/>
+                                                                    </imageView>
                                                                 </subviews>
+                                                                <constraints>
+                                                                    <constraint firstItem="dBG-DH-xQA" firstAttribute="top" secondItem="2ok-Jg-SnZ" secondAttribute="top" id="1G0-UX-hN2"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="dBG-DH-xQA" secondAttribute="trailing" id="6s2-DJ-VZ4"/>
+                                                                    <constraint firstItem="dBG-DH-xQA" firstAttribute="leading" secondItem="2ok-Jg-SnZ" secondAttribute="leading" id="JA5-aA-2If"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="dBG-DH-xQA" secondAttribute="bottom" id="gdK-u8-c30"/>
+                                                                </constraints>
                                                             </collectionViewCellContentView>
+                                                            <size key="customSize" width="95" height="91"/>
                                                             <connections>
-                                                                <outlet property="label" destination="KZi-Wc-FKU" id="Thg-7j-Xkz"/>
+                                                                <outlet property="imageView" destination="dBG-DH-xQA" id="jvy-w0-IFh"/>
                                                             </connections>
                                                         </collectionViewCell>
                                                     </cells>
@@ -477,6 +480,8 @@
                                             <outlet property="dateFrom" destination="Ndy-1a-1su" id="ftB-Sg-YpP"/>
                                             <outlet property="fullName" destination="QKk-va-G4O" id="0bZ-nH-xub"/>
                                             <outlet property="fullNameFrom" destination="D0E-VD-PGO" id="hCd-L3-qpI"/>
+                                            <outlet property="textForCell" destination="lWr-nC-QXO" id="ktF-1S-T4w"/>
+                                            <outlet property="title" destination="9ps-0w-P8A" id="TvB-Jd-Ll4"/>
                                             <outlet property="wallCollection" destination="n3F-Xo-WwB" id="Fgl-aU-bEU"/>
                                         </connections>
                                     </tableViewCell>

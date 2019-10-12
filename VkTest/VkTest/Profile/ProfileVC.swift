@@ -43,6 +43,8 @@ class ProfileVC: UIViewController {
         }
     }
     
+    var colItems: Int?
+    
     var wallProfiles: [Profile]? = []
     var wallGroups: [Group]? = []
 
@@ -88,10 +90,14 @@ class ProfileVC: UIViewController {
                status.text = "online"
                
            } else if object?.online == 0 {
+        
+            let was = Date(timeIntervalSince1970: TimeInterval(object!.lastSeen!.time!))
             
-//            print(Date(timeIntervalSince1970: TimeInterval(object!.lastSeen!.time!)))
+            let calendarWas = Calendar.current.dateComponents([.year, .month,.day, .timeZone, .hour, .minute, .second],from: was)
             
-            status.text = "заходил \(object!.lastSeen!.time!) минут назад"
+//            let currentCalendar = Calendar.current.dateComponents([.year, .month,.day, .timeZone, .hour, .minute, .second],from: Date())
+//
+            status.text = "был в сети \(calendarWas.day!).\(calendarWas.month!) \(calendarWas.hour!):\(calendarWas.minute!)"
            }
         
         ageCountry.text = object?.city?.title
@@ -244,7 +250,7 @@ class ProfileVC: UIViewController {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        return 400
+        return 800
     }
 }
 
@@ -301,8 +307,7 @@ extension ProfileVC: UICollectionViewDataSource {
             
         }
         
-    return 4
-    
+        return 0
     }
 
     
@@ -318,6 +323,7 @@ extension ProfileVC: UICollectionViewDataSource {
                   cell.loadPictureImage(url: photoURL!)
                   return cell
             }
+            
         } else if collectionView == dataCollection {
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DescriptionCollectionViewCell", for: indexPath) as! DescriptionCollectionViewCell
@@ -328,9 +334,7 @@ extension ProfileVC: UICollectionViewDataSource {
                 
         }
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WallCollectionViewCell", for: indexPath) as! WallCollectionViewCell
-        cell.label2 = "fewfwef"
-        return cell
+        return UICollectionViewCell()
     }
 }
 
