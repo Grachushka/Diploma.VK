@@ -13,57 +13,81 @@ import Alamofire
 class WallCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var label: UILabel!
-    
     @IBOutlet weak var imageView: UIImageView!
-    private weak var pictureTask: URLSessionDataTask?
 
     var copyHistoryAttachment: CopyHistoryAttachment? {
         
         didSet {
-//            URLCache.shared.removeAllCachedResponses()
-//            URLCache.shared.diskCapacity = 0
-//            URLCache.shared.memoryCapacity = 0
-//            URLCache.shared.removeAllCachedResponses()
-//            if let cookies = HTTPCookieStorage.shared.cookies {
-//                for cookie in cookies {
-//                    HTTPCookieStorage.shared.deleteCookie(cookie)
-//                }
-//            }
             
             if let type = copyHistoryAttachment?.type {
-
+                
+                var url: URL?
+                
                 switch type {
                     
                 case .video:
                     print("video")
+                    
+                    if let imageName = copyHistoryAttachment!.video?.photo1280 {
+                    url = URL(string: imageName)
+                        
+                    } else if let imageName = copyHistoryAttachment!.video?.photo800 {
+                    url = URL(string: imageName)
+                        
+                    } else if let imageName = copyHistoryAttachment!.video?.photo320 {
+                    url = URL(string: imageName)
+                        
+                    }
+                    
+                    loadImage(url: url!)
                 case .doc:
                     print("doc")
                     
-                  
+                    
                     if let imageName = copyHistoryAttachment!.doc!.preview!.photo!.sizes![2].src {
-                    let url = URL(string: imageName)
-                       print(url!)
-                    loadImage(url: url!)
+                     url = URL(string: imageName)
+           
                       
+                    } else if let imageName = copyHistoryAttachment!.doc!.preview!.photo!.sizes![1].src {
+                     url = URL(string: imageName)
+
+                    } else if let imageName = copyHistoryAttachment!.doc!.preview!.photo!.sizes![0].src {
+                     url = URL(string: imageName)
+                    
                     }
+                    loadImage(url: url!)
                     
                 case .link:
+                    
                     print("link")
                     
-                    if let imageName = copyHistoryAttachment!.link!.photo?.photo130 {
-                        let url = URL(string: imageName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
-                        print(url!)
-                        loadImage(url: url!)
+                    if let imageName = copyHistoryAttachment!.link!.photo?.photo604 {
+                         url = URL(string: imageName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
+                  
+                    } else  if let imageName = copyHistoryAttachment!.link!.photo?.photo130 {
+                         url = URL(string: imageName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
                     }
+                    
+                    loadImage(url: url!)
                     
                 case .photo:
                     print("photo")
                     
-                    if let imageName = copyHistoryAttachment!.photo!.photo130 {
-                        let url = URL(string: imageName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
-                        print(url!)
-                        loadImage(url: url!)
+                    if let imageName = copyHistoryAttachment!.photo!.photo2560 {
+                         url = URL(string: imageName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
+
+                    } else if let imageName = copyHistoryAttachment!.photo!.photo1280 {
+                     url = URL(string: imageName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
+                    
+                    } else if let imageName = copyHistoryAttachment!.photo!.photo807 {
+                     url = URL(string: imageName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
+                    
+                    } else if let imageName = copyHistoryAttachment!.photo!.photo604 {
+                     url = URL(string: imageName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
+                    
                     }
+                    
+                    loadImage(url: url!)
                     
                 case .graffiti:
                     print("graffity")
@@ -100,71 +124,21 @@ class WallCollectionViewCell: UICollectionViewCell {
     }
     
     
-//    func loadImage(url: URL) {
-//
-//        imageView.kf.setImage(with: url)
-//            {
-//                result in
-//                switch result {
-//
-//                case .success(_):
-//                    print("success")
-//                case .failure(let error):
-//                    print(error)
-//
-//            }
-//        }
-//    }
-//    func loadImage(url: URL) {
-//        loadPhoto(url: url) { result in
-//            switch result {
-//            case .success(let data ):
-//
-//                self.imageView.image = data
-//
-//            case .failure(let error):
-//                print(error)
-//            }
-//
-//        }
-//    }
-//}
-//
-//func loadPhoto(url: URL, result: @escaping (Result<UIImage, Error>) -> Void) {
-//
-//
-//
-//    AF.request(url).responseData { response in
-//
-//        switch response.result {
-//
-//        case .success(let data):
-//
-//
-//
-//             let image = UIImage(data: data)
-//                result(.success(image!))
-//
-//
-//        case .failure(let error):
-//            print(error)
-//        }
-//    }
-//
-//}
     func loadImage(url: URL) {
-        let task = URLSession.shared.dataTask(with: url) { [weak self] data, _, _ in
-            guard let data = data else { return }
-            DispatchQueue.main.async { [weak self] in
-                self?.imageView.image = UIImage(data: data)
+
+        imageView.kf.setImage(with: url)
+            {
+                result in
+                switch result {
+
+                case .success(_):
+                    print("success")
+                case .failure(let error):
+                    print(error)
+
             }
         }
-        pictureTask = task
-        task.resume()
     }
-    override func prepareForReuse() {
-        
-        pictureTask?.cancel()
-        imageView = nil
-    }
+    
+    
 }

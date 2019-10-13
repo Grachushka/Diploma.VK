@@ -33,9 +33,12 @@ class WallTableViewCell: UITableViewCell {
     var groups: [Group]?
     var profile: [Profile]?
     var wall: Item333? {
+        
+        
     
         didSet {
-  
+            
+            
             if let title = wall?.text {
                 
                 self.title.text = title
@@ -245,7 +248,7 @@ return 1
                         
         } else if let attachments = wall?.attachments {
             
-            cell.copyHistoryAttachment = attachments.first
+                cell.copyHistoryAttachment = attachments.first
            
         }
         
@@ -258,7 +261,16 @@ return 1
 extension WallTableViewCell: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        return CGSize(width: 50, height: 50)
+    }
+    override func prepareForReuse() {
+        
+//        wallCollection.collectionViewLayout.invalidateLayout()
 
-        return CGSize(width: 200, height: 200)
+        wallCollection.reloadData()
+
+//        let s =   wallCollection.collectionViewLayout.collectionViewContentSize
+//        print(s)
     }
 }

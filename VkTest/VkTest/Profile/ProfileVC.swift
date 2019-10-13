@@ -275,6 +275,7 @@ extension ProfileVC: UITableViewDataSource {
             
             return cell
         }
+        
         return UITableViewCell()
     }
 }
