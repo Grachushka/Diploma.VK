@@ -19,106 +19,122 @@ class WallCollectionViewCell: UICollectionViewCell {
         
         didSet {
             
-            if let type = copyHistoryAttachment?.type {
+            if let copyHistoryAttachment = copyHistoryAttachment {
                 
-                var url: URL?
-                
-                switch type {
+                if let type = copyHistoryAttachment.type {
                     
-                case .video:
-                    print("video")
+                    var url: URL?
                     
-                    if let imageName = copyHistoryAttachment!.video?.photo1280 {
-                    url = URL(string: imageName)
+                    switch type {
                         
-                    } else if let imageName = copyHistoryAttachment!.video?.photo800 {
-                    url = URL(string: imageName)
+                    case .video:
+                        print("video")
                         
-                    } else if let imageName = copyHistoryAttachment!.video?.photo320 {
-                    url = URL(string: imageName)
+                        if let imageName = copyHistoryAttachment.video?.photo1280 {
+                        url = URL(string: imageName)
+                            
+                        } else if let imageName = copyHistoryAttachment.video?.photo800 {
+                        url = URL(string: imageName)
+                            
+                        } else if let imageName = copyHistoryAttachment.video?.photo320 {
+                        url = URL(string: imageName)
+                            
+                        }
                         
-                    }
-                    
-                    loadImage(url: url!)
-                case .doc:
-                    print("doc")
-                    
-                    
-                    if let imageName = copyHistoryAttachment!.doc!.preview!.photo!.sizes![2].src {
-                     url = URL(string: imageName)
-           
+                        loadImage(url: url!)
+                        
+                    case .doc:
+                        print("doc")
+                        
+                        if let copyHistoryAttachment = copyHistoryAttachment.doc {
+                            if let preview = copyHistoryAttachment.preview {
+                                if let sizes = preview.photo!.sizes {
+                                    if let imageName = sizes[2].src {
+                                        
+                                        url = URL(string: imageName)
+                                    }
+                                }
+                            } else {
+                                return 
+                            }
+                            
+                        } else if let imageName = copyHistoryAttachment.doc!.preview!.photo!.sizes![1].src {
+                         url = URL(string: imageName)
+
+                        } else if let imageName = copyHistoryAttachment.doc!.preview!.photo!.sizes![0].src {
+                         url = URL(string: imageName)
+                        
+                        }
+                        
+                        loadImage(url: url!)
+                        
+                    case .link:
+                        
+                        print("link")
+                        
+                        if let imageName = copyHistoryAttachment.link!.photo?.photo604 {
+                             url = URL(string: imageName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
                       
-                    } else if let imageName = copyHistoryAttachment!.doc!.preview!.photo!.sizes![1].src {
-                     url = URL(string: imageName)
+                        } else  if let imageName = copyHistoryAttachment.link!.photo?.photo130 {
+                             url = URL(string: imageName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
+                        }
+                        if let url = url {
+                            
+                            loadImage(url: url)
 
-                    } else if let imageName = copyHistoryAttachment!.doc!.preview!.photo!.sizes![0].src {
-                     url = URL(string: imageName)
-                    
-                    }
-                    loadImage(url: url!)
-                    
-                case .link:
-                    
-                    print("link")
-                    
-                    if let imageName = copyHistoryAttachment!.link!.photo?.photo604 {
-                         url = URL(string: imageName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
-                  
-                    } else  if let imageName = copyHistoryAttachment!.link!.photo?.photo130 {
-                         url = URL(string: imageName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
-                    }
-                    
-                    loadImage(url: url!)
-                    
-                case .photo:
-                    print("photo")
-                    
-                    if let imageName = copyHistoryAttachment!.photo!.photo2560 {
-                         url = URL(string: imageName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
+                        }
+                        
+                    case .photo:
+                        print("photo")
+                        
+                        if let imageName = copyHistoryAttachment.photo!.photo2560 {
+                             url = URL(string: imageName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
 
-                    } else if let imageName = copyHistoryAttachment!.photo!.photo1280 {
-                     url = URL(string: imageName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
-                    
-                    } else if let imageName = copyHistoryAttachment!.photo!.photo807 {
-                     url = URL(string: imageName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
-                    
-                    } else if let imageName = copyHistoryAttachment!.photo!.photo604 {
-                     url = URL(string: imageName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
+                        } else if let imageName = copyHistoryAttachment.photo!.photo1280 {
+                         url = URL(string: imageName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
+                        
+                        } else if let imageName = copyHistoryAttachment.photo!.photo807 {
+                         url = URL(string: imageName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
+                        
+                        } else if let imageName = copyHistoryAttachment.photo!.photo604 {
+                         url = URL(string: imageName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
+                        
+                        }
+                        
+                        loadImage(url: url!)
+                        
+                    case .graffiti:
+                        print("graffity")
+                    case .note:
+                        print("note")
+                    case .app:
+                        print("app")
+                    case .poll:
+                        print("poll")
+                    case .page:
+                        print("page")
+                    case .album:
+                        print("album")
+                    case .photos_list:
+                        print("photos_list")
+                    case .market:
+                        print("market")
+                    case .market_album:
+                        print("market_album")
+                    case .sticker:
+                        print("sticker")
+                    case .pretty_cards:
+                        print("pretty_cards")
+                    case .event:
+                        print("event")
+                    case .posted_photo:
+                        print("posted_photo")
+                    case .audio:
+                        print("audio")
                     
                     }
-                    
-                    loadImage(url: url!)
-                    
-                case .graffiti:
-                    print("graffity")
-                case .note:
-                    print("note")
-                case .app:
-                    print("app")
-                case .poll:
-                    print("poll")
-                case .page:
-                    print("page")
-                case .album:
-                    print("album")
-                case .photos_list:
-                    print("photos_list")
-                case .market:
-                    print("market")
-                case .market_album:
-                    print("market_album")
-                case .sticker:
-                    print("sticker")
-                case .pretty_cards:
-                    print("pretty_cards")
-                case .event:
-                    print("event")
-                case .posted_photo:
-                    print("posted_photo")
-                case .audio:
-                    print("audio")
-                
                 }
+                
             }
         }
     }
@@ -127,6 +143,7 @@ class WallCollectionViewCell: UICollectionViewCell {
     func loadImage(url: URL) {
 
         imageView.kf.setImage(with: url)
+            
             {
                 result in
                 switch result {

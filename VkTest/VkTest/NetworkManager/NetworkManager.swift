@@ -208,8 +208,6 @@ class NetworkManager {
     func getWall(id: Int, result: @escaping (Result<Wall, Error>) -> Void) {
         
         let url="\(baseURL)wall.get?&owner_id=\(id)&extended=1&access_token=\(token)&v=5.52"
-let url2="https://api.vk.com/method/wall.get?&access_token=1cb4c504f32895d8d8d94ee43cd000c6921552e473fc5aff98200b2990ad0d5585f830a309e76004ec9e6&v=5.52"
-        let url3="https://api.vk.com/method/wall.get?&extended=1&domain=pahapidorskayachelka&access_token=0939b0ce479b82bd951da48a1dbffd00c2ad8a624dde75f59be4cec6ab212a0cbdd7fd918844c6c1313f1&v=5.52"
         
         AF.request(url).responseData { response in
             
@@ -231,5 +229,31 @@ let url2="https://api.vk.com/method/wall.get?&access_token=1cb4c504f32895d8d8d94
             }
         }
     }
+    
+    func getReccomendNews(result: @escaping (Result<News, Error>) -> Void) {
+        
+        let url="\(baseURL)newsfeed.getRecommended?&access_token=\(token)&v=5.52"
+        
+           
+           AF.request(url).responseData { response in
+               
+               switch response.result {
+                   
+               case .success(let data):
+                   
+                   do {
+                       
+                       let news = try JSONDecoder().decode(News.self, from: data )
+                       result(.success(news))
+                       
+                   } catch {
+                       
+                       print(error)
+                   }
+               case .failure(let error):
+                   print(error)
+               }
+           }
+       }
 }
 

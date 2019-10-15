@@ -21,6 +21,14 @@ class WallTableViewCell: UITableViewCell {
     @IBOutlet weak var textForCell: UILabel!
     @IBOutlet weak var title: UILabel!
     
+    override func prepareForReuse() {
+            
+            
+        wallCollection.reloadData()
+        textForCell.text = nil
+        title.text = nil
+       
+       }
     @IBOutlet weak var wallCollection: UICollectionView! {
         
         didSet {
@@ -37,16 +45,64 @@ class WallTableViewCell: UITableViewCell {
         
     
         didSet {
+            wallCollection.reloadData()
+            let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+            layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+            layout.minimumInteritemSpacing = 3
+            layout.minimumLineSpacing = 3
+            var count: Int?
             
+            if let attachments = wall?.attachments {
+                
+                count = attachments.count
+
+                for i in attachments {
+                    
+                    
+                    if i.audio != nil {
+                        
+                        count! -= 1
+                    }
+                }
+                 
+                
+            } else if let copyHistory = wall?.copyHistory {
+                
+                if let attachments = copyHistory.first?.attachments {
+                    
+                    count = attachments.count
+                    
+                    for i in attachments {
+                        
+                        
+                        if i.audio != nil {
+                            
+                            count! -= 1
+                        }
+                    }
+                }
+                
+                
+            }
+            
+           if var resultCount = count {
+            
+                if resultCount >= 6 {
+                    
+                    resultCount /= 2
+                }
+                layout.itemSize = CGSize(width: wallCollection.layer.preferredFrameSize().width/CGFloat(resultCount), height: wallCollection.layer.preferredFrameSize().height/CGFloat(resultCount))
+            }
+            
+            
+            wallCollection.collectionViewLayout = layout
             
             if let title = wall?.text {
                 
                 self.title.text = title
-                self.title.isHidden = false
             }
             if let first = wall?.copyHistory?.first {
                 
-                textForCell.isHidden = false
                 textForCell.text = first.text
                 
                 let was = Date(timeIntervalSince1970: TimeInterval(first.date!))
@@ -61,11 +117,6 @@ class WallTableViewCell: UITableViewCell {
                 } else {
                     dateFrom.text = "\(calendarWas.day!).\(calendarWas.month!) в \(calendarWas.hour!):\(calendarWas.minute!)"
                 }
-                          
-                
-            } else  {
-                
-                textForCell.isHidden = true
             }
             
             let was = Date(timeIntervalSince1970: TimeInterval((wall?.date)!))
@@ -220,12 +271,37 @@ extension WallTableViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         if let wall = wall?.copyHistory {
-return 1
-//            return wall[0].attachments!.count
             
+            if let attachments = wall[0].attachments {
+                
+                var count = attachments.count
+
+                for i in attachments {
+                    
+                    
+                    if i.audio != nil {
+                        
+                        count -= 1
+                    }
+                }
+                
+                return count
+            }
+                        
         } else if let attachments = wall?.attachments {
-            return 1
-//            return attachments.count
+            
+            var count = attachments.count
+
+            for i in attachments {
+                
+                
+                if i.audio != nil {
+                    
+                    count -= 1
+                }
+            }
+            
+           return count
         }
 
         return 0
@@ -241,36 +317,19 @@ return 1
             
             if let attachments = wall.first?.attachments {
 
-                cell.copyHistoryAttachment = attachments.first
+                cell.copyHistoryAttachment = attachments[indexPath.row]
                 
-                
+                return cell
             }
                         
         } else if let attachments = wall?.attachments {
             
-                cell.copyHistoryAttachment = attachments.first
-           
+            cell.copyHistoryAttachment = attachments[indexPath.row]
+           return cell
         }
         
-        return cell
+        return UICollectionViewCell()
         
     }
-    
-}
-
-extension WallTableViewCell: UICollectionViewDelegateFlowLayout {
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        return CGSize(width: 50, height: 50)
-    }
-    override func prepareForReuse() {
-        
-//        wallCollection.collectionViewLayout.invalidateLayout()
-
-        wallCollection.reloadData()
-
-//        let s =   wallCollection.collectionViewLayout.collectionViewContentSize
-//        print(s)
-    }
+   
 }
