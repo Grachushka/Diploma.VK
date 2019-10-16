@@ -48,6 +48,7 @@ class WallTableViewCell: UITableViewCell {
             wallCollection.reloadData()
             let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
             layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+            
             layout.minimumInteritemSpacing = 3
             layout.minimumLineSpacing = 3
             var count: Int?
