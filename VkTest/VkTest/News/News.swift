@@ -9,11 +9,30 @@
 import Foundation
 import RealmSwift
 
+class NewsRealm: Object, Codable {
+    
+    @objc dynamic var response: ResponseNewsRealm?
+
+    }
+
 struct News: Codable {
     let response: ResponseNews?
 }
 
 // MARK: - Response
+class ResponseNewsRealm: Object, Codable {
+    
+    var items = List<OneNewsRealm>()
+    var profiles = List<ProfileRealm>()
+    var groups = List<GroupRealm>()
+    @objc dynamic var nextFrom: String?
+
+    
+    enum CodingKeys: String, CodingKey {
+           case items, profiles, groups
+           case nextFrom = "next_from"
+       }
+}
 struct ResponseNews: Codable {
     let items: [OneNews]
     let profiles: [Profile]?
@@ -55,6 +74,28 @@ enum GroupType: String, Codable {
 }
 
 // MARK: - Item
+class OneNewsRealm: Object, Codable {
+    
+    dynamic var sourceID: RealmOptional<Int> = RealmOptional()
+    dynamic var date: RealmOptional<Int> = RealmOptional()
+    @objc dynamic var text: String?
+//    dynamic var markedAsAds: RealmOptional<Int> = RealmOptional()
+    var attachments = List<CopyHistoryAttachmentRealm>()
+//    @objc dynamic var postID: Int
+//    @objc dynamic var signerID: Int
+    
+    enum CodingKeys: String, CodingKey {
+           case sourceID = "source_id"
+           case date
+           case text
+//           case markedAsAds = "marked_as_ads"
+           case attachments
+           //case postSource = "post_source"
+//           case postID = "post_id"
+//           case signerID = "signer_id"
+       }
+}
+
 struct OneNews: Codable {
     let type: PostTypeEnum?
     let sourceID, date: Int?
@@ -62,7 +103,6 @@ struct OneNews: Codable {
     let text: String?
     let markedAsAds: Int?
     let attachments: [CopyHistoryAttachment]?
-   // let postSource: PostSource?
     let comments: Comments?
     let likes: Likes?
     let reposts: Reposts?
@@ -232,6 +272,7 @@ enum PostSourceType: String, Codable {
     case api = "api"
     case vk = "vk"
 }
+
 
 enum PostTypeEnum: String, Codable {
     case post = "post"

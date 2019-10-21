@@ -230,7 +230,7 @@ class NetworkManager {
         }
     }
     
-    func getReccomendNews(result: @escaping (Result<News, Error>) -> Void) {
+    func getReccomendNews(result: @escaping (Result<NewsRealm, Error>) -> Void) {
         
         let url="\(baseURL)newsfeed.getRecommended?&access_token=\(token)&v=5.52"
         
@@ -243,14 +243,14 @@ class NetworkManager {
                    
                    do {
                        
-                       let news = try JSONDecoder().decode(News.self, from: data )
+                       let news = try JSONDecoder().decode(NewsRealm.self, from: data )
                        result(.success(news))
                        
                    } catch {
-                       
                        print(error)
                    }
                case .failure(let error):
+                result(.failure(error))
                    print(error)
                }
            }

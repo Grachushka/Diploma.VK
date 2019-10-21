@@ -43,6 +43,7 @@
 		909264F8234B4787002ADC46 /* WallCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909264F7234B4787002ADC46 /* WallCollectionViewCell.swift */; };
 		909264FA234B5A57002ADC46 /* Wall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909264F9234B5A57002ADC46 /* Wall.swift */; };
 		90BAD937235745380010F784 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 90BAD936235745380010F784 /* Kingfisher */; };
+		90BAD93A23574AE60010F784 /* DataBaseRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BAD93923574AE60010F784 /* DataBaseRealm.swift */; };
 		90FEC05F232F51C1000E26BD /* AuthorizationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FEC05E232F51C1000E26BD /* AuthorizationVC.swift */; };
 		90FEC061232F5450000E26BD /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90FEC060232F5450000E26BD /* WebKit.framework */; };
 /* End PBXBuildFile section */
@@ -86,6 +87,7 @@
 		909264F7234B4787002ADC46 /* WallCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallCollectionViewCell.swift; sourceTree = "<group>"; };
 		909264F9234B5A57002ADC46 /* Wall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wall.swift; sourceTree = "<group>"; };
 		90BAD931235742DB0010F784 /* RealmSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		90BAD93923574AE60010F784 /* DataBaseRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseRealm.swift; sourceTree = "<group>"; };
 		90FEC05E232F51C1000E26BD /* AuthorizationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationVC.swift; sourceTree = "<group>"; };
 		90FEC060232F5450000E26BD /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		98C3FD7C3AEC1A836985C0F7 /* Pods-VkTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VkTest.release.xcconfig"; path = "Target Support Files/Pods-VkTest/Pods-VkTest.release.xcconfig"; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 		900A8DA8232D16C600180021 /* VkTest */ = {
 			isa = PBXGroup;
 			children = (
+				90BAD93823574ACD0010F784 /* DataBaseRealm */,
 				901EB0E323546E9000282E1B /* News */,
 				90429B3323476BF500AE16C8 /* InfoProfile */,
 				90517042233E001600C86EEB /* Profile */,
@@ -237,6 +240,14 @@
 				901EB0ED23547C5D00282E1B /* NewsTableViewCell.xib */,
 			);
 			path = ReusableElementsOnView;
+			sourceTree = "<group>";
+		};
+		90BAD93823574ACD0010F784 /* DataBaseRealm */ = {
+			isa = PBXGroup;
+			children = (
+				90BAD93923574AE60010F784 /* DataBaseRealm.swift */,
+			);
+			path = DataBaseRealm;
 			sourceTree = "<group>";
 		};
 		90FEC05D232F51A2000E26BD /* Authorization */ = {
@@ -394,6 +405,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				90517047233E0E2C00C86EEB /* PhotoGalleryCollectionViewCell.swift in Sources */,
+				90BAD93A23574AE60010F784 /* DataBaseRealm.swift in Sources */,
 				905170C023474B7500C86EEB /* InfoTableViewCell.swift in Sources */,
 				905170BD2347494F00C86EEB /* InfoVC.swift in Sources */,
 				90517044233E006C00C86EEB /* ProfileVC.swift in Sources */,

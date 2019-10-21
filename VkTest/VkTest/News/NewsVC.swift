@@ -13,36 +13,36 @@ class NewsVC: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var table: UITableView!
     
-    var responseNews: ResponseNews? {
+    var responseNews: ResponseNewsRealm? {
         
         didSet {
             
             if let news = responseNews?.items {
                 
-                self.news = news
+                self.news = Array(news)
             }
             
             if let groups = responseNews?.groups{
                 
-                self.groups = groups
+                self.groups = Array(groups)
             }
             
             if let profiles = responseNews?.profiles {
                 
-                self.profiles = profiles
+                self.profiles = Array(profiles)
             }
         }
     }
 
-    var news: [OneNews] = [] {
+    var news: [OneNewsRealm] = [] {
         
         didSet {
             activityIndicator.stopAnimating()
             table.reloadData()
         }
     }
-    var groups: [Group] = []
-    var profiles: [Profile] = []
+    var groups: [GroupRealm] = []
+    var profiles: [ProfileRealm] = []
     
     private func config() {
         
@@ -61,10 +61,15 @@ class NewsVC: UIViewController {
             switch result {
 
             case .success(let news):
-
-                self.responseNews = news.response
+                 
+                DataBaseRealmSwift.shared.addNews(news: news)
                 
+                self.responseNews = DataBaseRealmSwift.shared.getNews()?.last._rlmInferWrappedType().response
+            
+
             case .failure(let error):
+                
+                self.responseNews = DataBaseRealmSwift.shared.getNews()?.last._rlmInferWrappedType().response
                 print(error)
 
             }
@@ -82,10 +87,15 @@ class NewsVC: UIViewController {
             switch result {
 
             case .success(let news):
-
-                self.responseNews = news.response
+                
+                DataBaseRealmSwift.shared.addNews(news: news)
+                               
+                self.responseNews = DataBaseRealmSwift.shared.getNews()?.last._rlmInferWrappedType().response
+               // self.responseNews = news.response
                 self.table.refreshControl?.endRefreshing()
             case .failure(let error):
+                 self.responseNews = DataBaseRealmSwift.shared.getNews()?.last._rlmInferWrappedType().response
+                 self.table.refreshControl?.endRefreshing()
                 print(error)
 
             }
@@ -110,6 +120,7 @@ extension NewsVC: UITableViewDataSource {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "NewsTableViewCell") as? NewsTableViewCell {
             
             if let description = news[indexPath.row].text {
+                
                 cell.descriptionPhoto = description
             }
             
@@ -118,7 +129,7 @@ extension NewsVC: UITableViewDataSource {
             cell.news = news[indexPath.row]
             
             
-            cell.copyHistoryAttachment = news[indexPath.row].attachments?.first
+            cell.copyHistoryAttachment = news[indexPath.row].attachments.first
             return cell
         }
         return UITableViewCell()

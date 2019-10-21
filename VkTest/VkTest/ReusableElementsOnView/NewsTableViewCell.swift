@@ -21,9 +21,9 @@ class NewsTableViewCell: UITableViewCell {
             discription.text = descriptionPhoto
         }
     }
-    var groups: [Group]?
-    var profile: [Profile]?
-    var news: OneNews? {
+    var groups: [GroupRealm]?
+    var profile: [ProfileRealm]?
+    var news: OneNewsRealm? {
         
         didSet {
             
@@ -32,25 +32,25 @@ class NewsTableViewCell: UITableViewCell {
     }
         
     
-    var copyHistoryAttachment: CopyHistoryAttachment? {
+    var copyHistoryAttachment: CopyHistoryAttachmentRealm? {
         
         didSet {
             
             if let news = news {
                 
-                if news.sourceID! > 0 {
+                if news.sourceID.value! > 0 {
                     
-                     let fromProfile = profile?.filter { $0.id == news.sourceID}
+                    let fromProfile = profile?.filter { $0.id.value == news.sourceID.value!}
                     
                     for i in fromProfile! {
                         
                         who.text = "\(i.firstName!) \(i.lastName!)"
                     }
                     
-                } else if news.sourceID! < 0 {
+                } else if news.sourceID.value! < 0 {
                     
-                    let fromGroup = (groups?.filter { $0.id == (news.sourceID!) * -1 })!
-                    for i in fromGroup {
+                    let fromGroup = groups?.filter { $0.id.value! == news.sourceID.value! * -1 }
+                    for i in fromGroup! {
                         
                         who.text = i.name
                     }
@@ -59,10 +59,10 @@ class NewsTableViewCell: UITableViewCell {
             }
 
             if let type = copyHistoryAttachment?.type {
-                
+                let resultType = AttachmentTypeRealm(rawValue: type)
                 var url: URL?
                 
-                switch type {
+                switch resultType {
                     
                 case .video:
                     print("video")
@@ -84,14 +84,14 @@ class NewsTableViewCell: UITableViewCell {
                     print("doc")
                     
                     
-                    if let imageName = copyHistoryAttachment!.doc!.preview!.photo!.sizes![2].src {
+                    if let imageName = copyHistoryAttachment!.doc!.preview!.photo!.sizes[2].src {
                      url = URL(string: imageName)
            
                       
-                    } else if let imageName = copyHistoryAttachment!.doc!.preview!.photo!.sizes![1].src {
+                    } else if let imageName = copyHistoryAttachment!.doc!.preview!.photo!.sizes[1].src {
                      url = URL(string: imageName)
 
-                    } else if let imageName = copyHistoryAttachment!.doc!.preview!.photo!.sizes![0].src {
+                    } else if let imageName = copyHistoryAttachment!.doc!.preview!.photo!.sizes[0].src {
                      url = URL(string: imageName)
                     
                     }
@@ -158,6 +158,8 @@ class NewsTableViewCell: UITableViewCell {
                 case .audio:
                     print("audio")
                 
+                case .none:
+                    break
                 }
             }
         }
