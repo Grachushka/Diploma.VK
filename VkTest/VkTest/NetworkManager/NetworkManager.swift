@@ -32,6 +32,10 @@ class NetworkManager {
         self.token = token
     }
     
+    func getToken() -> String{
+        return token
+    }
+    
     func setExpiresIn(expiresIn: Int) {
         
         self.expiresIn = expiresIn
@@ -94,7 +98,10 @@ class NetworkManager {
     
     func authorization(result: @escaping (Result<URLRequest, Error>) -> Void) {
         
+        
           let url = "https://oauth.vk.com/authorize?client_id=\(appId)&display=mobile&redirect_uri=&scope=friends,photos,audio,video,stories,pages,status,groups,wall,notifications&response_type=token&v=5.52"
+        
+        
         
         AF.request(url).responseString { response in
             

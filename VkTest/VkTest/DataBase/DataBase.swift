@@ -16,8 +16,37 @@ class DataBase {
     private var arrayElementsMainMenu: [ElementMenu] = []
     private var arrayElementProfileMenu: [ElementMenu] = []
     private var arrayElementInfoMenu: [ElementMenu] = []
+    private var arraySettingsMenu: [ElementMenu] = []
+
     
     
+    func getSettingsMenu() -> [ElementMenu]{
+        
+        if arraySettingsMenu.isEmpty {
+            
+            setSettingsMenu()
+            
+        }
+        return arraySettingsMenu
+    }
+    
+
+    func setSettingsMenu() {
+        
+        arraySettingsMenu.append(ElementMenu(name: "Уведомления", picture: "notification"))
+        arraySettingsMenu.append(ElementMenu(name: "Не беспокоить", picture: "doNotDistrub"))
+        arraySettingsMenu.append(ElementMenu(name: "Профиль", picture: "profileSettings"))
+        arraySettingsMenu.append(ElementMenu(name: "Вид", picture: "view"))
+        arraySettingsMenu.append(ElementMenu(name: "Общие", picture: "general"))
+        arraySettingsMenu.append(ElementMenu(name: "Приватность", picture: "privacy"))
+        arraySettingsMenu.append(ElementMenu(name: "Чёрный список", picture: "blocked"))
+        arraySettingsMenu.append(ElementMenu(name: "Баланс", picture: "balance"))
+        arraySettingsMenu.append(ElementMenu(name: "Музыкальные подписки", picture: "music"))
+        arraySettingsMenu.append(ElementMenu(name: "О нас", picture: "about"))
+
+
+
+    }
     
     func getMainMenu() -> [ElementMenu]{
         
@@ -26,6 +55,7 @@ class DataBase {
             setMainMenu()
             
         }
+        
         return arrayElementsMainMenu
     }
     
@@ -47,8 +77,8 @@ class DataBase {
     
     func setProfileMenu() {
         
-         arrayElementProfileMenu.append(ElementMenu(picture: "друзей"))
-         arrayElementProfileMenu.append(ElementMenu(picture: "общих"))
+        arrayElementProfileMenu.append(ElementMenu(picture: "друзей"))
+        arrayElementProfileMenu.append(ElementMenu(picture: "общих"))
         arrayElementProfileMenu.append(ElementMenu(picture: "подписчиков"))
         arrayElementProfileMenu.append(ElementMenu(picture: "групп"))
         arrayElementProfileMenu.append(ElementMenu(picture: "фото"))

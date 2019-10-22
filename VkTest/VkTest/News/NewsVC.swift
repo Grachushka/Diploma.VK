@@ -91,7 +91,6 @@ class NewsVC: UIViewController {
                 DataBaseRealmSwift.shared.addNews(news: news)
                                
                 self.responseNews = DataBaseRealmSwift.shared.getNews()?.last._rlmInferWrappedType().response
-               // self.responseNews = news.response
                 self.table.refreshControl?.endRefreshing()
             case .failure(let error):
                  self.responseNews = DataBaseRealmSwift.shared.getNews()?.last._rlmInferWrappedType().response

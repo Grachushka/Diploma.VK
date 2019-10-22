@@ -91,7 +91,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "59"
                   endingLineNumber = "59"
-                  offsetFromSymbolStart = "384">
+                  offsetFromSymbolStart = "331">
                </Location>
                <Location
                   uuid = "1A74B8BF-80FA-4DB7-9476-C5AC45FA2D02 - 9aac960e489430a2"
@@ -106,7 +106,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "63"
                   endingLineNumber = "63"
-                  offsetFromSymbolStart = "184">
+                  offsetFromSymbolStart = "204">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -121,8 +121,8 @@
             filePath = "VkTest/NetworkManager/NetworkManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "246"
-            endingLineNumber = "246"
+            startingLineNumber = "253"
+            endingLineNumber = "253"
             landmarkName = "getReccomendNews(result:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -140,6 +140,102 @@
             startingLineNumber = "70"
             endingLineNumber = "70"
             landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7F3B23EA-FB47-499A-8AE4-637D3B498960"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VkTest/Authorization/AuthorizationVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
+            landmarkName = "webView(_:didFinish:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "90224E92-0749-43D8-810D-04A8835BD6AD"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VkTest/ShowMainProfile/ShowProfileVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B12F6B9E-1975-45EB-9FA3-33AC3F88713E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VkTest/Authorization/AuthorizationVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
+            landmarkName = "webView(_:didFinish:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B3BE3F11-3787-43A1-9AB2-A7553F9C17D5"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VkTest/Authorization/AuthorizationVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
+            landmarkName = "webView(_:didFinish:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0EDE6974-76D9-499F-A2A2-3356DE924B5B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VkTest/Authorization/AuthorizationVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "webView(_:didFinish:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6B2CADC0-1572-4FB1-B8F2-1586E6DCA68B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VkTest/Authorization/AuthorizationVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
+            landmarkName = "cleanAllCookies()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

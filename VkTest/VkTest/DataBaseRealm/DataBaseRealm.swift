@@ -20,9 +20,11 @@ private lazy var realm = try! Realm()
     func getNews() ->  Results<NewsRealm>! {
 
         return realm.objects(NewsRealm.self)
+        
       }
     
     func addNews(news: NewsRealm) {
+        
            try! realm.write {
             
                realm.add(news)

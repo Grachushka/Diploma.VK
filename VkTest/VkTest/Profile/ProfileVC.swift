@@ -317,6 +317,7 @@ extension ProfileVC: UICollectionViewDataSource {
         if collectionView == collectionPhoto {
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoGalleryCollectionViewCell", for: indexPath) as! PhotoGalleryCollectionViewCell
+            
             cell.targetPhoto = pictures[indexPath.row].photo1280
                   
                   if let photo = pictures[indexPath.row].photo604 {
