@@ -16,13 +16,31 @@ class AuthorizationVC: UIViewController, WKNavigationDelegate {
     @IBOutlet weak var webView: WKWebView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    deinit {
+              NotificationCenter.default.removeObserver(self)
+          }
+    func observePost() {
+        
+           NotificationCenter.default.addObserver(self, selector: #selector(messageReceived(_:)), name: .post, object: nil)
+          
+       }
+      @objc
+        private func messageReceived(_ notification: Notification){
+        
+            webView.cleanAllCookies()
+            webView.refreshCookies()
+            
+        }
+    
+    
+     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        webView.cleanAllCookies()
-        webView.refreshCookies()
+        
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        observePost()
     
         activityIndicator.startAnimating()
         
@@ -44,8 +62,8 @@ class AuthorizationVC: UIViewController, WKNavigationDelegate {
 
             }
         }
-        
     }
+   
     
    
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
@@ -57,7 +75,8 @@ class AuthorizationVC: UIViewController, WKNavigationDelegate {
             NetworkManager.shared.setToken(token: String(fragmentItems["access_token"]!.first!))
             NetworkManager.shared.setExpiresIn(expiresIn: Int(fragmentItems["expires_in"]!.first!)!)
             
-            performSegue(withIdentifier: "vc", sender: nil)
+            performSegue(withIdentifier: "vc", sender: webView)
+            
                         
             
         }
@@ -104,4 +123,10 @@ extension WKWebView {
     func refreshCookies() {
         self.configuration.processPool = WKProcessPool()
     }
+}
+
+
+extension Notification.Name {
+    
+    static let post = Notification.Name("Post")
 }

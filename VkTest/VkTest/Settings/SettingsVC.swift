@@ -27,21 +27,13 @@ class SettingsVC: UIViewController {
         config()
     }
     
-    @IBAction func Exit(_ sender: UIButton) {
-//        URLCache.shared.removeAllCachedResponses()
-//                  URLCache.shared.diskCapacity = 0
-//                  URLCache.shared.memoryCapacity = 0
-//
-//                  URLCache.shared.removeAllCachedResponses()
-//
-//                  // Delete any associated cookies
-//                  if let cookies = HTTPCookieStorage.shared.cookies {
-//                      for cookie in cookies {
-//                          HTTPCookieStorage.shared.deleteCookie(cookie)
-//                      }
-//                  }
+    private func sendMessage() {
+        print("sendMessage")
+        NotificationCenter.default.post(name: .post, object: nil)
         
-//        NetworkManager.shared.setToken(token: "")
+       }
+    @IBAction func Exit(_ sender: UIButton) {
+        sendMessage()
         
         let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "Login")
         UIApplication.shared.keyWindow?.rootViewController = loginViewController

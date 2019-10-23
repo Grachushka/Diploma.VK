@@ -7,9 +7,10 @@
 //
 
 import UIKit
+import WebKit
 
 class ShowProfileVC: UIViewController {
-
+    
     @IBOutlet weak var table: UITableView!
     private let mainMenu = DataBase.shared.getMainMenu()
     
@@ -24,7 +25,6 @@ class ShowProfileVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-       
         table.register(UINib(nibName: "ElementMenuTableViewCell", bundle: nil), forCellReuseIdentifier: "ElementMenu")
         
         table.register(UINib(nibName: "SecondElementTableViewCell", bundle: nil), forCellReuseIdentifier: "SecondElementMenu")

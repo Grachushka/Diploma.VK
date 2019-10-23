@@ -11,7 +11,7 @@ import Alamofire
 
 class NetworkManager {
     
-    private let appId = "7168280"
+    private let appId = "7181335"
     private var user_id: Int = 0
     private var expiresIn: Int = 0
     private var token = String()

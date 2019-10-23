@@ -43,7 +43,7 @@
                     <connections>
                         <outlet property="activityIndicator" destination="9YL-vC-20q" id="PKs-eF-qYw"/>
                         <outlet property="webView" destination="jiQ-7v-hNG" id="KH6-wJ-HCY"/>
-                        <segue destination="lIf-d6-snb" kind="show" identifier="vc" id="xTV-1H-poE"/>
+                        <segue destination="lIf-d6-snb" kind="show" identifier="vc" id="X6r-au-9vb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -88,12 +88,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eHQ-XK-kQ3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2819" y="775"/>
+            <point key="canvasLocation" x="2822" y="757"/>
         </scene>
         <!--Профиль-->
         <scene sceneID="zR8-yP-Q1B">
             <objects>
-                <viewController id="Vsi-gE-46W" customClass="ShowProfileVC" customModule="VkTest" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="dd" id="Vsi-gE-46W" customClass="ShowProfileVC" customModule="VkTest" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oMI-Ag-YTE">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -656,6 +656,7 @@
         <scene sceneID="fvi-Jv-xxU">
             <objects>
                 <tabBarController id="lIf-d6-snb" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="ZRc-kr-46l"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="PqG-Mk-FaO">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
