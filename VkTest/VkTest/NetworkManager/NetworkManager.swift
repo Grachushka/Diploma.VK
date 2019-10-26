@@ -11,7 +11,7 @@ import Alamofire
 
 class NetworkManager {
     
-    private let appId = "7181335"
+    private let appId = "7183829"
     private var user_id: Int = 0
     private var expiresIn: Int = 0
     private var token = String()
@@ -135,12 +135,14 @@ class NetworkManager {
                 do {
                     
                     let friends = try JSONDecoder().decode(Friends.self, from: data)
+                 
                     
                     result(.success(friends))
                     
                 } catch {
                     
                     print(error)
+
                 }
             case .failure(let error):
                 print(error)
@@ -150,17 +152,17 @@ class NetworkManager {
    
     }
     
-    func getInfoAboutMyProfile(id: Int, result: @escaping (Result<RequestMainProfile, Error>) -> Void) {
+    func getInfoAboutMyProfile(id: String, result: @escaping (Result<RequestMainProfile, Error>) -> Void) {
         
         var url: String?
         
-        if id == 0 {
+        if id == "" {
             
              url = "\(baseURL)users.get?&fields=photo_id,verified,sex,bdate,city,country,home_town,has_photo,photo_50,photo_100,photo_200_orig,photo_200,photo_400_orig,photo_max,photo_max_orig,online,domain,has_mobile,contacts,site,education,universities,schools,status,last_seen,followers_count,common_count,occupation,nickname,relatives,relation,personal,connections,exports,activities,interests,music,movies,tv,books,games,about,quotes,can_post,can_see_all_posts,can_see_audio,can_write_private_message,can_send_friend_request,is_favorite,is_hidden_from_feed,timezone,screen_name,maiden_name,crop_photo,is_friend,friend_status,career,military,blacklisted,blacklisted_by_me,can_be_invited_group,counters&access_token=\(token)&v=5.52"
 
-        } else if id != 0 {
+        } else if id != "" {
             
-            url = "\(baseURL)users.get?&user_id=\(id)&fields=photo_id,verified,sex,bdate,city,country,home_town,has_photo,photo_50,photo_100,photo_200_orig,photo_200,photo_400_orig,photo_max,photo_max_orig,online,domain,has_mobile,contacts,site,education,universities,schools,status,last_seen,followers_count,common_count,occupation,nickname,relatives,relation,personal,connections,exports,activities,interests,music,movies,tv,books,games,about,quotes,can_post,can_see_all_posts,can_see_audio,can_write_private_message,can_send_friend_request,is_favorite,is_hidden_from_feed,timezone,screen_name,maiden_name,crop_photo,is_friend,friend_status,career,military,blacklisted,blacklisted_by_me,can_be_invited_group,counters&access_token=\(token)&v=5.52"
+            url = "\(baseURL)users.get?&user_ids=\(id)&fields=photo_id,verified,sex,bdate,city,country,home_town,has_photo,photo_50,photo_100,photo_200_orig,photo_200,photo_400_orig,photo_max,photo_max_orig,online,domain,has_mobile,contacts,site,education,universities,schools,status,last_seen,followers_count,common_count,occupation,nickname,relatives,relation,personal,connections,exports,activities,interests,music,movies,tv,books,games,about,quotes,can_post,can_see_all_posts,can_see_audio,can_write_private_message,can_send_friend_request,is_favorite,is_hidden_from_feed,timezone,screen_name,maiden_name,crop_photo,is_friend,friend_status,career,military,blacklisted,blacklisted_by_me,can_be_invited_group,counters&access_token=\(token)&v=5.52"
         }
         
 
@@ -181,6 +183,7 @@ class NetworkManager {
                     print(error)
                 }
             case .failure(let error):
+                result(.failure(error))
                 print(error)
             }
         }
@@ -240,7 +243,7 @@ class NetworkManager {
     func getReccomendNews(result: @escaping (Result<NewsRealm, Error>) -> Void) {
         
         let url="\(baseURL)newsfeed.getRecommended?&access_token=\(token)&v=5.52"
-        
+        let url2 = "https://api.vk.com/method/newsfeed.getRecommended?&access_token=3d366522a0c2979e6619302696c0e0f65ebdf9eee1ada746ee7dd6f1ebb155c8c74cc9fad73785b8cbe60&v=5.52"
            
            AF.request(url).responseData { response in
                
@@ -249,7 +252,6 @@ class NetworkManager {
                case .success(let data):
                    
                    do {
-                       
                        let news = try JSONDecoder().decode(NewsRealm.self, from: data )
                        result(.success(news))
                        
@@ -262,5 +264,87 @@ class NetworkManager {
                }
            }
        }
+    
+    func addToFriend(id: Int, captcha_sid: String, captcha_key: String, result: @escaping (Result<AddFriend, Error>) -> Void) {
+        
+        var url: String?
+        
+        if captcha_key == "" {
+            
+             url="\(baseURL)friends.add?&user_id=\(id)&access_token=\(token)&v=5.52"
+            
+        } else {
+            url="\(baseURL)friends.add?&user_id=\(id)&captcha_sid=\(captcha_sid)&captcha_key=\(captcha_key)&access_token=\(token)&v=5.52"
+        }
+                   
+              AF.request(url!).responseData { response in
+                  
+                  switch response.result {
+                      
+                  case .success(let data):
+                      
+                      do {
+                          
+                         let newFriend = try JSONDecoder().decode(AddFriend.self, from: data )
+                     
+                        result(.success(newFriend))
+                     
+                          
+                      } catch {
+                        
+                          print(error)
+                           
+                      }
+                    
+                  case .failure(let error):
+                   result(.failure(error))
+                      print(error)
+                  }
+              }
+          }
+    
+    func deleteFriend(id: Int) {
+           
+           let url="\(baseURL)friends.delete?&user_id=\(id)&access_token=\(token)&v=5.52"
+           
+              
+              AF.request(url).responseData { response in
+                  
+                  switch response.result {
+                      
+                  case .success(_): break
+                      
+                      
+                  case .failure(let error):
+                      print(error)
+                  }
+              }
+          }
+    
+    func getOurFriends(id: Int, result: @escaping (Result<OurFriends, Error>) -> Void) {
+     
+     let url="\(baseURL)friends.getMutual?&target_uid=\(id)&access_token=\(token)&v=5.52"
+     
+        
+        AF.request(url).responseData { response in
+            
+            switch response.result {
+                
+            case .success(let data):
+                
+                do {
+                    
+                    let ourFriends = try JSONDecoder().decode(OurFriends.self, from: data )
+                    result(.success(ourFriends))
+                    
+                } catch {
+                    print(error)
+                }
+            case .failure(let error):
+             result(.failure(error))
+                print(error)
+            }
+        }
+    }
 }
 

@@ -82,7 +82,7 @@ class SecondElementTableViewCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-       
+        
         pictureMenu.image = nil
         isOnlinePicture.image = nil
         

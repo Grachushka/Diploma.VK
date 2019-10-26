@@ -19,7 +19,6 @@ class ProfileVC: UIViewController {
     private weak var pictureTask: URLSessionDataTask?
     @IBOutlet weak var collectionPhoto: UICollectionView!
     @IBOutlet weak var dataCollection: UICollectionView!
-    
     var isMe = false
     
     private var object: MainProfile?
@@ -120,7 +119,7 @@ class ProfileVC: UIViewController {
             
         } else if object?.friendStatus == 2 {
             
-            buttonIsFriend.setTitle("Оставить в подписчиках", for: .normal)
+            buttonIsFriend.setTitle("Подписан на вас", for: .normal)
         }
     }
     
@@ -149,10 +148,9 @@ class ProfileVC: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-     
         config()
           
-        NetworkManager.shared.getInfoAboutMyProfile(id: id!) { result in
+        NetworkManager.shared.getInfoAboutMyProfile(id: "\(id!)") { result in
 
             switch result {
 
@@ -247,6 +245,155 @@ class ProfileVC: UIViewController {
             }
         }
     }
+    @IBAction func addToFriends(_ sender: Any) {
+        
+        if object?.friendStatus == 2 {
+            
+            let alert = UIAlertController(title: nil,
+                           message: nil,
+                           preferredStyle: .actionSheet)
+                       
+                       let saveAction = UIAlertAction(title: "Добавить в друзья",
+                                                      style: .destructive) { (action: UIAlertAction!) -> Void in
+                                                        self.addFriend()
+                       }
+                       
+                       let cancelAction = UIAlertAction(title: "Отмена",
+                                                        style: .cancel) { (action: UIAlertAction!) -> Void in
+                           }
+
+                       
+                                                  alert.addAction(saveAction)
+                                                  alert.addAction(cancelAction)
+                                                 self.present(alert,
+                                                 animated: true,
+                                                 completion: nil)
+            
+        } else if object?.friendStatus == 3 {
+            let alert = UIAlertController(title: nil,
+                message: nil,
+                preferredStyle: .actionSheet)
+            
+            let saveAction = UIAlertAction(title: "Убрать из друзей",
+                                           style: .destructive) { (action: UIAlertAction!) -> Void in
+                                            NetworkManager.shared.deleteFriend(id: self.id!)
+            self.buttonIsFriend.setTitle("Подписан на вас", for: .normal)
+                                            self.object?.friendStatus = 2
+
+            }
+            
+            let cancelAction = UIAlertAction(title: "Отмена",
+                                             style: .cancel) { (action: UIAlertAction!) -> Void in
+                }
+
+            
+                                       alert.addAction(saveAction)
+                                       alert.addAction(cancelAction)
+                                      self.present(alert,
+                                      animated: true,
+                                      completion: nil)
+            
+        } else if object?.friendStatus == 1 {
+        
+        NetworkManager.shared.deleteFriend(id: id!)
+        self.buttonIsFriend.setTitle("Добавить в друзья", for: .normal)
+            object?.friendStatus = 0
+            
+        } else if object?.friendStatus == 0 && !isMe {
+            
+            addFriend()
+            
+    }
+}
+    private func addFriend() {
+        NetworkManager.shared.addToFriend(id: id!, captcha_sid: "", captcha_key: "") { result in
+
+                           switch result {
+
+                           case .success(let status):
+                            
+                            if let captcha = status.error {
+                                
+                                
+                                let alert = UIAlertController(title: "Капча",
+                                    message: "Введите капчу с картинки",
+                                    preferredStyle: .alert)
+
+                                let saveAction = UIAlertAction(title: "Ok",
+                                style: .default) { (action: UIAlertAction!) -> Void in
+
+                                let textFieldCaptcha = alert.textFields![0] as UITextField
+                                if let text = textFieldCaptcha.text {
+                                                                    
+                                NetworkManager.shared.addToFriend(id: self.id!, captcha_sid: captcha.captchaSid!, captcha_key: text, result: {
+                                        result in
+                                        switch result {
+                                                                            
+                                                case .success(let data):
+                                                
+                                            if let status = data.response {
+                                                
+                                                if status == 1 {
+                                                    
+                                                    self.buttonIsFriend.setTitle("Отписаться", for: .normal)
+                                                    self.object?.friendStatus = 1
+                                                } else if status == 2 {
+                                                    self.buttonIsFriend.setTitle("У вас в друзьях", for: .normal)
+                                                    self.object?.friendStatus = 3                                                }
+                                            }
+                                                case .failure(let data):
+                                                print(data)
+                                            
+                                            }
+                                        })
+                                    }
+                                }
+
+                                let cancelAction = UIAlertAction(title: "Cancel",
+                                                                 style: .default) { (action: UIAlertAction!) -> Void in
+                                }
+
+                                alert.addTextField {
+                                    (textField1: UITextField!) -> Void in
+                                    textField1.placeholder = "Captcha"
+                                }
+
+                                alert.addAction(saveAction)
+                                alert.addAction(cancelAction)
+                               
+                                let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 270, height: 80))
+
+                                let url = URL(string: (status.error?.captchaImg)!)
+                                imageView.kf.setImage(with: url)
+                                alert.view.addSubview(imageView)
+                                
+                                self.present(alert,
+                                    animated: true,
+                                    completion: nil)
+                            } else {
+                                
+                                if let status = status.response {
+                                    if status == 1 {
+                                        
+                                        self.buttonIsFriend.setTitle("Отписаться", for: .normal)
+                                        self.object?.friendStatus = 1
+
+                                    } else if status == 2 {
+                                        self.buttonIsFriend.setTitle("У вас в друзьях", for: .normal)
+                                        self.object?.friendStatus = 3
+                                    }
+                                }
+
+                            }
+                                
+                            
+                           
+                           case .failure(let error):
+                               print(error)
+
+                           }
+                       }
+    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 
@@ -281,6 +428,8 @@ extension ProfileVC: UITableViewDataSource {
 }
 
 extension ProfileVC: UICollectionViewDelegate {
+    
+    
        
    }
 
@@ -294,6 +443,32 @@ extension ProfileVC: UICollectionViewDelegateFlowLayout {
    
 extension ProfileVC: UICollectionViewDataSource {
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == collectionPhoto {
+            
+            let next: TargetPhotoVC = self.storyboard?.instantiateViewController(withIdentifier: "TargetPhotoVC") as! TargetPhotoVC
+            next.item = pictures[indexPath.row]
+            self.navigationController?.pushViewController(next, animated: true)
+
+        } else if collectionView == dataCollection {
+
+            if profileMenu[indexPath.row].picture == "друзей" {
+                
+                let next: ShowFriendsVC = self.storyboard?.instantiateViewController(withIdentifier: "friends") as! ShowFriendsVC
+                next.id = id!
+                self.navigationController?.pushViewController(next, animated: true)
+
+            } else if profileMenu[indexPath.row].picture == "общих" {
+                
+                let next: OurFriendsVC = self.storyboard?.instantiateViewController(withIdentifier: "OurFriendsVC") as! OurFriendsVC
+                next.id = id!
+                self.navigationController?.pushViewController(next, animated: true)
+
+            }
+            
+        }
+        
+    }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         if collectionView == collectionPhoto {

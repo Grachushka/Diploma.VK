@@ -66,86 +66,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "1A74B8BF-80FA-4DB7-9476-C5AC45FA2D02"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "VkTest/News/NewsVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "1A74B8BF-80FA-4DB7-9476-C5AC45FA2D02 - 183244a0fdc03db7"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "VkTest.NewsVC.viewDidLoad() -&gt; ()"
-                  moduleName = "VkTest"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/pavelprocenko/Diploma.VK/VkTest/VkTest/News/NewsVC.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "59"
-                  endingLineNumber = "59"
-                  offsetFromSymbolStart = "331">
-               </Location>
-               <Location
-                  uuid = "1A74B8BF-80FA-4DB7-9476-C5AC45FA2D02 - 9aac960e489430a2"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Result&lt;VkTest.NewsRealm, Swift.Error&gt;) -&gt; () in VkTest.NewsVC.viewDidLoad() -&gt; ()"
-                  moduleName = "VkTest"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/pavelprocenko/Diploma.VK/VkTest/VkTest/News/NewsVC.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "63"
-                  endingLineNumber = "63"
-                  offsetFromSymbolStart = "204">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "C433EEE7-8B1B-4DEC-9E96-547F0B3493AF"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "VkTest/NetworkManager/NetworkManager.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "253"
-            endingLineNumber = "253"
-            landmarkName = "getReccomendNews(result:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "1561EF1D-EBB6-4F45-B196-897CD1D5ED07"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "VkTest/News/NewsVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "86AF83A8-9058-4291-99A0-D8B71800ADA9"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -178,16 +98,126 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "D53E8D03-0AA4-4FEB-BE1C-0FA2D0F262B1"
+            uuid = "09DDBD02-38B9-4593-A33C-9AB7C94E88D6"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "VkTest/ShowMainProfile/ShowProfileVC.swift"
+            filePath = "VkTest/OurFriends/OurFriendsVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
-            landmarkName = "viewDidLoad()"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "viewWillAppear(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "ED681F45-A14F-4A98-A741-7EEFE3FB063D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VkTest/NetworkManager/NetworkManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "165"
+            endingLineNumber = "165"
+            landmarkName = "getInfoAboutMyProfile(id:result:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CB78255C-2B62-4FFD-93FB-B8DDB4FA13E2"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VkTest/ReusableElementsOnView/NewsTableViewCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "copyHistoryAttachment"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "CB78255C-2B62-4FFD-93FB-B8DDB4FA13E2 - 3dfc03eceb7e537d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "VkTest.NewsTableViewCell.copyHistoryAttachment.modify : Swift.Optional&lt;VkTest.CopyHistoryAttachmentRealm&gt;"
+                  moduleName = "VkTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/pavelprocenko/Diploma.VK/VkTest/VkTest/ReusableElementsOnView/NewsTableViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "26">
+               </Location>
+               <Location
+                  uuid = "CB78255C-2B62-4FFD-93FB-B8DDB4FA13E2 - d49b42287de020fa"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "VkTest.NewsTableViewCell.copyHistoryAttachment.modify : Swift.Optional&lt;VkTest.CopyHistoryAttachmentRealm&gt; with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "VkTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/pavelprocenko/Diploma.VK/VkTest/VkTest/ReusableElementsOnView/NewsTableViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "36"
+                  endingLineNumber = "36"
+                  offsetFromSymbolStart = "27">
+               </Location>
+               <Location
+                  uuid = "CB78255C-2B62-4FFD-93FB-B8DDB4FA13E2 - 82185b7325ed15ee"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "VkTest.NewsTableViewCell.init(style: __C.UITableViewCellStyle, reuseIdentifier: Swift.Optional&lt;Swift.String&gt;) -&gt; VkTest.NewsTableViewCell"
+                  moduleName = "VkTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/pavelprocenko/Diploma.VK/VkTest/VkTest/ReusableElementsOnView/NewsTableViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "36"
+                  endingLineNumber = "36"
+                  offsetFromSymbolStart = "819">
+               </Location>
+               <Location
+                  uuid = "CB78255C-2B62-4FFD-93FB-B8DDB4FA13E2 - 3436a2e8945a3ce0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "VkTest.NewsTableViewCell.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;VkTest.NewsTableViewCell&gt;"
+                  moduleName = "VkTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/pavelprocenko/Diploma.VK/VkTest/VkTest/ReusableElementsOnView/NewsTableViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "36"
+                  endingLineNumber = "36"
+                  offsetFromSymbolStart = "751">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2776361D-C3FE-47E3-8354-70676BADE689"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VkTest/News/NewsVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "131"
+            endingLineNumber = "131"
+            landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -108,10 +108,10 @@ class AudioRealm: Object, Codable {
     
     dynamic var id: RealmOptional<Int> = RealmOptional()
     dynamic var ownerID: RealmOptional<Int> = RealmOptional()
-    @objc dynamic var artist = ""
-    @objc dynamic var title = ""
+    @objc dynamic var artist: String?
+    @objc dynamic var title: String?
     dynamic var duration: RealmOptional<Int> = RealmOptional()
-    @objc dynamic var url = ""
+    @objc dynamic var url: String?
     dynamic var date: RealmOptional<Int> = RealmOptional()
 //    dynamic var lyricsID: RealmOptional<Int> = RealmOptional()
 //    dynamic var genreID: RealmOptional<Int> = RealmOptional()
@@ -233,9 +233,9 @@ class AttachmentPhotoRealm: Object, Codable {
     @objc dynamic var photo2560: String?
     dynamic var width: RealmOptional<Int> = RealmOptional()
     dynamic var height: RealmOptional<Int> = RealmOptional()
-    @objc dynamic var text = ""
+    @objc dynamic var text: String?
     dynamic var date: RealmOptional<Int> = RealmOptional()
-    @objc dynamic var accessKey = ""
+    @objc dynamic var accessKey: String?
 //    @objc dynamic var postID: Int
 //    dynamic var userID: RealmOptional<Int> = RealmOptional()
     
@@ -332,36 +332,38 @@ class PurpleVideoRealm: Object, Codable {
     
     dynamic var id: RealmOptional<Int> = RealmOptional()
     dynamic var ownerID: RealmOptional<Int> = RealmOptional()
-    @objc dynamic var title = ""
+    @objc dynamic var title: String?
     dynamic var duration: RealmOptional<Int> = RealmOptional()
-    @objc dynamic var videoDescription = ""
+    @objc dynamic var videoDescription: String?
     dynamic var date: RealmOptional<Int> = RealmOptional()
     dynamic var comments: RealmOptional<Int> = RealmOptional()
     dynamic var views: RealmOptional<Int> = RealmOptional()
-    dynamic var width: RealmOptional<Int> = RealmOptional()
-    dynamic var height: RealmOptional<Int> = RealmOptional()
-    @objc dynamic var photo130 = ""
-    @objc dynamic var photo320 = ""
-    @objc dynamic var photo800 = ""
-    @objc dynamic var photo1280 = ""
-    @objc dynamic var firstFrame320 = ""
-    @objc dynamic var firstFrame160 = ""
-    @objc dynamic var firstFrame4096 = ""
-    @objc dynamic var firstFrame130 = ""
-    @objc dynamic var firstFrame720 = ""
-    @objc dynamic var firstFrame1024 = ""
-    @objc dynamic var firstFrame1280 = ""
-    @objc dynamic var firstFrame800 = ""
-    @objc  dynamic var accessKey = ""
+//    dynamic var width: RealmOptional<Int> = RealmOptional()
+//    dynamic var height: RealmOptional<Int> = RealmOptional()
+    @objc dynamic var photo130: String?
+    @objc dynamic var photo320: String?
+    @objc dynamic var photo800: String?
+    @objc dynamic var photo1280: String?
+    @objc dynamic var firstFrame320: String?
+    @objc dynamic var firstFrame160: String?
+    @objc dynamic var firstFrame4096: String?
+    @objc dynamic var firstFrame130: String?
+    @objc dynamic var firstFrame720: String?
+    @objc dynamic var firstFrame1024: String?
+    @objc dynamic var firstFrame1280: String?
+    @objc dynamic var firstFrame800: String?
+    @objc  dynamic var accessKey: String?
     dynamic var canAdd: RealmOptional<Int> = RealmOptional()
-    @objc dynamic var trackCode = ""
+    @objc dynamic var trackCode: String?
     
     enum CodingKeys: String, CodingKey {
         case id
         case ownerID = "owner_id"
         case title, duration
         case videoDescription = "description"
-        case date, comments, views, width, height
+        case date, comments, views
+//        case width
+//        case height
         case photo130 = "photo_130"
         case photo320 = "photo_320"
         case photo800 = "photo_800"
@@ -450,7 +452,7 @@ struct CopyHistory: Codable {
 
 class CopyHistoryAttachmentRealm: Object, Codable {
     
-    @objc dynamic var type = ""
+    @objc dynamic var type: String?
 //
 //    var type: AttachmentTypeRealm {
 //        get {
@@ -469,6 +471,34 @@ class CopyHistoryAttachmentRealm: Object, Codable {
     @objc dynamic var photo: AttachmentPhotoRealm?
     @objc dynamic var video: PurpleVideoRealm?
     @objc dynamic var doc: DocRealm?
+     @objc dynamic var poll: Poll?
+}
+class Poll: Object, Codable {
+    dynamic var id: RealmOptional<Int> = RealmOptional()
+    dynamic var ownerID: RealmOptional<Int> = RealmOptional()
+    dynamic var created: RealmOptional<Int> = RealmOptional()
+    @objc dynamic var question: String?
+    dynamic var votes: RealmOptional<Int> = RealmOptional()
+    dynamic var answerID: RealmOptional<Int> = RealmOptional()
+    var answers = List<Answer>()
+    dynamic var anonymous: RealmOptional<Int> = RealmOptional()
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case ownerID = "owner_id"
+        case created, question, votes
+        case answerID = "answer_id"
+        case answers, anonymous
+    }
+}
+
+// MARK: - Answer
+class Answer: Object, Codable {
+    
+    dynamic var id: RealmOptional<Int> = RealmOptional()
+    dynamic var votes: RealmOptional<Int> = RealmOptional()
+    dynamic var rate: RealmOptional<Double> = RealmOptional()
+    @objc dynamic var text: String?
 }
 // MARK: - CopyHistoryAttachment
 
@@ -485,14 +515,14 @@ class DocRealm: Object, Codable {
     
     dynamic var id: RealmOptional<Int> = RealmOptional()
     dynamic var ownerID: RealmOptional<Int> = RealmOptional()
-    @objc dynamic var title = ""
-    @objc dynamic var size = ""
-    @objc  dynamic var ext = ""
-    @objc dynamic var url = ""
+    @objc dynamic var title: String?
+    @objc dynamic var size: String?
+    @objc  dynamic var ext: String?
+    @objc dynamic var url: String?
     dynamic var date: RealmOptional<Int> = RealmOptional()
     dynamic var type: RealmOptional<Int> = RealmOptional()
     @objc dynamic var preview: PreviewRealm?
-    @objc dynamic var accessKey = ""
+    @objc dynamic var accessKey: String?
     
     enum CodingKeys: String, CodingKey {
            case id

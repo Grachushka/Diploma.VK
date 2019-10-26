@@ -39,6 +39,10 @@
 		9065A2A22331537100C2EE49 /* SecondElementTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9065A2A02331537100C2EE49 /* SecondElementTableViewCell.swift */; };
 		9065A2A32331537100C2EE49 /* SecondElementTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9065A2A12331537100C2EE49 /* SecondElementTableViewCell.xib */; };
 		907E7820235EF08100DB2E2D /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907E781F235EF08100DB2E2D /* SettingsVC.swift */; };
+		907E782E2361EA6400DB2E2D /* AddFriend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907E782D2361EA6400DB2E2D /* AddFriend.swift */; };
+		907E78312362F06800DB2E2D /* TargetPhotoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907E78302362F06800DB2E2D /* TargetPhotoVC.swift */; };
+		907E7833236301AF00DB2E2D /* OurFriends.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907E7832236301AF00DB2E2D /* OurFriends.swift */; };
+		907E7836236302DF00DB2E2D /* OurFriendsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907E7835236302DF00DB2E2D /* OurFriendsVC.swift */; };
 		90833A0A23323F9000C8C52B /* MainProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90833A0923323F9000C8C52B /* MainProfile.swift */; };
 		909264F6234922BB002ADC46 /* WallTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909264F5234922BB002ADC46 /* WallTableViewCell.swift */; };
 		909264F8234B4787002ADC46 /* WallCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909264F7234B4787002ADC46 /* WallCollectionViewCell.swift */; };
@@ -84,6 +88,10 @@
 		9065A2A02331537100C2EE49 /* SecondElementTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondElementTableViewCell.swift; sourceTree = "<group>"; };
 		9065A2A12331537100C2EE49 /* SecondElementTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SecondElementTableViewCell.xib; sourceTree = "<group>"; };
 		907E781F235EF08100DB2E2D /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
+		907E782D2361EA6400DB2E2D /* AddFriend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriend.swift; sourceTree = "<group>"; };
+		907E78302362F06800DB2E2D /* TargetPhotoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetPhotoVC.swift; sourceTree = "<group>"; };
+		907E7832236301AF00DB2E2D /* OurFriends.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OurFriends.swift; sourceTree = "<group>"; };
+		907E7835236302DF00DB2E2D /* OurFriendsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OurFriendsVC.swift; sourceTree = "<group>"; };
 		90833A0923323F9000C8C52B /* MainProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainProfile.swift; sourceTree = "<group>"; };
 		909264F5234922BB002ADC46 /* WallTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallTableViewCell.swift; sourceTree = "<group>"; };
 		909264F7234B4787002ADC46 /* WallCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -131,6 +139,7 @@
 		900A8DA8232D16C600180021 /* VkTest */ = {
 			isa = PBXGroup;
 			children = (
+				907E7834236302A600DB2E2D /* OurFriends */,
 				907E781E235EEFDA00DB2E2D /* Settings */,
 				90BAD93823574ACD0010F784 /* DataBaseRealm */,
 				901EB0E323546E9000282E1B /* News */,
@@ -208,11 +217,13 @@
 		90517042233E001600C86EEB /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				907E78372364BA2400DB2E2D /* TargetPhotoVC */,
 				90517043233E006C00C86EEB /* ProfileVC.swift */,
 				90517049233E272E00C86EEB /* ProfileWallPhotos.swift */,
 				909264F5234922BB002ADC46 /* WallTableViewCell.swift */,
 				909264F7234B4787002ADC46 /* WallCollectionViewCell.swift */,
 				909264F9234B5A57002ADC46 /* Wall.swift */,
+				907E782D2361EA6400DB2E2D /* AddFriend.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -251,6 +262,23 @@
 				907E781F235EF08100DB2E2D /* SettingsVC.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		907E7834236302A600DB2E2D /* OurFriends */ = {
+			isa = PBXGroup;
+			children = (
+				907E7832236301AF00DB2E2D /* OurFriends.swift */,
+				907E7835236302DF00DB2E2D /* OurFriendsVC.swift */,
+			);
+			path = OurFriends;
+			sourceTree = "<group>";
+		};
+		907E78372364BA2400DB2E2D /* TargetPhotoVC */ = {
+			isa = PBXGroup;
+			children = (
+				907E78302362F06800DB2E2D /* TargetPhotoVC.swift */,
+			);
+			path = TargetPhotoVC;
 			sourceTree = "<group>";
 		};
 		90BAD93823574ACD0010F784 /* DataBaseRealm */ = {
@@ -422,6 +450,7 @@
 				90517044233E006C00C86EEB /* ProfileVC.swift in Sources */,
 				9051704A233E272E00C86EEB /* ProfileWallPhotos.swift in Sources */,
 				9065A2A22331537100C2EE49 /* SecondElementTableViewCell.swift in Sources */,
+				907E7836236302DF00DB2E2D /* OurFriendsVC.swift in Sources */,
 				9065A29723313FFB00C2EE49 /* DataBase.swift in Sources */,
 				9042E316233CBD2A00DDBD0A /* addFriendVC.swift in Sources */,
 				901EB0EE23547C5D00282E1B /* NewsTableViewCell.swift in Sources */,
@@ -429,13 +458,16 @@
 				90833A0A23323F9000C8C52B /* MainProfile.swift in Sources */,
 				909264F6234922BB002ADC46 /* WallTableViewCell.swift in Sources */,
 				907E7820235EF08100DB2E2D /* SettingsVC.swift in Sources */,
+				907E78312362F06800DB2E2D /* TargetPhotoVC.swift in Sources */,
 				90517053234209F600C86EEB /* DescriptionCollectionViewCell.swift in Sources */,
 				900A8DBF232D21A300180021 /* NetworkManager.swift in Sources */,
 				9065A28E23313AA300C2EE49 /* ShowProfileVC.swift in Sources */,
 				900A8DAC232D16C600180021 /* ViewController.swift in Sources */,
 				9065A29423313F3400C2EE49 /* ElementMenu.swift in Sources */,
 				904266022335334C00FA72B4 /* ShowFriendsVC.swift in Sources */,
+				907E782E2361EA6400DB2E2D /* AddFriend.swift in Sources */,
 				909264FA234B5A57002ADC46 /* Wall.swift in Sources */,
+				907E7833236301AF00DB2E2D /* OurFriends.swift in Sources */,
 				901EB0E523546EBE00282E1B /* News.swift in Sources */,
 				901EB0E7235470F000282E1B /* NewsVC.swift in Sources */,
 				900A8DAA232D16C600180021 /* AppDelegate.swift in Sources */,

@@ -28,7 +28,7 @@ struct MainProfile: Codable {
     let photo50, photo100, photo200, photoMax: String?
     let photo200_Orig, photo400_Orig, photoMaxOrig: String?
     let photoID: String?
-    let hasPhoto, hasMobile, isFriend, friendStatus: Int?
+    var hasPhoto, hasMobile, isFriend, friendStatus: Int?
     let online, canPost, canSeeAllPosts, canSeeAudio: Int?
     let canWritePrivateMessage, canSendFriendRequest: Int?
     let mobilePhone, homePhone, site, status: String?

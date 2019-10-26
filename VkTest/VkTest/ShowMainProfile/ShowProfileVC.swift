@@ -29,7 +29,7 @@ class ShowProfileVC: UIViewController {
         
         table.register(UINib(nibName: "SecondElementTableViewCell", bundle: nil), forCellReuseIdentifier: "SecondElementMenu")
         
-        NetworkManager.shared.getInfoAboutMyProfile(id: 0) { result in
+        NetworkManager.shared.getInfoAboutMyProfile(id: "") { result in
             
             switch result {
                 
