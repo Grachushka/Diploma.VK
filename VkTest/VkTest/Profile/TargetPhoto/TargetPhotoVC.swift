@@ -22,8 +22,8 @@ class TargetPhotoVC: UIViewController {
         
         if let photo = item?.photo2560 {
                         
-          photoName = photo
-            
+            photoName = photo
+           
         } else if let photo = item?.photo1280 {
                         
             photoName = photo
@@ -31,7 +31,16 @@ class TargetPhotoVC: UIViewController {
         } else if let photo = item?.photo807 {
                         
             photoName = photo
+            
+        } else if let photo = item?.photo604 {
+            
+            photoName = photo
+            
+        } else if let photo = item?.photo130 {
+            
+            photoName = photo
         }
+        
         if let resultPhotoName = photoName {
             
             let url = URL(string: resultPhotoName)
