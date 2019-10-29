@@ -25,23 +25,23 @@ class GroupRealm: Object, Codable {
     
        dynamic var id: RealmOptional<Int> = RealmOptional()
        @objc dynamic var name: String?
-       @objc dynamic var screenName: String?
+//       @objc dynamic var screenName: String?
         @objc dynamic var photo50: String?
         @objc dynamic var photo100: String?
         @objc dynamic var photo200: String?
        @objc  dynamic var type: String?
-       dynamic var isAdmin: RealmOptional<Int> = RealmOptional()
-       dynamic var isMember: RealmOptional<Int> = RealmOptional()
-       dynamic var isAdvertiser: RealmOptional<Int> = RealmOptional()
+//       dynamic var isAdmin: RealmOptional<Int> = RealmOptional()
+//       dynamic var isMember: RealmOptional<Int> = RealmOptional()
+//       dynamic var isAdvertiser: RealmOptional<Int> = RealmOptional()
        dynamic var online: RealmOptional<Int> = RealmOptional()
     
     enum CodingKeys: String, CodingKey {
         case id, name
-        case screenName = "screen_name"
+//        case screenName = "screen_name"
         case type
-        case isAdmin = "is_admin"
-        case isMember = "is_member"
-        case isAdvertiser = "is_advertiser"
+//        case isAdmin = "is_admin"
+//        case isMember = "is_member"
+//        case isAdvertiser = "is_advertiser"
         case photo50 = "photo_50"
         case photo100 = "photo_100"
         case photo200 = "photo_200"

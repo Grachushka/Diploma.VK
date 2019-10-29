@@ -23,19 +23,11 @@ class NewsTableViewCell: UITableViewCell {
     }
     var groups: [GroupRealm]?
     var profile: [ProfileRealm]?
-    var news: OneNewsRealm? {
-        
-        didSet {
-            
-            print(news?.attachments.first)
-            
-        }
-    }
+    var news: OneNewsRealm? 
         
     
     var copyHistoryAttachment: CopyHistoryAttachmentRealm? {
         didSet {
-//            print(copyHistoryAttachment)
 
             if let news = news {
                 

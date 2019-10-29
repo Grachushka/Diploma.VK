@@ -11,7 +11,7 @@ import Alamofire
 
 class NetworkManager {
     
-    private let appId = "7183829"
+    private let appId = "7185551"
     private var user_id: Int = 0
     private var expiresIn: Int = 0
     private var token = String()
@@ -243,7 +243,6 @@ class NetworkManager {
     func getReccomendNews(result: @escaping (Result<NewsRealm, Error>) -> Void) {
         
         let url="\(baseURL)newsfeed.getRecommended?&access_token=\(token)&v=5.52"
-        let url2 = "https://api.vk.com/method/newsfeed.getRecommended?&access_token=3d366522a0c2979e6619302696c0e0f65ebdf9eee1ada746ee7dd6f1ebb155c8c74cc9fad73785b8cbe60&v=5.52"
            
            AF.request(url).responseData { response in
                
@@ -346,5 +345,31 @@ class NetworkManager {
             }
         }
     }
+    
+    func getFollowers(id: String, result: @escaping (Result<ResultResponseFollower, Error>) -> Void) {
+        
+        let url="\(baseURL)users.getFollowers?&fields=photo_200&user_id=\(id)&access_token=\(token)&v=5.52"
+           
+           AF.request(url).responseData { response in
+               
+               switch response.result {
+                   
+               case .success(let data):
+                   
+                   do {
+                       
+                       let followers = try JSONDecoder().decode(ResultResponseFollower.self, from: data )
+                       result(.success(followers))
+                       
+                   } catch {
+                       print(error)
+                   }
+               case .failure(let error):
+                result(.failure(error))
+                   print(error)
+               }
+           }
+       }
+    
 }
 

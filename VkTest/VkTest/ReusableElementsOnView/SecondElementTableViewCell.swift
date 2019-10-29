@@ -75,8 +75,12 @@ class SecondElementTableViewCell: UITableViewCell {
                         
                         print(error)
                 }
-            }
         }
+            } else {
+                
+          pictureMenu.image = UIImage(named: "friends")
+
+            }
     }
 }
     

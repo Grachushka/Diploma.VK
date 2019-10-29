@@ -127,7 +127,6 @@ extension NewsVC: UITableViewDataSource {
             cell.groups = groups
             cell.news = news[indexPath.row]
             
-            print(news[indexPath.row].attachments.first?.type)
             cell.copyHistoryAttachment = news[indexPath.row].attachments.first
             return cell
         }

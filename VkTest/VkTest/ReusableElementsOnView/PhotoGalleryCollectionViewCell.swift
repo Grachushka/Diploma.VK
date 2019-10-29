@@ -23,25 +23,40 @@ class PhotoGalleryCollectionViewCell: UICollectionViewCell {
     didSet {
         
         if let photo = targetPhoto {
+            let photoURL = URL(string: "\(photo)")
+            if let resultPhoto = photoURL {
+                        let task = URLSession.shared.dataTask(with: resultPhoto) { [weak self] data, _, _ in
+                            guard let data = data else { return }
+                            DispatchQueue.main.async { [weak self] in
+                                self?.photo.image = UIImage(data: data)
+                            }
+                        }
+                        pictureTask = task
+                        task.resume()
             
-            self.photo.image = UIImage(named: photo)
+            } else {
+                self.photo.image = nil
+                }
             
             
-        } else {
-            self.photo.image = nil
-            }
+            
+//                              if let resultPhoto = photoURL {
+//
+//                                self.photo.kf.setImage(
+//                                   with: resultPhoto
+//                                  )
+                              }
+        
         }
     }
     
     
-    func loadPictureImage(url: URL) {
-        let task = URLSession.shared.dataTask(with: url) { [weak self] data, _, _ in
-            guard let data = data else { return }
-            DispatchQueue.main.async { [weak self] in
-                self?.photo.image = UIImage(data: data)
-            }
-        }
-        pictureTask = task
-        task.resume()
+//    func loadPictureImage(url: URL) {
+//        
+
+//    }
+    override func prepareForReuse() {
+        photo.image = nil
+//        pictureTask = nil
     }
 }

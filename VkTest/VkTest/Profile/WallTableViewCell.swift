@@ -45,12 +45,14 @@ class WallTableViewCell: UITableViewCell {
         
     
         didSet {
+            
             wallCollection.reloadData()
+            
             let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
             layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-            
-            layout.minimumInteritemSpacing = 3
-            layout.minimumLineSpacing = 3
+//            
+            layout.minimumInteritemSpacing = 1
+            layout.minimumLineSpacing = 1
             var count: Int?
             
             if let attachments = wall?.attachments {
@@ -86,17 +88,36 @@ class WallTableViewCell: UITableViewCell {
                 
             }
             
-           if var resultCount = count {
+           if let resultCount = count {
+                var result = Double(resultCount)
             
-                if resultCount >= 6 {
-                    
-                    resultCount /= 2
-                }
-                layout.itemSize = CGSize(width: wallCollection.layer.preferredFrameSize().width/CGFloat(resultCount), height: wallCollection.layer.preferredFrameSize().height/CGFloat(resultCount))
+            if result == 5 {
+                
+                result /= 1.8
+                
+            } else if result == 3 {
+                
+                result /= 1.5
+                
+            } else if result > 6 {
+                
+                result /= 2.5
+                
+            }  else if result >= 4 && result < 7 {
+                
+                result /= 2
+                
             }
+                    
+            let width = wallCollection.layer.preferredFrameSize().width-layout.minimumLineSpacing
+            
+                layout.itemSize = CGSize(width: width / CGFloat(result), height: (width/CGFloat(result)-1))
+                    wallCollection.collectionViewLayout = layout
+            }
+        
             
             
-            wallCollection.collectionViewLayout = layout
+            
             
             if let title = wall?.text {
                 

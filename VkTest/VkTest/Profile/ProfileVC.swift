@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class ProfileVC: UIViewController {
     
@@ -29,7 +30,6 @@ class ProfileVC: UIViewController {
     var pictures: [Item] = []{
         
         didSet {
-            
             collectionPhoto.reloadData()
         }
     }
@@ -75,7 +75,8 @@ class ProfileVC: UIViewController {
         self.navigationController?.pushViewController(next, animated: true)
     }
     private func configDataOnView() {
-                
+
+        
            if let photo = object?.photo200_Orig {
             
                    let photoURL = URL(string: "\(photo)")
@@ -146,8 +147,26 @@ class ProfileVC: UIViewController {
              buttonIsFriend.layer.cornerRadius = buttonIsFriend.layer.preferredFrameSize().height/2
              
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+//         
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
+//  let layout2: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+// ////            layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+// //
+// //            layout.minimumInteritemSpacing = 3
+// //            layout.minimumLineSpacing = 3
+//
+//
+//
+//                 layout2.itemSize = CGSize(width: collectionPhoto.frame.size.height, height: collectionPhoto.frame.size.height)
+//
+//
+             
+//             collectionPhoto.collectionViewLayout = layout2
         config()
           
         NetworkManager.shared.getInfoAboutMyProfile(id: "\(id!)") { result in
@@ -434,9 +453,9 @@ extension ProfileVC: UICollectionViewDelegate {
    }
 
 extension ProfileVC: UICollectionViewDelegateFlowLayout {
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
+
         return CGSize(width: collectionPhoto.frame.size.height, height: collectionPhoto.frame.size.height)
     }
 }
@@ -464,6 +483,11 @@ extension ProfileVC: UICollectionViewDataSource {
                 next.id = id!
                 self.navigationController?.pushViewController(next, animated: true)
 
+            } else if profileMenu[indexPath.row].picture == "подписчиков" {
+                let next: FollowersVC = self.storyboard?.instantiateViewController(withIdentifier: "FollowersVC") as! FollowersVC
+                               next.id = "\(id!)"
+                               self.navigationController?.pushViewController(next, animated: true)
+                
             }
             
         }
@@ -492,14 +516,14 @@ extension ProfileVC: UICollectionViewDataSource {
         if collectionView == collectionPhoto {
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoGalleryCollectionViewCell", for: indexPath) as! PhotoGalleryCollectionViewCell
-            
-            cell.targetPhoto = pictures[indexPath.row].photo1280
-                  
-                  if let photo = pictures[indexPath.row].photo604 {
-                      let photoURL = URL(string: "\(photo)")
-                  cell.loadPictureImage(url: photoURL!)
-                  return cell
+           
+            if let photo = pictures[indexPath.row].photo604 {
+                
+                cell.targetPhoto = photo
             }
+            
+            return cell
+            
             
         } else if collectionView == dataCollection {
             
@@ -513,6 +537,7 @@ extension ProfileVC: UICollectionViewDataSource {
         
         return UICollectionViewCell()
     }
+    
 }
 
 

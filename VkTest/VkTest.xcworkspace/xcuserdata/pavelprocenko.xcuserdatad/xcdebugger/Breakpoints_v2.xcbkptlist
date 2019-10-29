@@ -105,8 +105,8 @@
             filePath = "VkTest/OurFriends/OurFriendsVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
             landmarkName = "viewWillAppear(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -114,110 +114,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "ED681F45-A14F-4A98-A741-7EEFE3FB063D"
+            uuid = "FE6A1E8D-6BD3-47E3-AD03-03F54900EF55"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "VkTest/NetworkManager/NetworkManager.swift"
+            filePath = "VkTest/Profile/ProfileVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "165"
-            endingLineNumber = "165"
-            landmarkName = "getInfoAboutMyProfile(id:result:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "CB78255C-2B62-4FFD-93FB-B8DDB4FA13E2"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "VkTest/ReusableElementsOnView/NewsTableViewCell.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
-            landmarkName = "copyHistoryAttachment"
-            landmarkType = "24">
-            <Locations>
-               <Location
-                  uuid = "CB78255C-2B62-4FFD-93FB-B8DDB4FA13E2 - 3dfc03eceb7e537d"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "VkTest.NewsTableViewCell.copyHistoryAttachment.modify : Swift.Optional&lt;VkTest.CopyHistoryAttachmentRealm&gt;"
-                  moduleName = "VkTest"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/pavelprocenko/Diploma.VK/VkTest/VkTest/ReusableElementsOnView/NewsTableViewCell.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "0"
-                  endingLineNumber = "0"
-                  offsetFromSymbolStart = "26">
-               </Location>
-               <Location
-                  uuid = "CB78255C-2B62-4FFD-93FB-B8DDB4FA13E2 - d49b42287de020fa"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "VkTest.NewsTableViewCell.copyHistoryAttachment.modify : Swift.Optional&lt;VkTest.CopyHistoryAttachmentRealm&gt; with unmangled suffix &quot;.resume.0&quot;"
-                  moduleName = "VkTest"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/pavelprocenko/Diploma.VK/VkTest/VkTest/ReusableElementsOnView/NewsTableViewCell.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "36"
-                  endingLineNumber = "36"
-                  offsetFromSymbolStart = "27">
-               </Location>
-               <Location
-                  uuid = "CB78255C-2B62-4FFD-93FB-B8DDB4FA13E2 - 82185b7325ed15ee"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "VkTest.NewsTableViewCell.init(style: __C.UITableViewCellStyle, reuseIdentifier: Swift.Optional&lt;Swift.String&gt;) -&gt; VkTest.NewsTableViewCell"
-                  moduleName = "VkTest"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/pavelprocenko/Diploma.VK/VkTest/VkTest/ReusableElementsOnView/NewsTableViewCell.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "36"
-                  endingLineNumber = "36"
-                  offsetFromSymbolStart = "819">
-               </Location>
-               <Location
-                  uuid = "CB78255C-2B62-4FFD-93FB-B8DDB4FA13E2 - 3436a2e8945a3ce0"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "VkTest.NewsTableViewCell.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;VkTest.NewsTableViewCell&gt;"
-                  moduleName = "VkTest"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/pavelprocenko/Diploma.VK/VkTest/VkTest/ReusableElementsOnView/NewsTableViewCell.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "36"
-                  endingLineNumber = "36"
-                  offsetFromSymbolStart = "751">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "2776361D-C3FE-47E3-8354-70676BADE689"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "VkTest/News/NewsVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "131"
-            endingLineNumber = "131"
-            landmarkName = "tableView(_:cellForRowAt:)"
+            startingLineNumber = "150"
+            endingLineNumber = "150"
+            landmarkName = "viewWillAppear(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

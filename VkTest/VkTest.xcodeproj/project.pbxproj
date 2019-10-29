@@ -43,6 +43,8 @@
 		907E78312362F06800DB2E2D /* TargetPhotoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907E78302362F06800DB2E2D /* TargetPhotoVC.swift */; };
 		907E7833236301AF00DB2E2D /* OurFriends.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907E7832236301AF00DB2E2D /* OurFriends.swift */; };
 		907E7836236302DF00DB2E2D /* OurFriendsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907E7835236302DF00DB2E2D /* OurFriendsVC.swift */; };
+		907E783A23657BA000DB2E2D /* Follower.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907E783923657BA000DB2E2D /* Follower.swift */; };
+		907E783C23657C1400DB2E2D /* FollowersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907E783B23657C1400DB2E2D /* FollowersVC.swift */; };
 		90833A0A23323F9000C8C52B /* MainProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90833A0923323F9000C8C52B /* MainProfile.swift */; };
 		909264F6234922BB002ADC46 /* WallTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909264F5234922BB002ADC46 /* WallTableViewCell.swift */; };
 		909264F8234B4787002ADC46 /* WallCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909264F7234B4787002ADC46 /* WallCollectionViewCell.swift */; };
@@ -92,6 +94,8 @@
 		907E78302362F06800DB2E2D /* TargetPhotoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetPhotoVC.swift; sourceTree = "<group>"; };
 		907E7832236301AF00DB2E2D /* OurFriends.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OurFriends.swift; sourceTree = "<group>"; };
 		907E7835236302DF00DB2E2D /* OurFriendsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OurFriendsVC.swift; sourceTree = "<group>"; };
+		907E783923657BA000DB2E2D /* Follower.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Follower.swift; sourceTree = "<group>"; };
+		907E783B23657C1400DB2E2D /* FollowersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersVC.swift; sourceTree = "<group>"; };
 		90833A0923323F9000C8C52B /* MainProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainProfile.swift; sourceTree = "<group>"; };
 		909264F5234922BB002ADC46 /* WallTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallTableViewCell.swift; sourceTree = "<group>"; };
 		909264F7234B4787002ADC46 /* WallCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -217,7 +221,8 @@
 		90517042233E001600C86EEB /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				907E78372364BA2400DB2E2D /* TargetPhotoVC */,
+				907E783823657B8400DB2E2D /* Followers */,
+				907E78372364BA2400DB2E2D /* TargetPhoto */,
 				90517043233E006C00C86EEB /* ProfileVC.swift */,
 				90517049233E272E00C86EEB /* ProfileWallPhotos.swift */,
 				909264F5234922BB002ADC46 /* WallTableViewCell.swift */,
@@ -273,12 +278,21 @@
 			path = OurFriends;
 			sourceTree = "<group>";
 		};
-		907E78372364BA2400DB2E2D /* TargetPhotoVC */ = {
+		907E78372364BA2400DB2E2D /* TargetPhoto */ = {
 			isa = PBXGroup;
 			children = (
 				907E78302362F06800DB2E2D /* TargetPhotoVC.swift */,
 			);
-			path = TargetPhotoVC;
+			path = TargetPhoto;
+			sourceTree = "<group>";
+		};
+		907E783823657B8400DB2E2D /* Followers */ = {
+			isa = PBXGroup;
+			children = (
+				907E783923657BA000DB2E2D /* Follower.swift */,
+				907E783B23657C1400DB2E2D /* FollowersVC.swift */,
+			);
+			path = Followers;
 			sourceTree = "<group>";
 		};
 		90BAD93823574ACD0010F784 /* DataBaseRealm */ = {
@@ -462,6 +476,8 @@
 				90517053234209F600C86EEB /* DescriptionCollectionViewCell.swift in Sources */,
 				900A8DBF232D21A300180021 /* NetworkManager.swift in Sources */,
 				9065A28E23313AA300C2EE49 /* ShowProfileVC.swift in Sources */,
+				907E783A23657BA000DB2E2D /* Follower.swift in Sources */,
+				907E783C23657C1400DB2E2D /* FollowersVC.swift in Sources */,
 				900A8DAC232D16C600180021 /* ViewController.swift in Sources */,
 				9065A29423313F3400C2EE49 /* ElementMenu.swift in Sources */,
 				904266022335334C00FA72B4 /* ShowFriendsVC.swift in Sources */,

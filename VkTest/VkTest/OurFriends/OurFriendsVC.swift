@@ -40,7 +40,6 @@ class OurFriendsVC: UIViewController {
 
                     let stringArray = countOurFriends.map { String($0) }
                     let resultArray = stringArray.joined(separator: ",")
-                    print(resultArray)
 
 
                     NetworkManager.shared.getInfoAboutMyProfile(id: resultArray) { result in
@@ -136,6 +135,13 @@ extension OurFriendsVC: UITableViewDataSource {
 }
 extension OurFriendsVC: UITableViewDelegate {
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+                   
+                 let next: ProfileVC = self.storyboard?.instantiateViewController(withIdentifier: "profile") as! ProfileVC
+        next.id = ourFriends[indexPath.row].id
+                 self.navigationController?.pushViewController(next, animated: true)
+
+    }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         return 60
