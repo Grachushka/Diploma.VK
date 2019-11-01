@@ -12,6 +12,7 @@ class FollowersVC: UIViewController {
 
     @IBOutlet weak var table: UITableView!
     
+    @IBOutlet weak var activity: UIActivityIndicatorView!
     var id: String?
     
     var followerResponse: ResultResponseFollower? {
@@ -28,8 +29,9 @@ class FollowersVC: UIViewController {
     var followers: [Follower] = [] {
         
         didSet {
-            
+            activity.stopAnimating()
             table.reloadData()
+            table.isHidden = false
 
         }
     }
@@ -40,6 +42,8 @@ class FollowersVC: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        
+        table.isHidden = true
         
         NetworkManager.shared.getFollowers(id: id!) { result in
 
@@ -59,6 +63,8 @@ class FollowersVC: UIViewController {
         super.viewDidLoad()
         
         config()
+        
+        table.isHidden = true
         
         NetworkManager.shared.getFollowers(id: id!) { result in
 

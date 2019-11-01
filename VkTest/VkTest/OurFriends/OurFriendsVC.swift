@@ -12,13 +12,17 @@ class OurFriendsVC: UIViewController {
     
     var id: Int?
    
+    @IBOutlet weak var activity: UIActivityIndicatorView!
     @IBOutlet weak var table: UITableView!
     
     var ourFriends:[MainProfile] = [] {
            
            didSet {
-               
-               table.reloadData()
+            
+            table.reloadData()
+            activity.stopAnimating()
+            table.isHidden = false
+            
            }
        }
     func config() {
@@ -28,7 +32,7 @@ class OurFriendsVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-
+        table.isHidden = true
         NetworkManager.shared.getOurFriends(id: id!) { result in
 
             switch result {
@@ -68,7 +72,7 @@ class OurFriendsVC: UIViewController {
         super.viewDidLoad()
         
         config()
-        
+        table.isHidden = true
        NetworkManager.shared.getOurFriends(id: id!) { result in
 
            switch result {

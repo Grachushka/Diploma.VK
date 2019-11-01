@@ -28,7 +28,7 @@ class SettingsVC: UIViewController {
     }
     
     private func sendMessage() {
-        print("sendMessage")
+        
         NotificationCenter.default.post(name: .post, object: nil)
         
        }

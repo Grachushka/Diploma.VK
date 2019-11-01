@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import Kingfisher
 class PhotoGalleryCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var photo: UIImageView!
@@ -15,7 +15,7 @@ class PhotoGalleryCollectionViewCell: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-
+     
     }
     
     var targetPhoto: String? {
@@ -24,32 +24,32 @@ class PhotoGalleryCollectionViewCell: UICollectionViewCell {
         
         if let photo = targetPhoto {
             let photoURL = URL(string: "\(photo)")
-            if let resultPhoto = photoURL {
-                        let task = URLSession.shared.dataTask(with: resultPhoto) { [weak self] data, _, _ in
-                            guard let data = data else { return }
-                            DispatchQueue.main.async { [weak self] in
-                                self?.photo.image = UIImage(data: data)
-                            }
-                        }
-                        pictureTask = task
-                        task.resume()
-            
-            } else {
-                self.photo.image = nil
-                }
-            
-            
-            
-//                              if let resultPhoto = photoURL {
+//            if let resultPhoto = photoURL {
+//                        let task = URLSession.shared.dataTask(with: resultPhoto) { [weak self] data, _, _ in
+//                            guard let data = data else { return }
+//                            DispatchQueue.main.async { [weak self] in
+//                                self?.photo.image = UIImage(data: data)
+//                            }
+//                        }
+//                        pictureTask = task
+//                        task.resume()
 //
-//                                self.photo.kf.setImage(
-//                                   with: resultPhoto
-//                                  )
+//            } else {
+//                self.photo.image = nil
+//                }
+            
+            
+            
+                              if let resultPhoto = photoURL {
+
+                                self.photo.kf.setImage(
+                                   with: resultPhoto
+                                  )
                               }
         
         }
     }
-    
+    }
     
 //    func loadPictureImage(url: URL) {
 //        
@@ -57,6 +57,6 @@ class PhotoGalleryCollectionViewCell: UICollectionViewCell {
 //    }
     override func prepareForReuse() {
         photo.image = nil
-//        pictureTask = nil
+        pictureTask = nil
     }
 }

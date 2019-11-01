@@ -145,28 +145,26 @@ class ProfileVC: UIViewController {
              dataCollection.register(UINib.init(nibName: "DescriptionCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "DescriptionCollectionViewCell")
         
              buttonIsFriend.layer.cornerRadius = buttonIsFriend.layer.preferredFrameSize().height/2
+        
+        let layout2: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        
+                    layout2.minimumInteritemSpacing = 1
+                    layout2.minimumLineSpacing = 2
+                    layout2.itemSize =
+                        CGSize(width:collectionPhoto.frame.size.height, height: collectionPhoto.frame.size.height)
+
+                    layout2.scrollDirection = UICollectionView.ScrollDirection.horizontal
+
+                    collectionPhoto.collectionViewLayout = layout2
              
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        
-//         
+
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-//  let layout2: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-// ////            layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-// //
-// //            layout.minimumInteritemSpacing = 3
-// //            layout.minimumLineSpacing = 3
-//
-//
-//
-//                 layout2.itemSize = CGSize(width: collectionPhoto.frame.size.height, height: collectionPhoto.frame.size.height)
-//
-//
-             
-//             collectionPhoto.collectionViewLayout = layout2
+  
         config()
           
         NetworkManager.shared.getInfoAboutMyProfile(id: "\(id!)") { result in
@@ -241,7 +239,7 @@ class ProfileVC: UIViewController {
             switch result {
 
             case .success(let pictures):
-                
+
                 self.pictures = pictures.response.items
 
             case .failure(let error):
@@ -452,21 +450,45 @@ extension ProfileVC: UICollectionViewDelegate {
        
    }
 
-extension ProfileVC: UICollectionViewDelegateFlowLayout {
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-
-        return CGSize(width: collectionPhoto.frame.size.height, height: collectionPhoto.frame.size.height)
-    }
-}
-   
 extension ProfileVC: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == collectionPhoto {
             
             let next: TargetPhotoVC = self.storyboard?.instantiateViewController(withIdentifier: "TargetPhotoVC") as! TargetPhotoVC
-            next.item = pictures[indexPath.row]
+            
+//            var resultPhoto: String?
+//
+//            if let photo = pictures[indexPath.row].photo2560 {
+//
+//                resultPhoto = photo
+//
+//            } else if let photo = pictures[indexPath.row].photo1280 {
+//
+//                resultPhoto = photo
+//
+//            } else if let photo = pictures[indexPath.row].photo807 {
+//
+//                resultPhoto = photo
+//
+//            } else if let photo = pictures[indexPath.row].photo604 {
+//
+//                resultPhoto = photo
+//
+//            } else if let photo = pictures[indexPath.row].photo130 {
+//
+//                resultPhoto = photo
+//
+//            } else if let photo = pictures[indexPath.row].photo75 {
+//
+//                resultPhoto = photo
+//
+//            }
+//
+//            next.photoName = resultPhoto
+            next.idPhoto = indexPath.row
+            next.pictures = pictures
+            
             self.navigationController?.pushViewController(next, animated: true)
 
         } else if collectionView == dataCollection {
@@ -484,10 +506,21 @@ extension ProfileVC: UICollectionViewDataSource {
                 self.navigationController?.pushViewController(next, animated: true)
 
             } else if profileMenu[indexPath.row].picture == "подписчиков" {
+                
                 let next: FollowersVC = self.storyboard?.instantiateViewController(withIdentifier: "FollowersVC") as! FollowersVC
                                next.id = "\(id!)"
                                self.navigationController?.pushViewController(next, animated: true)
                 
+            } else if profileMenu[indexPath.row].picture == "групп" {
+                
+                let next: GroupsVC = self.storyboard?.instantiateViewController(withIdentifier: "GroupsVC") as! GroupsVC
+                                              next.id = "\(id!)"
+                                              self.navigationController?.pushViewController(next, animated: true)
+            } else if profileMenu[indexPath.row].picture == "фото" {
+                
+                let next: PhotoVC = self.storyboard?.instantiateViewController(withIdentifier: "PhotoVC") as! PhotoVC
+                                              next.id = id!
+                                              self.navigationController?.pushViewController(next, animated: true)
             }
             
         }

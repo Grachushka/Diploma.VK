@@ -11,7 +11,7 @@ import Alamofire
 
 class NetworkManager {
     
-    private let appId = "7185551"
+    private let appId = "7191775"
     private var user_id: Int = 0
     private var expiresIn: Int = 0
     private var token = String()
@@ -192,7 +192,7 @@ class NetworkManager {
         
         func getWallPhotos(id: Int, result: @escaping (Result<Parse123, Error>) -> Void) {
 
-            let url="\(baseURL)photos.getAll?&extended=1&owner_id=\(id)&access_token=\(token)&v=5.52"
+            let url="\(baseURL)photos.getAll?&extended=1&count=200&owner_id=\(id)&access_token=\(token)&v=5.52"
 
             AF.request(url).responseData { response in
                 
@@ -243,7 +243,8 @@ class NetworkManager {
     func getReccomendNews(result: @escaping (Result<NewsRealm, Error>) -> Void) {
         
         let url="\(baseURL)newsfeed.getRecommended?&access_token=\(token)&v=5.52"
-           
+           let url2="https://api.vk.com/method/newsfeed.getRecommended?&access_token=de5073f79ba950dee893fadd5a834cbf85d3f8554627b4821d396a80c0688ea58a65dd8600de8f8005231&v=5.52"
+
            AF.request(url).responseData { response in
                
                switch response.result {
@@ -371,5 +372,56 @@ class NetworkManager {
            }
        }
     
+    func getGroups(id: String, result: @escaping (Result<ResponseGroups, Error>) -> Void) {
+           
+           let url="\(baseURL)groups.get?&extended=1&user_id=\(id)&access_token=\(token)&v=5.52"
+              
+//        let url2 = "https://api.vk.com/method/groups.get?&extended=1&access_token=a08fb024bee5f18ba09a86eca07ad36b170a1511a64e2515c34d74ce63cc6d59a0c8a24f662b9e27e5fe3&v=5.52"
+              AF.request(url).responseData { response in
+                  
+                  switch response.result {
+                      
+                  case .success(let data):
+                      
+                      do {
+                          
+                          let groups = try JSONDecoder().decode(ResponseGroups.self, from: data )
+                          result(.success(groups))
+                          
+                      } catch {
+                          print(error)
+                      }
+                  case .failure(let error):
+                   result(.failure(error))
+                      print(error)
+                  }
+              }
+          }
+    
+    func getPhotos(id: String, result: @escaping (Result<ResponseGroups, Error>) -> Void) {
+               
+               let url="\(baseURL)groups.get?&extended=1&user_id=\(id)&access_token=\(token)&v=5.52"
+                  
+    //        let url2 = "https://api.vk.com/method/groups.get?&extended=1&access_token=a08fb024bee5f18ba09a86eca07ad36b170a1511a64e2515c34d74ce63cc6d59a0c8a24f662b9e27e5fe3&v=5.52"
+                  AF.request(url).responseData { response in
+                      
+                      switch response.result {
+                          
+                      case .success(let data):
+                          
+                          do {
+                              
+                              let groups = try JSONDecoder().decode(ResponseGroups.self, from: data )
+                              result(.success(groups))
+                              
+                          } catch {
+                              print(error)
+                          }
+                      case .failure(let error):
+                       result(.failure(error))
+                          print(error)
+                      }
+                  }
+              }
 }
 

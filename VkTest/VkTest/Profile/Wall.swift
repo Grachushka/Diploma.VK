@@ -453,25 +453,12 @@ struct CopyHistory: Codable {
 class CopyHistoryAttachmentRealm: Object, Codable {
     
     @objc dynamic var type: String?
-//
-//    var type: AttachmentTypeRealm {
-//        get {
-//
-//            return AttachmentTypeRealm(rawValue: privateType)!
-//
-//        }
-//
-//        set {
-//
-//            privateType = newValue.rawValue
-//        }
-//    }
     @objc dynamic var audio: AudioRealm?
     @objc dynamic var link:  LinkRealm?
     @objc dynamic var photo: AttachmentPhotoRealm?
     @objc dynamic var video: PurpleVideoRealm?
     @objc dynamic var doc: DocRealm?
-     @objc dynamic var poll: Poll?
+    @objc dynamic var poll: Poll?
 }
 class Poll: Object, Codable {
     dynamic var id: RealmOptional<Int> = RealmOptional()

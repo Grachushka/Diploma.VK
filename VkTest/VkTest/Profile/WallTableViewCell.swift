@@ -29,6 +29,7 @@ class WallTableViewCell: UITableViewCell {
         title.text = nil
        
        }
+    
     @IBOutlet weak var wallCollection: UICollectionView! {
         
         didSet {

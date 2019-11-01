@@ -27,8 +27,9 @@ class NewsTableViewCell: UITableViewCell {
         
     
     var copyHistoryAttachment: CopyHistoryAttachmentRealm? {
+        
         didSet {
-
+print(copyHistoryAttachment)
             if let news = news {
                 
                 if news.sourceID.value! > 0 {

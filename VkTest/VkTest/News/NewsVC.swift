@@ -61,11 +61,10 @@ class NewsVC: UIViewController {
             switch result {
 
             case .success(let news):
-                 
                 DataBaseRealmSwift.shared.addNews(news: news)
-                
+                print(news)
                 self.responseNews = DataBaseRealmSwift.shared.getNews()?.last._rlmInferWrappedType().response
-            
+                
 
             case .failure(let error):
                 

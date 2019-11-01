@@ -84,6 +84,7 @@ class OneNewsRealm: Object, Codable {
 //    @objc dynamic var postID: Int
 //    @objc dynamic var signerID: Int
     
+    
     enum CodingKeys: String, CodingKey {
            case sourceID = "source_id"
            case date
