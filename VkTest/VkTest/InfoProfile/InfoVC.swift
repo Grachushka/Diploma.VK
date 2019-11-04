@@ -9,8 +9,8 @@
 import UIKit
 
 class InfoVC: UIViewController {
-
- 
+    
+    
     
     @IBOutlet weak var table: UITableView!
     var arrayInfo = DataBase.shared.getInfoProfileMenu()
@@ -26,7 +26,7 @@ class InfoVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-   
+        
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,34 +47,34 @@ class InfoVC: UIViewController {
             case 6: value = "в активном поиске"
             case 7: value = "влюблен/влюблена"
             case 8: value = "влюблен/влюблена"
-            
+                
             default: value = ""
                 
             }
             self.arrayInfo[3].name = "\(value!)"
         }
         if let bdate = object?.bdate {
-                          
+            
             self.arrayInfo[0].name = "\(bdate)"
-                          
+            
         }
         
         if let country = object?.city?.title {
-                               
+            
             self.arrayInfo[1].name = "\(country)"
-                               
+            
         }
         
         if let university = object?.universityName {
-                               
+            
             self.arrayInfo[2].name = "\(university)"
-                               
+            
         }
         
         if let langs = object?.personal?.langs {
             
             self.arrayInfo[4].name = langs.joined(separator: ",")
-                                      
+            
         }
         
         
@@ -105,14 +105,14 @@ extension InfoVC: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-         switch section {
-            case 0:
-                return 1
-            case 1:
-                return arrayInfo.count
-            default:
-                return 0
-               }
+        switch section {
+        case 0:
+            return 1
+        case 1:
+            return arrayInfo.count
+        default:
+            return 0
+        }
     }
     
     
@@ -121,9 +121,9 @@ extension InfoVC: UITableViewDataSource {
         if indexPath.section == 0 {
             
             if let cell = tableView.dequeueReusableCell(withIdentifier: "SecondElementMenu") as? SecondElementTableViewCell {
-                           
-            if let firstName = object?.firstName, let lastName = object?.lastName {
-                cell.name = "\(firstName) \(lastName)"
+                
+                if let firstName = object?.firstName, let lastName = object?.lastName {
+                    cell.name = "\(firstName) \(lastName)"
                 }
                 cell.discription = nil
                 cell.imageName = object?.photo100
@@ -133,7 +133,7 @@ extension InfoVC: UITableViewDataSource {
             }
             
         } else if indexPath.section == 1 {
-           
+            
             if let cell = tableView.dequeueReusableCell(withIdentifier: "InfoTableViewCell") as? InfoTableViewCell {
                 
                 cell.named = arrayInfo[indexPath.row].picture
@@ -145,8 +145,8 @@ extension InfoVC: UITableViewDataSource {
             }
             
         }
-    
-    return UITableViewCell()
+        
+        return UITableViewCell()
         
     }
 }

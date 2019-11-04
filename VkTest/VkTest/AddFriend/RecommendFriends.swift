@@ -20,7 +20,7 @@ struct Response: Codable {
 
 // MARK: - Item
 struct RecommendFriend: Codable {
-   
+    
     
     let id: Int
     let firstName, lastName: String?
@@ -67,7 +67,7 @@ struct RecommendFriend: Codable {
     let about: String?
     let relatives: [Occupation]?
     let quotes, maidenName, twitter: String?
-
+    
     enum CodingKeys: String, CodingKey {
         case id
         case firstName = "first_name"
@@ -128,7 +128,7 @@ struct Career: Codable {
     let groupID, countryID, cityID: Int?
     let company: String?
     let from, until: Int?
-
+    
     enum CodingKeys: String, CodingKey {
         case groupID = "group_id"
         case countryID = "country_id"

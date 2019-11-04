@@ -9,7 +9,7 @@
 import UIKit
 
 class InfoTableViewCell: UITableViewCell {
-
+    
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var value: UILabel!
     

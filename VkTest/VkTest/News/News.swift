@@ -12,8 +12,8 @@ import RealmSwift
 class NewsRealm: Object, Codable {
     
     @objc dynamic var response: ResponseNewsRealm?
-
-    }
+    
+}
 
 struct News: Codable {
     let response: ResponseNews?
@@ -26,19 +26,19 @@ class ResponseNewsRealm: Object, Codable {
     var profiles = List<ProfileRealm>()
     var groups = List<GroupRealm>()
     @objc dynamic var nextFrom: String?
-
+    
     
     enum CodingKeys: String, CodingKey {
-           case items, profiles, groups
-           case nextFrom = "next_from"
-       }
+        case items, profiles, groups
+        case nextFrom = "next_from"
+    }
 }
 struct ResponseNews: Codable {
     let items: [OneNews]
     let profiles: [Profile]?
     let groups: [Group]?
     let nextFrom: String?
-
+    
     enum CodingKeys: String, CodingKey {
         case items, profiles, groups
         case nextFrom = "next_from"
@@ -79,22 +79,22 @@ class OneNewsRealm: Object, Codable {
     dynamic var sourceID: RealmOptional<Int> = RealmOptional()
     dynamic var date: RealmOptional<Int> = RealmOptional()
     @objc dynamic var text: String?
-//    dynamic var markedAsAds: RealmOptional<Int> = RealmOptional()
+    //    dynamic var markedAsAds: RealmOptional<Int> = RealmOptional()
     var attachments = List<CopyHistoryAttachmentRealm>()
-//    @objc dynamic var postID: Int
-//    @objc dynamic var signerID: Int
+    //    @objc dynamic var postID: Int
+    //    @objc dynamic var signerID: Int
     
     
     enum CodingKeys: String, CodingKey {
-           case sourceID = "source_id"
-           case date
-           case text
-//           case markedAsAds = "marked_as_ads"
-           case attachments
-           //case postSource = "post_source"
-//           case postID = "post_id"
-//           case signerID = "signer_id"
-       }
+        case sourceID = "source_id"
+        case date
+        case text
+        //           case markedAsAds = "marked_as_ads"
+        case attachments
+        //case postSource = "post_source"
+        //           case postID = "post_id"
+        //           case signerID = "signer_id"
+    }
 }
 
 struct OneNews: Codable {
@@ -110,7 +110,7 @@ struct OneNews: Codable {
     let postID: Int?
     let copyright: Copyright?
     let signerID: Int?
-
+    
     enum CodingKeys: String, CodingKey {
         case type
         case sourceID = "source_id"

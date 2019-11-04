@@ -14,7 +14,7 @@ class WallCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var imageView: UIImageView!
-
+    
     var copyHistoryAttachment: CopyHistoryAttachment? {
         
         didSet {
@@ -31,19 +31,20 @@ class WallCollectionViewCell: UICollectionViewCell {
                         print("video")
                         
                         if let imageName = copyHistoryAttachment.video?.photo1280 {
-                        url = URL(string: imageName)
+                            url = URL(string: imageName)
                             
                         } else if let imageName = copyHistoryAttachment.video?.photo800 {
-                        url = URL(string: imageName)
+                            url = URL(string: imageName)
                             
                         } else if let imageName = copyHistoryAttachment.video?.photo320 {
-                        url = URL(string: imageName)
+                            url = URL(string: imageName)
                             
                         }
                         
                         loadImage(url: url!)
                         
                     case .doc:
+                        
                         print("doc")
                         
                         if let copyHistoryAttachment = copyHistoryAttachment.doc {
@@ -59,11 +60,11 @@ class WallCollectionViewCell: UICollectionViewCell {
                             }
                             
                         } else if let imageName = copyHistoryAttachment.doc!.preview!.photo!.sizes![1].src {
-                         url = URL(string: imageName)
-
+                            url = URL(string: imageName)
+                            
                         } else if let imageName = copyHistoryAttachment.doc!.preview!.photo!.sizes![0].src {
-                         url = URL(string: imageName)
-                        
+                            url = URL(string: imageName)
+                            
                         }
                         
                         loadImage(url: url!)
@@ -73,32 +74,32 @@ class WallCollectionViewCell: UICollectionViewCell {
                         print("link")
                         
                         if let imageName = copyHistoryAttachment.link!.photo?.photo604 {
-                             url = URL(string: imageName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
-                      
+                            url = URL(string: imageName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
+                            
                         } else  if let imageName = copyHistoryAttachment.link!.photo?.photo130 {
-                             url = URL(string: imageName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
+                            url = URL(string: imageName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
                         }
                         if let url = url {
                             
                             loadImage(url: url)
-
+                            
                         }
                         
                     case .photo:
                         print("photo")
                         
                         if let imageName = copyHistoryAttachment.photo!.photo2560 {
-                             url = URL(string: imageName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
-
+                            url = URL(string: imageName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
+                            
                         } else if let imageName = copyHistoryAttachment.photo!.photo1280 {
-                         url = URL(string: imageName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
-                        
+                            url = URL(string: imageName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
+                            
                         } else if let imageName = copyHistoryAttachment.photo!.photo807 {
-                         url = URL(string: imageName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
-                        
+                            url = URL(string: imageName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
+                            
                         } else if let imageName = copyHistoryAttachment.photo!.photo604 {
-                         url = URL(string: imageName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
-                        
+                            url = URL(string: imageName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
+                            
                         }
                         
                         loadImage(url: url!)
@@ -131,7 +132,7 @@ class WallCollectionViewCell: UICollectionViewCell {
                         print("posted_photo")
                     case .audio:
                         print("audio")
-                    
+                        
                     }
                 }
                 
@@ -141,18 +142,18 @@ class WallCollectionViewCell: UICollectionViewCell {
     
     
     func loadImage(url: URL) {
-
+        
         imageView.kf.setImage(with: url)
             
-            {
-                result in
-                switch result {
-
-                case .success(_):
-                    print("success")
-                case .failure(let error):
-                    print(error)
-
+        {
+            result in
+            switch result {
+                
+            case .success(_):
+                print("success")
+            case .failure(let error):
+                print(error)
+                
             }
         }
     }

@@ -9,10 +9,8 @@
 import UIKit
 
 class GroupsVC: UIViewController {
-
-    @IBOutlet weak var table: UITableView!
     
-
+    @IBOutlet weak var table: UITableView!
     @IBOutlet weak var activity: UIActivityIndicatorView!
     
     var responseGroups: ResponseGroups? {
@@ -47,41 +45,41 @@ class GroupsVC: UIViewController {
         
         table.isHidden = true
         NetworkManager.shared.getGroups(id: id!) { result in
-
+            
             switch result {
-
+                
             case .success(let responseGroups):
-                 
-
+                
+                
                 self.responseGroups = responseGroups
                 
-
+                
             case .failure(let error):
                 
-              print(error)
-
+                print(error)
+                
             }
         }
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         config()
         
         NetworkManager.shared.getGroups(id: id!) { result in
-
-            switch result {
-
-            case .success(let responseGroups):
-                 
-
-                self.responseGroups = responseGroups
             
-
+            switch result {
+                
+            case .success(let responseGroups):
+                
+                
+                self.responseGroups = responseGroups
+                
+                
             case .failure(let error):
                 
-              print(error)
-
+                print(error)
+                
             }
         }
     }
@@ -106,7 +104,7 @@ extension GroupsVC: UITableViewDataSource {
                 
                 cell.name = name
             }
-         
+            
             cell.imageName = groups[indexPath.row].photo200
             
             return cell

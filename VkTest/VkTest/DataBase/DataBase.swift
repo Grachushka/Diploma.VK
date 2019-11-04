@@ -17,7 +17,7 @@ class DataBase {
     private var arrayElementProfileMenu: [ElementMenu] = []
     private var arrayElementInfoMenu: [ElementMenu] = []
     private var arraySettingsMenu: [ElementMenu] = []
-
+    
     
     
     func getSettingsMenu() -> [ElementMenu]{
@@ -30,7 +30,7 @@ class DataBase {
         return arraySettingsMenu
     }
     
-
+    
     func setSettingsMenu() {
         
         arraySettingsMenu.append(ElementMenu(name: "Уведомления", picture: "notification"))
@@ -43,9 +43,9 @@ class DataBase {
         arraySettingsMenu.append(ElementMenu(name: "Баланс", picture: "balance"))
         arraySettingsMenu.append(ElementMenu(name: "Музыкальные подписки", picture: "music"))
         arraySettingsMenu.append(ElementMenu(name: "О нас", picture: "about"))
-
-
-
+        
+        
+        
     }
     
     func getMainMenu() -> [ElementMenu]{
@@ -59,7 +59,7 @@ class DataBase {
         return arrayElementsMainMenu
     }
     
-
+    
     func setMainMenu() {
         
         arrayElementsMainMenu.append(ElementMenu(name: "Друзья", picture: "friends"))
@@ -85,7 +85,7 @@ class DataBase {
         arrayElementProfileMenu.append(ElementMenu(picture: "видео"))
         arrayElementProfileMenu.append(ElementMenu(picture: "аудио"))
         arrayElementProfileMenu.append(ElementMenu(picture: "подарков"))
-       
+        
     }
     
     func getInfoProfileMenu() -> [ElementMenu]{
@@ -110,5 +110,5 @@ class DataBase {
     
     
     
-  
+    
 }

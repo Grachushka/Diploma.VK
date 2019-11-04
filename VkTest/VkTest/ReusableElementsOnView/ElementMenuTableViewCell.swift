@@ -9,7 +9,7 @@
 import UIKit
 
 class ElementMenuTableViewCell: UITableViewCell {
-
+    
     
     @IBOutlet weak var pictureMenu: UIImageView!
     @IBOutlet weak var nameMenu: UILabel!
@@ -25,11 +25,11 @@ class ElementMenuTableViewCell: UITableViewCell {
         didSet {
             
             if let imageName = picture {
-            pictureMenu.image = UIImage(named: imageName)
+                pictureMenu.image = UIImage(named: imageName)
             } else {
                 
                 pictureMenu.image = nil
-
+                
             }
         }
     }

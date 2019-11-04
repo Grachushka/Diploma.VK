@@ -17,23 +17,23 @@ class AuthorizationVC: UIViewController, WKNavigationDelegate {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     deinit {
-              NotificationCenter.default.removeObserver(self)
-          }
+        NotificationCenter.default.removeObserver(self)
+    }
     func observePost() {
         
-           NotificationCenter.default.addObserver(self, selector: #selector(messageReceived(_:)), name: .post, object: nil)
-          
-       }
-      @objc
-        private func messageReceived(_ notification: Notification){
+        NotificationCenter.default.addObserver(self, selector: #selector(messageReceived(_:)), name: .post, object: nil)
         
-            webView.cleanAllCookies()
-            webView.refreshCookies()
-            
-        }
+    }
+    @objc
+    private func messageReceived(_ notification: Notification){
+        
+        webView.cleanAllCookies()
+        webView.refreshCookies()
+        
+    }
     
     
-     
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
@@ -41,43 +41,43 @@ class AuthorizationVC: UIViewController, WKNavigationDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         observePost()
-    
+        
         activityIndicator.startAnimating()
         
         webView.navigationDelegate = self
         
         NetworkManager.shared.authorization { result in
-
+            
             switch result {
-
+                
             case .success(let request):
-
+                
                 self.webView.load(request)
                 self.activityIndicator.stopAnimating()
-             
-              
-
+                
+                
+                
             case .failure(let error):
                 print(error)
-
+                
             }
         }
     }
-   
     
-   
+    
+    
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         if !fragmentItems.isEmpty {
-                        
+            
             webView.isHidden = true
-         
+            
             NetworkManager.shared.setUser_id(user_id: Int(fragmentItems["user_id"]!.first!)!)
             NetworkManager.shared.setToken(token: String(fragmentItems["access_token"]!.first!))
             NetworkManager.shared.setExpiresIn(expiresIn: Int(fragmentItems["expires_in"]!.first!)!)
             
             performSegue(withIdentifier: "vc", sender: webView)
             
-                        
+            
             
         }
         
@@ -107,11 +107,11 @@ class AuthorizationVC: UIViewController, WKNavigationDelegate {
 }
 
 extension WKWebView {
-
+    
     func cleanAllCookies() {
         HTTPCookieStorage.shared.removeCookies(since: Date.distantPast)
         print("All cookies deleted")
-
+        
         WKWebsiteDataStore.default().fetchDataRecords(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes()) { records in
             records.forEach { record in
                 WKWebsiteDataStore.default().removeData(ofTypes: record.dataTypes, for: [record], completionHandler: {})
@@ -119,7 +119,7 @@ extension WKWebView {
             }
         }
     }
-
+    
     func refreshCookies() {
         self.configuration.processPool = WKProcessPool()
     }

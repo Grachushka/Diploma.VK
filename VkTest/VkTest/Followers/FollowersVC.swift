@@ -9,9 +9,8 @@
 import UIKit
 
 class FollowersVC: UIViewController {
-
-    @IBOutlet weak var table: UITableView!
     
+    @IBOutlet weak var table: UITableView!
     @IBOutlet weak var activity: UIActivityIndicatorView!
     var id: String?
     
@@ -21,7 +20,7 @@ class FollowersVC: UIViewController {
             if let followers = followerResponse?.response?.items {
                 
                 self.followers = followers
-
+                
             }
         }
     }
@@ -32,7 +31,7 @@ class FollowersVC: UIViewController {
             activity.stopAnimating()
             table.reloadData()
             table.isHidden = false
-
+            
         }
     }
     
@@ -46,18 +45,18 @@ class FollowersVC: UIViewController {
         table.isHidden = true
         
         NetworkManager.shared.getFollowers(id: id!) { result in
-
-                   switch result {
-
-                   case .success(let followerResponse):
-
-                       self.followerResponse = followerResponse
-                       
-                   case .failure(let error):
-                       print(error)
-
-                   }
-               }
+            
+            switch result {
+                
+            case .success(let followerResponse):
+                
+                self.followerResponse = followerResponse
+                
+            case .failure(let error):
+                print(error)
+                
+            }
+        }
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,16 +66,16 @@ class FollowersVC: UIViewController {
         table.isHidden = true
         
         NetworkManager.shared.getFollowers(id: id!) { result in
-
+            
             switch result {
-
+                
             case .success(let followerResponse):
-
+                
                 self.followerResponse = followerResponse
                 
             case .failure(let error):
                 print(error)
-
+                
             }
         }
     }
@@ -89,8 +88,8 @@ extension FollowersVC: UITableViewDelegate {
         
         let next: ProfileVC = self.storyboard?.instantiateViewController(withIdentifier: "profile") as! ProfileVC
         next.id = followers[indexPath.row].id
-                 self.navigationController?.pushViewController(next, animated: true)
-
+        self.navigationController?.pushViewController(next, animated: true)
+        
     }
 }
 
@@ -102,21 +101,13 @@ extension FollowersVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-       if let cell = tableView.dequeueReusableCell(withIdentifier: "SecondElementMenu") as? SecondElementTableViewCell {
-                    cell.name = "\(followers[indexPath.row].firstName!) \(followers[indexPath.row].lastName!)"
-                    
-        cell.imageName = followers[indexPath.row].photo200
-        
-         
-                    
-        //            if ourFriends[indexPath.row].online == 1 {
-        //
-        //                cell.isOnlineFromMobile = false
-        //
-        //            }
-                    
-                    return cell
-                }
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "SecondElementMenu") as? SecondElementTableViewCell {
+            
+            cell.name = "\(followers[indexPath.row].firstName!) \(followers[indexPath.row].lastName!)"
+            cell.imageName = followers[indexPath.row].photo200
+
+            return cell
+        }
         return UITableViewCell()
     }
     

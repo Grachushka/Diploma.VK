@@ -9,16 +9,15 @@
 import UIKit
 
 class SettingsVC: UIViewController {
-
-    private let settings = DataBase.shared.getSettingsMenu()
     
+    private let settings = DataBase.shared.getSettingsMenu()
     @IBOutlet weak var table:
     UITableView!
     
     func config() {
         
         table.register(UINib(nibName: "ElementMenuTableViewCell", bundle: nil), forCellReuseIdentifier: "ElementMenu")
-               
+        
     }
     
     override func viewDidLoad() {
@@ -31,7 +30,7 @@ class SettingsVC: UIViewController {
         
         NotificationCenter.default.post(name: .post, object: nil)
         
-       }
+    }
     @IBAction func Exit(_ sender: UIButton) {
         sendMessage()
         
@@ -43,11 +42,11 @@ class SettingsVC: UIViewController {
         return 50
     }
 }
-    extension SettingsVC: UITableViewDelegate {
-        
-    }
+extension SettingsVC: UITableViewDelegate {
     
-    extension SettingsVC: UITableViewDataSource {
+}
+
+extension SettingsVC: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         

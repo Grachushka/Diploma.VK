@@ -23,30 +23,30 @@ struct Response4442: Codable {
 }
 class GroupRealm: Object, Codable {
     
-       dynamic var id: RealmOptional<Int> = RealmOptional()
-       @objc dynamic var name: String?
-//       @objc dynamic var screenName: String?
-        @objc dynamic var photo50: String?
-        @objc dynamic var photo100: String?
-        @objc dynamic var photo200: String?
-       @objc  dynamic var type: String?
-//       dynamic var isAdmin: RealmOptional<Int> = RealmOptional()
-//       dynamic var isMember: RealmOptional<Int> = RealmOptional()
-//       dynamic var isAdvertiser: RealmOptional<Int> = RealmOptional()
-       dynamic var online: RealmOptional<Int> = RealmOptional()
+    dynamic var id: RealmOptional<Int> = RealmOptional()
+    @objc dynamic var name: String?
+    //       @objc dynamic var screenName: String?
+    @objc dynamic var photo50: String?
+    @objc dynamic var photo100: String?
+    @objc dynamic var photo200: String?
+    @objc  dynamic var type: String?
+    //       dynamic var isAdmin: RealmOptional<Int> = RealmOptional()
+    //       dynamic var isMember: RealmOptional<Int> = RealmOptional()
+    //       dynamic var isAdvertiser: RealmOptional<Int> = RealmOptional()
+    dynamic var online: RealmOptional<Int> = RealmOptional()
     
     enum CodingKeys: String, CodingKey {
         case id, name
-//        case screenName = "screen_name"
+        //        case screenName = "screen_name"
         case type
-//        case isAdmin = "is_admin"
-//        case isMember = "is_member"
-//        case isAdvertiser = "is_advertiser"
+        //        case isAdmin = "is_admin"
+        //        case isMember = "is_member"
+        //        case isAdvertiser = "is_advertiser"
         case photo50 = "photo_50"
         case photo100 = "photo_100"
         case photo200 = "photo_200"
     }
-
+    
 }
 // MARK: - Group
 struct Group: Codable {
@@ -56,7 +56,7 @@ struct Group: Codable {
     let type: String?
     let isAdmin, isMember, isAdvertiser: Int?
     let photo50, photo100, photo200: String?
-
+    
     enum CodingKeys: String, CodingKey {
         case id, name
         case screenName = "screen_name"
@@ -81,7 +81,7 @@ struct Item333: Codable {
     let likes: Likes?
     let reposts: Reposts?
     let attachments: [CopyHistoryAttachment]?
-
+    
     enum CodingKeys: String, CodingKey {
         case id
         case fromID = "from_id"
@@ -113,19 +113,19 @@ class AudioRealm: Object, Codable {
     dynamic var duration: RealmOptional<Int> = RealmOptional()
     @objc dynamic var url: String?
     dynamic var date: RealmOptional<Int> = RealmOptional()
-//    dynamic var lyricsID: RealmOptional<Int> = RealmOptional()
-//    dynamic var genreID: RealmOptional<Int> = RealmOptional()
-//    dynamic var albumID: RealmOptional<Int> = RealmOptional()
-//    dynamic var contentRestricted: RealmOptional<Int> = RealmOptional()
+    //    dynamic var lyricsID: RealmOptional<Int> = RealmOptional()
+    //    dynamic var genreID: RealmOptional<Int> = RealmOptional()
+    //    dynamic var albumID: RealmOptional<Int> = RealmOptional()
+    //    dynamic var contentRestricted: RealmOptional<Int> = RealmOptional()
     
     enum CodingKeys: String, CodingKey {
         case artist, id
         case ownerID = "owner_id"
         case title, duration, url, date
-//        case lyricsID = "lyrics_id"
-//        case genreID = "genre_id"
-//        case albumID = "album_id"
-//        case contentRestricted = "content_restricted"
+        //        case lyricsID = "lyrics_id"
+        //        case genreID = "genre_id"
+        //        case albumID = "album_id"
+        //        case contentRestricted = "content_restricted"
     }
 }
 struct Audio: Codable {
@@ -136,7 +136,7 @@ struct Audio: Codable {
     let url: String?
     let date, lyricsID, genreID, albumID: Int?
     let contentRestricted: Int?
-
+    
     enum CodingKeys: String, CodingKey {
         case artist, id
         case ownerID = "owner_id"
@@ -154,13 +154,13 @@ class LinkRealm: Object, Codable {
     @objc dynamic var title: String?
     @objc dynamic var caption: String?
     @objc dynamic var linkDescription: String?
-//    dynamic var isExternal: RealmOptional<Int> = RealmOptional()
+    //    dynamic var isExternal: RealmOptional<Int> = RealmOptional()
     @objc dynamic var photo: LinkPhotoRealm?
-
+    
     enum CodingKeys: String, CodingKey {
         case url, title, caption
         case linkDescription = "description"
-//        case isExternal = "is_external"
+        //        case isExternal = "is_external"
         case photo
     }
 }
@@ -170,7 +170,7 @@ struct Link: Codable {
     let title, caption, linkDescription: String?
     let isExternal: Int?
     let photo: LinkPhoto?
-
+    
     enum CodingKeys: String, CodingKey {
         case url, title, caption
         case linkDescription = "description"
@@ -190,16 +190,16 @@ class LinkPhotoRealm: Object, Codable {
     dynamic var height: RealmOptional<Int> = RealmOptional()
     @objc dynamic var text: String?
     dynamic var date: RealmOptional<Int> = RealmOptional()
-
- enum CodingKeys: String, CodingKey {
-     case id
-     case albumID = "album_id"
-     case ownerID = "owner_id"
-     case photo75 = "photo_75"
-     case photo130 = "photo_130"
-     case photo604 = "photo_604"
-     case width, height, text, date
- }
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case albumID = "album_id"
+        case ownerID = "owner_id"
+        case photo75 = "photo_75"
+        case photo130 = "photo_130"
+        case photo604 = "photo_604"
+        case width, height, text, date
+    }
 }
 // MARK: - LinkPhoto
 struct LinkPhoto: Codable {
@@ -208,7 +208,7 @@ struct LinkPhoto: Codable {
     let width, height: Int?
     let text: String?
     let date: Int?
-
+    
     enum CodingKeys: String, CodingKey {
         case id
         case albumID = "album_id"
@@ -236,8 +236,8 @@ class AttachmentPhotoRealm: Object, Codable {
     @objc dynamic var text: String?
     dynamic var date: RealmOptional<Int> = RealmOptional()
     @objc dynamic var accessKey: String?
-//    @objc dynamic var postID: Int
-//    dynamic var userID: RealmOptional<Int> = RealmOptional()
+    //    @objc dynamic var postID: Int
+    //    dynamic var userID: RealmOptional<Int> = RealmOptional()
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -251,8 +251,8 @@ class AttachmentPhotoRealm: Object, Codable {
         case photo2560 = "photo_2560"
         case width, height, text, date
         case accessKey = "access_key"
-//        case postID = "post_id"
-//        case userID = "user_id"
+        //        case postID = "post_id"
+        //        case userID = "user_id"
     }
 }
 // MARK: - AttachmentPhoto
@@ -265,7 +265,7 @@ struct AttachmentPhoto: Codable {
     let date: Int?
     let accessKey: String?
     let postID, userID: Int?
-
+    
     enum CodingKeys: String, CodingKey {
         case id
         case albumID = "album_id"
@@ -284,7 +284,7 @@ struct AttachmentPhoto: Codable {
 }
 
 enum AttachmentTypeRealm: String, Codable {
-  
+    
     case audio = "audio"
     case doc = "doc"
     case link = "link"
@@ -338,8 +338,8 @@ class PurpleVideoRealm: Object, Codable {
     dynamic var date: RealmOptional<Int> = RealmOptional()
     dynamic var comments: RealmOptional<Int> = RealmOptional()
     dynamic var views: RealmOptional<Int> = RealmOptional()
-//    dynamic var width: RealmOptional<Int> = RealmOptional()
-//    dynamic var height: RealmOptional<Int> = RealmOptional()
+    //    dynamic var width: RealmOptional<Int> = RealmOptional()
+    //    dynamic var height: RealmOptional<Int> = RealmOptional()
     @objc dynamic var photo130: String?
     @objc dynamic var photo320: String?
     @objc dynamic var photo800: String?
@@ -362,8 +362,8 @@ class PurpleVideoRealm: Object, Codable {
         case title, duration
         case videoDescription = "description"
         case date, comments, views
-//        case width
-//        case height
+        //        case width
+        //        case height
         case photo130 = "photo_130"
         case photo320 = "photo_320"
         case photo800 = "photo_800"
@@ -394,7 +394,7 @@ struct PurpleVideo: Codable {
     let accessKey: String?
     let canAdd: Int?
     let trackCode: String?
-
+    
     enum CodingKeys: String, CodingKey {
         case id
         case ownerID = "owner_id"
@@ -423,7 +423,7 @@ struct PurpleVideo: Codable {
 struct Comments: Codable {
     let count, canPost: Int?
     let groupsCanPost: Bool?
-
+    
     enum CodingKeys: String, CodingKey {
         case count
         case canPost = "can_post"
@@ -437,7 +437,7 @@ struct CopyHistory: Codable {
     let postType, text: String?
     let attachments: [CopyHistoryAttachment]?
     let postSource: CopyHistoryPostSource?
-
+    
     enum CodingKeys: String, CodingKey {
         case id
         case ownerID = "owner_id"
@@ -503,7 +503,7 @@ class DocRealm: Object, Codable {
     dynamic var id: RealmOptional<Int> = RealmOptional()
     dynamic var ownerID: RealmOptional<Int> = RealmOptional()
     @objc dynamic var title: String?
-    @objc dynamic var size: String?
+    dynamic var size: RealmOptional<Int> = RealmOptional()
     @objc  dynamic var ext: String?
     @objc dynamic var url: String?
     dynamic var date: RealmOptional<Int> = RealmOptional()
@@ -512,12 +512,12 @@ class DocRealm: Object, Codable {
     @objc dynamic var accessKey: String?
     
     enum CodingKeys: String, CodingKey {
-           case id
-           case ownerID = "owner_id"
-           case title, size, ext, url, date, type, preview
-           case accessKey = "access_key"
-       }
-      
+        case id
+        case ownerID = "owner_id"
+        case title, size, ext, url, date, type, preview
+        case accessKey = "access_key"
+    }
+    
 }
 struct Doc: Codable {
     let id, ownerID: Int?
@@ -528,7 +528,7 @@ struct Doc: Codable {
     let date, type: Int?
     let preview: Preview?
     let accessKey: String?
-
+    
     enum CodingKeys: String, CodingKey {
         case id
         case ownerID = "owner_id"
@@ -562,10 +562,10 @@ class VideoElementRealm: Object, Codable {
     @objc dynamic var type: String?
     dynamic var fileSize: RealmOptional<Int> = RealmOptional()
     
-     enum CodingKeys: String, CodingKey {
-            case src, width, height, type
-            case fileSize = "file_size"
-        }
+    enum CodingKeys: String, CodingKey {
+        case src, width, height, type
+        case fileSize = "file_size"
+    }
 }
 // MARK: - VideoElement
 struct VideoElement: Codable {
@@ -573,7 +573,7 @@ struct VideoElement: Codable {
     let width, height: Int?
     let type: String?
     let fileSize: Int?
-
+    
     enum CodingKeys: String, CodingKey {
         case src, width, height, type
         case fileSize = "file_size"
@@ -589,7 +589,7 @@ struct CopyHistoryPostSource: Codable {
 // MARK: - Likes
 struct Likes: Codable {
     let count, userLikes, canLike, canPublish: Int?
-
+    
     enum CodingKeys: String, CodingKey {
         case count
         case userLikes = "user_likes"
@@ -606,7 +606,7 @@ struct ItemPostSource: Codable {
 // MARK: - Reposts
 struct Reposts: Codable {
     let count, userReposted: Int?
-
+    
     enum CodingKeys: String, CodingKey {
         case count
         case userReposted = "user_reposted"
@@ -634,7 +634,7 @@ class ProfileRealm: Object, Codable {
         case photo100 = "photo_100"
         case online
     }
-
+    
 }
 // MARK: - Profile
 struct Profile: Codable  {
@@ -645,8 +645,8 @@ struct Profile: Codable  {
     let photo50, photo100: String?
     let online: Int?
     let onlineInfo: OnlineInfo?
-
-       
+    
+    
     enum CodingKeys: String, CodingKey {
         case id
         case firstName = "first_name"
@@ -665,7 +665,7 @@ struct OnlineInfo: Codable {
     let visible: Bool?
     let lastSeen, appID: Int?
     let isMobile: Bool?
-
+    
     enum CodingKeys: String, CodingKey {
         case visible
         case lastSeen = "last_seen"

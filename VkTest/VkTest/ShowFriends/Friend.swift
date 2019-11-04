@@ -25,16 +25,16 @@ struct Friend: Codable {
     
     let id: Int
     let firstName, lastName: String?
-    let sex: Int
+    let sex: Int?
     let nickname: String?
-    let domain: String
+    let domain: String?
     let bdate: String?
     let city, country: City?
     let photo50, photo100, photo200_Orig: String?
     let hasMobile: Int?
-    let online, canPost: Int
+    let online, canPost: Int?
     let canSeeAllPosts: Int?
-    let canWritePrivateMessage: Int
+    let canWritePrivateMessage: Int?
     let mobilePhone, homePhone, status: String?
     let lastSeen: LastSeen?
     let university: Int?
@@ -43,7 +43,7 @@ struct Friend: Codable {
     let facultyName: String?
     let graduation, relation: Int?
     let universities: [University]?
-    let trackCode: String
+    let trackCode: String?
     let educationForm: EducationForm?
     let educationStatus: String?
     let relationPartner: RelationPartner?

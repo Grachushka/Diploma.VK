@@ -9,13 +9,13 @@
 import UIKit
 
 class NewsTableViewCell: UITableViewCell {
-
+    
     @IBOutlet weak var who: UILabel!
     @IBOutlet weak var discription: UILabel!
     @IBOutlet weak var imageVIew: UIImageView!
     
     var descriptionPhoto: String? {
-    
+        
         didSet {
             
             discription.text = descriptionPhoto
@@ -24,12 +24,12 @@ class NewsTableViewCell: UITableViewCell {
     var groups: [GroupRealm]?
     var profile: [ProfileRealm]?
     var news: OneNewsRealm? 
-        
+    
     
     var copyHistoryAttachment: CopyHistoryAttachmentRealm? {
         
         didSet {
-print(copyHistoryAttachment)
+            
             if let news = news {
                 
                 if news.sourceID.value! > 0 {
@@ -49,9 +49,9 @@ print(copyHistoryAttachment)
                         who.text = i.name
                     }
                 }
-
+                
             }
-
+            
             if let type = copyHistoryAttachment?.type {
                 let resultType = AttachmentTypeRealm(rawValue: type)
                 var url: URL?
@@ -62,13 +62,13 @@ print(copyHistoryAttachment)
                     print("video")
                     
                     if let imageName = copyHistoryAttachment!.video?.photo1280 {
-                    url = URL(string: imageName)
+                        url = URL(string: imageName)
                         
                     } else if let imageName = copyHistoryAttachment!.video?.photo800 {
-                    url = URL(string: imageName)
+                        url = URL(string: imageName)
                         
                     } else if let imageName = copyHistoryAttachment!.video?.photo320 {
-                    url = URL(string: imageName)
+                        url = URL(string: imageName)
                         
                     }
                     
@@ -79,15 +79,15 @@ print(copyHistoryAttachment)
                     
                     
                     if let imageName = copyHistoryAttachment!.doc!.preview!.photo!.sizes[2].src {
-                     url = URL(string: imageName)
-           
-                      
+                        url = URL(string: imageName)
+                        
+                        
                     } else if let imageName = copyHistoryAttachment!.doc!.preview!.photo!.sizes[1].src {
-                     url = URL(string: imageName)
-
+                        url = URL(string: imageName)
+                        
                     } else if let imageName = copyHistoryAttachment!.doc!.preview!.photo!.sizes[0].src {
-                     url = URL(string: imageName)
-                    
+                        url = URL(string: imageName)
+                        
                     }
                     loadImage(url: url!)
                     
@@ -96,10 +96,10 @@ print(copyHistoryAttachment)
                     print("link")
                     
                     if let imageName = copyHistoryAttachment!.link!.photo?.photo604 {
-                         url = URL(string: imageName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
-                  
+                        url = URL(string: imageName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
+                        
                     } else  if let imageName = copyHistoryAttachment!.link!.photo?.photo130 {
-                         url = URL(string: imageName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
+                        url = URL(string: imageName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
                     }
                     
                     loadImage(url: url!)
@@ -108,17 +108,17 @@ print(copyHistoryAttachment)
                     print("photo")
                     
                     if let imageName = copyHistoryAttachment!.photo!.photo2560 {
-                         url = URL(string: imageName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
-
+                        url = URL(string: imageName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
+                        
                     } else if let imageName = copyHistoryAttachment!.photo!.photo1280 {
-                     url = URL(string: imageName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
-                    
+                        url = URL(string: imageName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
+                        
                     } else if let imageName = copyHistoryAttachment!.photo!.photo807 {
-                     url = URL(string: imageName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
-                    
+                        url = URL(string: imageName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
+                        
                     } else if let imageName = copyHistoryAttachment!.photo!.photo604 {
-                     url = URL(string: imageName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
-                    
+                        url = URL(string: imageName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
+                        
                     }
                     
                     loadImage(url: url!)
@@ -151,7 +151,7 @@ print(copyHistoryAttachment)
                     print("posted_photo")
                 case .audio:
                     print("audio")
-                
+                    
                 case .none:
                     break
                 }
@@ -159,17 +159,17 @@ print(copyHistoryAttachment)
         }
     }
     func loadImage(url: URL) {
-
+        
         imageVIew.kf.setImage(with: url)
-            {
-                result in
-                switch result {
-
-                case .success(_):
-                    print("success")
-                case .failure(let error):
-                    print(error)
-
+        {
+            result in
+            switch result {
+                
+            case .success(_):
+                print("success")
+            case .failure(let error):
+                print(error)
+                
             }
         }
     }

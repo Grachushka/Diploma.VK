@@ -21,7 +21,7 @@ class ShowProfileVC: UIViewController {
         }
     }
     
-   
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -46,7 +46,7 @@ class ShowProfileVC: UIViewController {
         
         
     }
-  
+    
     
     func numberOfSections(in tableView: UITableView) -> Int {
         
@@ -56,19 +56,19 @@ class ShowProfileVC: UIViewController {
         
         if indexPath.section == 0 {
             
-        return 60.0
+            return 60.0
             
         }
-    return 50.0
+        return 50.0
     }
 }
 
 extension ShowProfileVC: UITableViewDataSource {
-
-
-
+    
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       
+        
         switch section {
         case 0:
             return 1
@@ -79,21 +79,21 @@ extension ShowProfileVC: UITableViewDataSource {
         }
         
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if indexPath.section == 0 {
             
             if let cell = tableView.dequeueReusableCell(withIdentifier: "SecondElementMenu") as? SecondElementTableViewCell {
                 
-               
+                
                 if let firstName = secondMenu?.firstName, let lastName = secondMenu?.lastName {
                     cell.name = "\(firstName) \(lastName)"
                 }
                 
                 cell.discription = "Открыть профиль"
                 cell.imageName = secondMenu?.photoMax
-               
+                
                 return cell
             } 
             
@@ -113,24 +113,24 @@ extension ShowProfileVC: UITableViewDataSource {
             
         }
         
-     
+        
         return UITableViewCell()
     }
-
-
+    
+    
 }
 
 
 extension ShowProfileVC: UITableViewDelegate {
-
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         
         if indexPath == IndexPath(item: 0, section: 1) {
             
             let next: ShowFriendsVC = self.storyboard?.instantiateViewController(withIdentifier: "friends") as! ShowFriendsVC
-                       next.id = secondMenu!.id
-                       self.navigationController?.pushViewController(next, animated: true)            
+            next.id = secondMenu!.id
+            self.navigationController?.pushViewController(next, animated: true)            
             
         } else if indexPath == IndexPath(item: 0, section: 0) {
             
@@ -138,11 +138,9 @@ extension ShowProfileVC: UITableViewDelegate {
             next.id = secondMenu!.id
             next.isMe = true
             self.navigationController?.pushViewController(next, animated: true)
-
+            
             
         }
-        
-        
     }
 }
 

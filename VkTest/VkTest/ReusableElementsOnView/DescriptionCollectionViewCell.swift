@@ -14,19 +14,19 @@ class DescriptionCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var dataCount: UILabel!
     
     var counted: String? {
-           
-       didSet {
-           
-        count.text = counted
-           
-           }
-       }
+        
+        didSet {
+            
+            count.text = counted
+            
+        }
+    }
     
     var dataCounted: String? {
         
         didSet {
             
-        dataCount.text = dataCounted
+            dataCount.text = dataCounted
             
         }
     }

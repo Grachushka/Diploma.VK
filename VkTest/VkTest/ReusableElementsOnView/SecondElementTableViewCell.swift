@@ -10,20 +10,20 @@ import UIKit
 import Kingfisher
 
 class SecondElementTableViewCell: UITableViewCell {
-
+    
     @IBOutlet weak var pictureMenu: UIImageView!
     @IBOutlet weak var nameMenu: UILabel!
     @IBOutlet weak var descriptionMenu: UILabel!
     @IBOutlet weak var isOnlinePicture: UIImageView!
-
+    
     var name: String? {
         
         didSet {
             
             nameMenu.text = name
-         
-            }
+            
         }
+    }
     var isOnlineFromMobile: Bool? {
         
         didSet {
@@ -56,33 +56,33 @@ class SecondElementTableViewCell: UITableViewCell {
             
             
             if let imageName = imageName {
-
+                
                 let url = URL(string: imageName)
                 
                 pictureMenu.kf.setImage(
-                with: url
-               )
+                    with: url
+                    )
                 {
                     result in
                     switch result {
                         
                     case .success(_):
-                  
-                     self.pictureMenu.layer.cornerRadius = self.pictureMenu.layer.preferredFrameSize().height/2
-                
+                        
+                        self.pictureMenu.layer.cornerRadius = self.pictureMenu.layer.preferredFrameSize().height/2
+                        
                         
                     case .failure(let error):
                         
                         print(error)
+                    }
                 }
-        }
             } else {
                 
-          pictureMenu.image = UIImage(named: "friends")
-
+                pictureMenu.image = UIImage(named: "friends")
+                
             }
+        }
     }
-}
     
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -90,6 +90,6 @@ class SecondElementTableViewCell: UITableViewCell {
         pictureMenu.image = nil
         isOnlinePicture.image = nil
         
-       
+        
     }
 }

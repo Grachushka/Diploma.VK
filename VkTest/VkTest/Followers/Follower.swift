@@ -24,7 +24,7 @@ struct Follower: Codable {
     let firstName, lastName: String?
     let isClosed, canAccessClosed: Bool?
     let photo200: String?
-
+    
     enum CodingKeys: String, CodingKey {
         case id
         case firstName = "first_name"

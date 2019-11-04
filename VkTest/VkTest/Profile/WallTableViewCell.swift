@@ -10,7 +10,7 @@ import UIKit
 import Kingfisher
 
 class WallTableViewCell: UITableViewCell {
-
+    
     @IBOutlet weak var avatar: UIImageView!
     @IBOutlet weak var fullName: UILabel!
     @IBOutlet weak var date: UILabel!
@@ -22,13 +22,13 @@ class WallTableViewCell: UITableViewCell {
     @IBOutlet weak var title: UILabel!
     
     override func prepareForReuse() {
-            
-            
+        
+        
         wallCollection.reloadData()
         textForCell.text = nil
         title.text = nil
-       
-       }
+        
+    }
     
     @IBOutlet weak var wallCollection: UICollectionView! {
         
@@ -44,14 +44,14 @@ class WallTableViewCell: UITableViewCell {
     var wall: Item333? {
         
         
-    
+        
         didSet {
             
             wallCollection.reloadData()
             
             let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
             layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-//            
+            //            
             layout.minimumInteritemSpacing = 1
             layout.minimumLineSpacing = 1
             var count: Int?
@@ -59,7 +59,7 @@ class WallTableViewCell: UITableViewCell {
             if let attachments = wall?.attachments {
                 
                 count = attachments.count
-
+                
                 for i in attachments {
                     
                     
@@ -68,7 +68,7 @@ class WallTableViewCell: UITableViewCell {
                         count! -= 1
                     }
                 }
-                 
+                
                 
             } else if let copyHistory = wall?.copyHistory {
                 
@@ -89,33 +89,33 @@ class WallTableViewCell: UITableViewCell {
                 
             }
             
-           if let resultCount = count {
+            if let resultCount = count {
                 var result = Double(resultCount)
-            
-            if result == 5 {
                 
-                result /= 1.8
-                
-            } else if result == 3 {
-                
-                result /= 1.5
-                
-            } else if result > 6 {
-                
-                result /= 2.5
-                
-            }  else if result >= 4 && result < 7 {
-                
-                result /= 2
-                
-            }
+                if result == 5 {
                     
-            let width = wallCollection.layer.preferredFrameSize().width-layout.minimumLineSpacing
-            
+                    result /= 1.8
+                    
+                } else if result == 3 {
+                    
+                    result /= 1.5
+                    
+                } else if result > 6 {
+                    
+                    result /= 2.5
+                    
+                }  else if result >= 4 && result < 7 {
+                    
+                    result /= 2
+                    
+                }
+                
+                let width = wallCollection.layer.preferredFrameSize().width-layout.minimumLineSpacing
+                
                 layout.itemSize = CGSize(width: width / CGFloat(result), height: (width/CGFloat(result)-1))
-                    wallCollection.collectionViewLayout = layout
+                wallCollection.collectionViewLayout = layout
             }
-        
+            
             
             
             
@@ -135,7 +135,7 @@ class WallTableViewCell: UITableViewCell {
                 let calendarNow = Calendar.current.dateComponents([.year, .month,.day, .timeZone, .hour, .minute, .second],from: Date())
                 
                 if calendarWas.year != calendarNow.year {
-                                                  
+                    
                     dateFrom.text = "\(calendarWas.day!).\(calendarWas.month!).\(calendarWas.year!) г."
                 } else {
                     dateFrom.text = "\(calendarWas.day!).\(calendarWas.month!) в \(calendarWas.hour!):\(calendarWas.minute!)"
@@ -143,48 +143,48 @@ class WallTableViewCell: UITableViewCell {
             }
             
             let was = Date(timeIntervalSince1970: TimeInterval((wall?.date)!))
-                     
+            
             let calendarWas = Calendar.current.dateComponents([.year, .month,.day, .timeZone, .hour, .minute, .second],from: was)
             let calendarNow = Calendar.current.dateComponents([.year, .month,.day, .timeZone, .hour, .minute, .second],from: Date())
             if calendarWas.year != calendarNow.year {
                 
                 date.text = "\(calendarWas.day!).\(calendarWas.month!).\(calendarWas.year!) г."
             } else {
-            date.text = "\(calendarWas.day!).\(calendarWas.month!) в \(calendarWas.hour!):\(calendarWas.minute!)"
+                date.text = "\(calendarWas.day!).\(calendarWas.month!) в \(calendarWas.hour!):\(calendarWas.minute!)"
             }
             
             let fromProfile = profile?.filter { $0.id == wall!.fromID}
-
+            
             for item in fromProfile! {
-
+                
                 fullName.text = "\(item.firstName!) \(item.lastName!)"
                 
                 if let imageName = item.photo100 {
-
-                        let url = URL(string: imageName)
-                        
-                        avatar.kf.setImage(
+                    
+                    let url = URL(string: imageName)
+                    
+                    avatar.kf.setImage(
                         with: url
-                       )
-                        {
-                            result in
-                            switch result {
-                                
-                            case .success(_):
-                          
-                             self.avatar.layer.cornerRadius = self.avatar.layer.preferredFrameSize().height/2
-                        
-                                
-                            case .failure(let error):
-                                
-                                print(error)
+                        )
+                    {
+                        result in
+                        switch result {
+                            
+                        case .success(_):
+                            
+                            self.avatar.layer.cornerRadius = self.avatar.layer.preferredFrameSize().height/2
+                            
+                            
+                        case .failure(let error):
+                            
+                            print(error)
                         }
                     }
                 }
-              
+                
             }
             
-
+            
             if let wall = wall?.copyHistory {
                 
                 fullNameFrom.isHidden = false
@@ -195,31 +195,31 @@ class WallTableViewCell: UITableViewCell {
                 
                 for item in wall {
                     
-                     fromProfile = profile?.filter { $0.id  == item.fromID!}
+                    fromProfile = profile?.filter { $0.id  == item.fromID!}
                 }
                 if !fromProfile!.isEmpty {
                     
                     fullNameFrom.text = "\(fromProfile![0].firstName!) \(fromProfile![0].lastName!)"
                     
                     if let imageName = fromProfile![0].photo100 {
-
-                            let url = URL(string: imageName)
-                            
-                            avatarFrom.kf.setImage(
+                        
+                        let url = URL(string: imageName)
+                        
+                        avatarFrom.kf.setImage(
                             with: url
-                           )
-                            {
-                                result in
-                                switch result {
-                                    
-                                case .success(_):
-                              
-                                    self.avatarFrom.layer.cornerRadius = self.avatarFrom.layer.preferredFrameSize().height/2
-                            
-                                    
-                                case .failure(let error):
-                                    
-                                    print(error)
+                            )
+                        {
+                            result in
+                            switch result {
+                                
+                            case .success(_):
+                                
+                                self.avatarFrom.layer.cornerRadius = self.avatarFrom.layer.preferredFrameSize().height/2
+                                
+                                
+                            case .failure(let error):
+                                
+                                print(error)
                             }
                         }
                     }
@@ -235,51 +235,51 @@ class WallTableViewCell: UITableViewCell {
                             fromGroup = groups.filter { $0.id == item2.fromID! * (-1) }
                             
                             if !fromGroup!.isEmpty {
-                             break
+                                break
+                                
+                            }
                             
                         }
-                       
-                    }
                         
                         if !fromGroup!.isEmpty {
                             
                             fullNameFrom.text = "\(fromGroup![0].name!)"
                             
                             if let imageName = fromGroup![0].photo100 {
-
-                                    let url = URL(string: imageName)
-                                    
-                                    avatarFrom.kf.setImage(
+                                
+                                let url = URL(string: imageName)
+                                
+                                avatarFrom.kf.setImage(
                                     with: url
-                                   )
-                                    {
-                                        result in
-                                        switch result {
-                                            
-                                        case .success(_):
-                                      
-                                            self.avatarFrom.layer.cornerRadius = self.avatarFrom.layer.preferredFrameSize().height/2
-                                    
-                                            
-                                        case .failure(let error):
-                                            
-                                            print(error)
+                                    )
+                                {
+                                    result in
+                                    switch result {
+                                        
+                                    case .success(_):
+                                        
+                                        self.avatarFrom.layer.cornerRadius = self.avatarFrom.layer.preferredFrameSize().height/2
+                                        
+                                        
+                                    case .failure(let error):
+                                        
+                                        print(error)
                                     }
                                 }
                             }
                         }
                     }
-                   
+                    
                 }
-
+                
             } else {
                 
                 fullNameFrom.isHidden = true
                 avatarFrom.isHidden = true
                 dateFrom.isHidden = true
-
-            }
                 
+            }
+            
         }
     }
 }
@@ -298,7 +298,7 @@ extension WallTableViewCell: UICollectionViewDataSource {
             if let attachments = wall[0].attachments {
                 
                 var count = attachments.count
-
+                
                 for i in attachments {
                     
                     
@@ -310,11 +310,11 @@ extension WallTableViewCell: UICollectionViewDataSource {
                 
                 return count
             }
-                        
+            
         } else if let attachments = wall?.attachments {
             
             var count = attachments.count
-
+            
             for i in attachments {
                 
                 
@@ -324,9 +324,9 @@ extension WallTableViewCell: UICollectionViewDataSource {
                 }
             }
             
-           return count
+            return count
         }
-
+        
         return 0
     }
     
@@ -339,20 +339,20 @@ extension WallTableViewCell: UICollectionViewDataSource {
         if let wall = wall?.copyHistory {
             
             if let attachments = wall.first?.attachments {
-
+                
                 cell.copyHistoryAttachment = attachments[indexPath.row]
                 
                 return cell
             }
-                        
+            
         } else if let attachments = wall?.attachments {
             
             cell.copyHistoryAttachment = attachments[indexPath.row]
-           return cell
+            return cell
         }
         
         return UICollectionViewCell()
         
     }
-   
+    
 }

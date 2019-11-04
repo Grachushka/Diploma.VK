@@ -11,24 +11,24 @@ import RealmSwift
 
 class DataBaseRealmSwift {
     
-private lazy var realm = try! Realm()
-   
-   private init() {}
-
-   static let shared = DataBaseRealmSwift()
+    private lazy var realm = try! Realm()
+    
+    private init() {}
+    
+    static let shared = DataBaseRealmSwift()
     
     func getNews() ->  Results<NewsRealm>! {
-
+        
         return realm.objects(NewsRealm.self)
         
-      }
+    }
     
     func addNews(news: NewsRealm) {
         
-           try! realm.write {
+        try! realm.write {
             
-               realm.add(news)
-           }
-       }
+            realm.add(news)
+        }
+    }
 }
 

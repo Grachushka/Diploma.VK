@@ -20,7 +20,7 @@ struct Errorr: Codable {
     let requestParams: [RequestParam]?
     let captchaSid: String?
     let captchaImg: String?
-
+    
     enum CodingKeys: String, CodingKey {
         case errorCode = "error_code"
         case errorMsg = "error_msg"

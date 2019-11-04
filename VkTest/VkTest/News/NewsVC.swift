@@ -9,7 +9,7 @@
 import UIKit
 
 class NewsVC: UIViewController {
-
+    
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var table: UITableView!
     
@@ -33,7 +33,7 @@ class NewsVC: UIViewController {
             }
         }
     }
-
+    
     var news: [OneNewsRealm] = [] {
         
         didSet {
@@ -57,20 +57,20 @@ class NewsVC: UIViewController {
         config()
         
         NetworkManager.shared.getReccomendNews { result in
-
+            
             switch result {
-
+                
             case .success(let news):
                 DataBaseRealmSwift.shared.addNews(news: news)
                 print(news)
                 self.responseNews = DataBaseRealmSwift.shared.getNews()?.last._rlmInferWrappedType().response
                 
-
+                
             case .failure(let error):
                 
                 self.responseNews = DataBaseRealmSwift.shared.getNews()?.last._rlmInferWrappedType().response
                 print(error)
-
+                
             }
         }
         
@@ -82,20 +82,20 @@ class NewsVC: UIViewController {
     @objc private func refreshTable() {
         
         NetworkManager.shared.getReccomendNews { result in
-
+            
             switch result {
-
+                
             case .success(let news):
                 
                 DataBaseRealmSwift.shared.addNews(news: news)
-                               
+                
                 self.responseNews = DataBaseRealmSwift.shared.getNews()?.last._rlmInferWrappedType().response
                 self.table.refreshControl?.endRefreshing()
             case .failure(let error):
-                 self.responseNews = DataBaseRealmSwift.shared.getNews()?.last._rlmInferWrappedType().response
-                 self.table.refreshControl?.endRefreshing()
+                self.responseNews = DataBaseRealmSwift.shared.getNews()?.last._rlmInferWrappedType().response
+                self.table.refreshControl?.endRefreshing()
                 print(error)
-
+                
             }
         }
         

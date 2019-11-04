@@ -9,11 +9,11 @@
 import UIKit
 
 class addFriendVC: UIViewController {
-
+    
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-
+    
     private var recommendFriends: [RecommendFriend]  = []{
         
         didSet {
@@ -26,12 +26,12 @@ class addFriendVC: UIViewController {
     }
     private func config() {
         
-           table.register(UINib(nibName: "SecondElementTableViewCell", bundle: nil), forCellReuseIdentifier: "SecondElementMenu")
-           table.isHidden = true
+        table.register(UINib(nibName: "SecondElementTableViewCell", bundle: nil), forCellReuseIdentifier: "SecondElementMenu")
+        table.isHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(true)
+        super.viewWillAppear(true)
         
         NetworkManager.shared.getRecommendFriends { result in
             
@@ -40,7 +40,7 @@ class addFriendVC: UIViewController {
             case .success(let recommendFriends):
                 
                 self.recommendFriends = recommendFriends.response.items
-               
+                
             case .failure(let error):
                 print(error)
                 
@@ -51,7 +51,7 @@ class addFriendVC: UIViewController {
         super.viewDidLoad()
         
         config()
-   
+        
         
         NetworkManager.shared.getRecommendFriends { result in
             
@@ -60,7 +60,7 @@ class addFriendVC: UIViewController {
             case .success(let recommendFriends):
                 
                 self.recommendFriends = recommendFriends.response.items
-               
+                
             case .failure(let error):
                 print(error)
                 
@@ -97,23 +97,23 @@ extension addFriendVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: "SecondElementMenu") as? SecondElementTableViewCell {
-
+            
             cell.name = "\(recommendFriends[indexPath.row].firstName!) \(recommendFriends[indexPath.row].lastName!)"
-                   cell.imageName = recommendFriends[indexPath.row].photo200_Orig
-                   cell.discription = "Москва\nОбщих друзей: \(recommendFriends[indexPath.row].commonCount!)"
-                   if recommendFriends[indexPath.row].online == 1 && recommendFriends[indexPath.row].onlineMobile == 1 {
-
-                       cell.isOnlineFromMobile = true
-                       
-                   } else if recommendFriends[indexPath.row].online == 1 && recommendFriends[indexPath.row].onlineMobile == nil {
-                       
-                       cell.isOnlineFromMobile = false
-                       
-                   }
-               
-                   return cell
-               }
-               return UITableViewCell()
+            cell.imageName = recommendFriends[indexPath.row].photo200_Orig
+            cell.discription = "Москва\nОбщих друзей: \(recommendFriends[indexPath.row].commonCount!)"
+            if recommendFriends[indexPath.row].online == 1 && recommendFriends[indexPath.row].onlineMobile == 1 {
+                
+                cell.isOnlineFromMobile = true
+                
+            } else if recommendFriends[indexPath.row].online == 1 && recommendFriends[indexPath.row].onlineMobile == nil {
+                
+                cell.isOnlineFromMobile = false
+                
+            }
+            
+            return cell
+        }
+        return UITableViewCell()
     }
 }
 
@@ -150,7 +150,7 @@ extension addFriendVC: UISearchBarDelegate {
             case .success(let recommendFriends):
                 
                 self.recommendFriends = recommendFriends.response.items
-               
+                
             case .failure(let error):
                 print(error)
                 
@@ -160,14 +160,14 @@ extension addFriendVC: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-        NetworkManager.shared.FindFriends(findBySymbols: searchText ) { result in
+        NetworkManager.shared.findFriends(findBySymbols: searchText ) { result in
             
             switch result {
                 
             case .success(let recommendFriends):
                 
                 self.recommendFriends = recommendFriends.response.items
-               
+                
             case .failure(let error):
                 print(error)
                 

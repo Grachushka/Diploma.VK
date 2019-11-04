@@ -29,7 +29,7 @@ struct Item: Codable {
     let likes: Likes?
     let reposts: Reposts?
     let lat, long: Double?
-
+    
     enum CodingKeys: String, CodingKey {
         case id
         case albumID = "album_id"

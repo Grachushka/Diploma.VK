@@ -9,7 +9,7 @@
 import UIKit
 
 class ShowFriendsVC: UIViewController {
-
+    
     @IBOutlet weak var table: UITableView!
     
     @IBOutlet weak var friendSearchBar: UISearchBar!
@@ -30,11 +30,11 @@ class ShowFriendsVC: UIViewController {
                 
             case .success(let friends):
                 
-               self.friends = friends.response.items
-               self.toolbarFriendsCount.title = "\(friends.response.count) друзей"
-               
-               let orderByOnlineFriends = self.friends.filter { $0.online == 1 }
-               self.toolbarFriendsCurrentOnline.title = "\(orderByOnlineFriends.count) онлайн"
+                self.friends = friends.response.items
+                self.toolbarFriendsCount.title = "\(friends.response.count) друзей"
+                
+                let orderByOnlineFriends = self.friends.filter { $0.online == 1 }
+                self.toolbarFriendsCurrentOnline.title = "\(orderByOnlineFriends.count) онлайн"
                 
             case .failure(let error):
                 print(error)
@@ -72,11 +72,11 @@ class ShowFriendsVC: UIViewController {
                 
             case .success(let friends):
                 
-               self.friends = friends.response.items
-               self.toolbarFriendsCount.title = "\(friends.response.count) друзей"
-               
-               let orderByOnlineFriends = self.friends.filter { $0.online == 1 }
-               self.toolbarFriendsCurrentOnline.title = "\(orderByOnlineFriends.count) онлайн"
+                self.friends = friends.response.items
+                self.toolbarFriendsCount.title = "\(friends.response.count) друзей"
+                
+                let orderByOnlineFriends = self.friends.filter { $0.online == 1 }
+                self.toolbarFriendsCurrentOnline.title = "\(orderByOnlineFriends.count) онлайн"
                 
             case .failure(let error):
                 print(error)
@@ -122,7 +122,7 @@ class ShowFriendsVC: UIViewController {
     
     @IBAction func currentFriends(_ sender: Any) {
         
-         barButtonItem = sender as? UIBarButtonItem
+        barButtonItem = sender as? UIBarButtonItem
         
         NetworkManager.shared.getFriends(id: id!) { result in
             
@@ -130,12 +130,12 @@ class ShowFriendsVC: UIViewController {
                 
             case .success(let friends):
                 
-               self.friends = friends.response.items
-               self.toolbarFriendsCount.title = "\(friends.response.count) друзей"
-               
-               let orderByOnlineFriends = self.friends.filter { $0.online == 1 }
-               self.toolbarFriendsCurrentOnline.title = "\(orderByOnlineFriends.count) онлайн"
-               self.friendSearchBar.text = nil
+                self.friends = friends.response.items
+                self.toolbarFriendsCount.title = "\(friends.response.count) друзей"
+                
+                let orderByOnlineFriends = self.friends.filter { $0.online == 1 }
+                self.toolbarFriendsCurrentOnline.title = "\(orderByOnlineFriends.count) онлайн"
+                self.friendSearchBar.text = nil
                 
             case .failure(let error):
                 print(error)
@@ -152,16 +152,16 @@ class ShowFriendsVC: UIViewController {
         
         let orderByOnlineFriends = friends.filter { $0.online == 1 }
         self.toolbarFriendsCurrentOnline.title = "\(orderByOnlineFriends.count) онлайн"
-
+        
         friends = orderByOnlineFriends
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-
+        
         return 50
     }
     
-
+    
 }
 
 extension ShowFriendsVC: UITableViewDataSource {
@@ -178,7 +178,7 @@ extension ShowFriendsVC: UITableViewDataSource {
             cell.name = "\(friends[indexPath.row].firstName!) \(friends[indexPath.row].lastName!)"
             cell.imageName = friends[indexPath.row].photo200_Orig
             if friends[indexPath.row].online == 1 && friends[indexPath.row].onlineMobile == 1 {
-
+                
                 cell.isOnlineFromMobile = true
                 
             } else if friends[indexPath.row].online == 1 && friends[indexPath.row].onlineMobile == nil {
@@ -187,7 +187,7 @@ extension ShowFriendsVC: UITableViewDataSource {
                 
             } 
             
-        
+            
             return cell
         }
         return UITableViewCell()
@@ -207,82 +207,81 @@ extension ShowFriendsVC: UITableViewDelegate {
 
 extension ShowFriendsVC: UISearchBarDelegate {
     
-        func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-            searchBar.showsCancelButton = true
-            toolbarFriendsCurrentOnline.isEnabled = false
-            toolbarFriendsCount.isEnabled = false
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.showsCancelButton = true
+        toolbarFriendsCurrentOnline.isEnabled = false
+        toolbarFriendsCount.isEnabled = false
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        
+        
+        NetworkManager.shared.getFriends(id: id!) { result in
+            
+            switch result {
+                
+            case .success(let friends):
+                
+                self.friends = friends.response.items
+                
+                
+                
+            case .failure(let error):
+                print(error)
+                
+            }
         }
         
-        func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.showsCancelButton = false
+        searchBar.text = nil
+        searchBar.endEditing(true)
+        toolbarFriendsCurrentOnline.isEnabled = true
+        toolbarFriendsCount.isEnabled = true
+        
+    }
+    
+    func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
+        
+        return true
+        
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        NetworkManager.shared.getFriends(id: id!) { result in
             
-           
-            NetworkManager.shared.getFriends(id: id!) { result in
+            switch result {
                 
-                switch result {
-                    
-                case .success(let friends):
-                    
-                   self.friends = friends.response.items
-                   
-                   
-                    
-                case .failure(let error):
-                    print(error)
-                    
-                }
-            }
-            
-            searchBar.showsCancelButton = false
-            searchBar.text = nil
-            searchBar.endEditing(true)
-            toolbarFriendsCurrentOnline.isEnabled = true
-            toolbarFriendsCount.isEnabled = true
-            
-        }
- 
-        func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
-
-            return true
-            
-        }
-      
-        func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-            
-            NetworkManager.shared.getFriends(id: id!) { result in
+            case .success(let friends):
                 
-                switch result {
-                    
-                case .success(let friends):
-                    
                 if self.barButtonItem == self.toolbar.items?.last {
-                                  
+                    
                     let orderByOnlineFriends = friends.response.items.filter { $0.online == 1 }
                     self.friends = orderByOnlineFriends
                     
-                                  
-                    } else if self.barButtonItem == self.toolbar.items?.first {
-                                  
+                    
+                } else if self.barButtonItem == self.toolbar.items?.first {
+                    
                     self.friends = friends.response.items
                 }
-                    
+                
                 if !searchText.isEmpty {
                     self.friends = self.friends.filter { $0.firstName!.localizedCaseInsensitiveContains("\(searchText)")
                         || $0.lastName!.localizedCaseInsensitiveContains("\(searchText)")
                         || $0.firstName!.localizedCaseInsensitiveContains("\(searchText)")
                         && $0.lastName!.localizedCaseInsensitiveContains("\(searchText)")
-                    
+                        
                     }
                 }
-                   
-                    
-                case .failure(let error):
-                    print(error)
-                    
-                }
+                
+                
+            case .failure(let error):
+                print(error)
+                
             }
-           
-            print(searchText)
-            
         }
+        
+        print(searchText)
+    }
 }
 

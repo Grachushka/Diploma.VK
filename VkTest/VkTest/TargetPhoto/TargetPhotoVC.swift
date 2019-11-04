@@ -17,7 +17,7 @@ class TargetPhotoVC: UIViewController {
     var pictures: [Item]?
     var idPhoto: Int?
     var timeValue: UIPinchGestureRecognizer?
-
+    
     @IBOutlet weak var activity: UIActivityIndicatorView!
     
     func setPhoto(namePhoto: String) {
@@ -48,7 +48,7 @@ class TargetPhotoVC: UIViewController {
             resultPhoto = photo
             
         } else  if let photo = item.photo1280 {
-                           
+            
             resultPhoto = photo
             
         } else if let photo = item.photo807 {
@@ -76,18 +76,18 @@ class TargetPhotoVC: UIViewController {
         return ""
     }
     
-
+    
     func config() {
         
         if let photo = photoName {
             
-        setPhoto(namePhoto: photo)
+            setPhoto(namePhoto: photo)
             
         } else if let photoID = idPhoto {
             
             if let pictures = pictures {
                 
-              let photoName = unwrappingPhoto(item: pictures[photoID])
+                let photoName = unwrappingPhoto(item: pictures[photoID])
                 
                 setPhoto(namePhoto: photoName)
                 
@@ -117,19 +117,19 @@ class TargetPhotoVC: UIViewController {
     
     @objc func pinchGesture(_ sender: UIPinchGestureRecognizer) {
         
-   
+        
         if let view = sender.view {
             view.transform = view.transform.scaledBy(x: sender.scale, y: sender.scale)
             if CGFloat(view.transform.a) > 3 {
                 view.transform.a = 3 // this is x coordinate
                 view.transform.d = 3 // this is x coordinate
-                   }
-                   if CGFloat(view.transform.d) < 1 {
-                       view.transform.a = 1 // this is x coordinate
-                       view.transform.d = 1 // this is x coordinate
-                   }
-                   sender.scale = 1
-               }   
+            }
+            if CGFloat(view.transform.d) < 1 {
+                view.transform.a = 1 // this is x coordinate
+                view.transform.d = 1 // this is x coordinate
+            }
+            sender.scale = 1
+        }
     }
     
     @objc func leftSwipedByPhoto(_ gesture: UISwipeGestureRecognizer) {
@@ -138,27 +138,26 @@ class TargetPhotoVC: UIViewController {
         guard var id = idPhoto else { return }
         id += 1
         guard id != pictures.count else{ return }
-
+        
         let photoName = unwrappingPhoto(item: pictures[id])
-                      self.activity.startAnimating()
-            setPhoto(namePhoto: photoName)
+        self.activity.startAnimating()
+        setPhoto(namePhoto: photoName)
         
         idPhoto! += 1
     }
     @objc func rightSwipedByPhoto(_ gesture: UISwipeGestureRecognizer) {
-                
+        
         guard let pictures = pictures else { return }
         guard var id = idPhoto else { return }
-              id -= 1
-        
+        id -= 1
         guard id >= 0 else{ return }
+        
         self.activity.startAnimating()
         
-              let photoName = unwrappingPhoto(item: pictures[id])
-                          
-                  setPhoto(namePhoto: photoName)
-              
-              idPhoto! -= 1
+        let photoName = unwrappingPhoto(item: pictures[id])
+        setPhoto(namePhoto: photoName)
+        
+        idPhoto! -= 1
         
         
     }
