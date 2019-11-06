@@ -11,6 +11,6 @@ import Foundation
 struct ElementMenu {
     
     var name: String?
-    let picture: String
+    let picture: String?
     
 }

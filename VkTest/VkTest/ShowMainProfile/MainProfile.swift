@@ -13,7 +13,7 @@ struct RequestMainProfile: Codable {
 }
 
 // MARK: - Response
-struct MainProfile: Codable {
+struct MainProfile: Codable, SecondElementProtocol {
     
     let id: Int
     let counters: [String: Int]?

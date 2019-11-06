@@ -19,7 +19,7 @@ struct Response: Codable {
 }
 
 // MARK: - Item
-struct RecommendFriend: Codable {
+struct RecommendFriend: Codable, SecondElementProtocol {
     
     
     let id: Int

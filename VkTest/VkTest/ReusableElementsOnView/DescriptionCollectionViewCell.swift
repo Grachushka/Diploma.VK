@@ -13,20 +13,13 @@ class DescriptionCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var count: UILabel!
     @IBOutlet weak var dataCount: UILabel!
     
-    var counted: String? {
+    var elementMenu: ElementMenu? {
         
         didSet {
             
-            count.text = counted
-            
-        }
-    }
-    
-    var dataCounted: String? {
-        
-        didSet {
-            
-            dataCount.text = dataCounted
+            guard let elementMenu = elementMenu else {return}
+            count.text = elementMenu.name
+            dataCount.text = elementMenu.picture
             
         }
     }

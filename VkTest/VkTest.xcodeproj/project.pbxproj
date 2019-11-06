@@ -51,6 +51,7 @@
 		909264F6234922BB002ADC46 /* WallTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909264F5234922BB002ADC46 /* WallTableViewCell.swift */; };
 		909264F8234B4787002ADC46 /* WallCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909264F7234B4787002ADC46 /* WallCollectionViewCell.swift */; };
 		909264FA234B5A57002ADC46 /* Wall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909264F9234B5A57002ADC46 /* Wall.swift */; };
+		90B648C223716C4800BEFA4D /* SecondElementProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B648C123716C4800BEFA4D /* SecondElementProtocol.swift */; };
 		90BAD937235745380010F784 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 90BAD936235745380010F784 /* Kingfisher */; };
 		90BAD93A23574AE60010F784 /* DataBaseRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BAD93923574AE60010F784 /* DataBaseRealm.swift */; };
 		90FEC05F232F51C1000E26BD /* AuthorizationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FEC05E232F51C1000E26BD /* AuthorizationVC.swift */; };
@@ -104,6 +105,7 @@
 		909264F5234922BB002ADC46 /* WallTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallTableViewCell.swift; sourceTree = "<group>"; };
 		909264F7234B4787002ADC46 /* WallCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallCollectionViewCell.swift; sourceTree = "<group>"; };
 		909264F9234B5A57002ADC46 /* Wall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wall.swift; sourceTree = "<group>"; };
+		90B648C123716C4800BEFA4D /* SecondElementProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondElementProtocol.swift; sourceTree = "<group>"; };
 		90BAD931235742DB0010F784 /* RealmSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		90BAD93923574AE60010F784 /* DataBaseRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseRealm.swift; sourceTree = "<group>"; };
 		90FEC05E232F51C1000E26BD /* AuthorizationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationVC.swift; sourceTree = "<group>"; };
@@ -279,6 +281,7 @@
 				905170BF23474B7500C86EEB /* InfoTableViewCell.xib */,
 				901EB0EC23547C5D00282E1B /* NewsTableViewCell.swift */,
 				901EB0ED23547C5D00282E1B /* NewsTableViewCell.xib */,
+				90B648C123716C4800BEFA4D /* SecondElementProtocol.swift */,
 			);
 			path = ReusableElementsOnView;
 			sourceTree = "<group>";
@@ -481,6 +484,7 @@
 			files = (
 				90517047233E0E2C00C86EEB /* PhotoGalleryCollectionViewCell.swift in Sources */,
 				90BAD93A23574AE60010F784 /* DataBaseRealm.swift in Sources */,
+				90B648C223716C4800BEFA4D /* SecondElementProtocol.swift in Sources */,
 				905170C023474B7500C86EEB /* InfoTableViewCell.swift in Sources */,
 				905170BD2347494F00C86EEB /* InfoVC.swift in Sources */,
 				90517044233E006C00C86EEB /* ProfileVC.swift in Sources */,

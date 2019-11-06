@@ -13,19 +13,14 @@ class InfoTableViewCell: UITableViewCell {
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var value: UILabel!
     
-    var named: String? {
+    var elementMenu: ElementMenu? {
         
         didSet {
             
-            name.text = named
-        }
-    }
-    
-    var valued: String? {
-        
-        didSet {
+            guard let elementMenu = elementMenu else { return }
+            name.text = elementMenu.picture
+            value.text = elementMenu.name
             
-            value.text = valued
         }
     }
 }

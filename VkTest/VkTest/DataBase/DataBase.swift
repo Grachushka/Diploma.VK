@@ -105,10 +105,4 @@ class DataBase {
         arrayElementInfoMenu.append(ElementMenu(picture: "Семейное положение"))
         arrayElementInfoMenu.append(ElementMenu(picture: "Языки"))
     }
-    
-    
-    
-    
-    
-    
 }

@@ -14,6 +14,8 @@ class NewsTableViewCell: UITableViewCell {
     @IBOutlet weak var discription: UILabel!
     @IBOutlet weak var imageVIew: UIImageView!
     
+    
+    
     var descriptionPhoto: String? {
         
         didSet {
@@ -29,7 +31,7 @@ class NewsTableViewCell: UITableViewCell {
     var copyHistoryAttachment: CopyHistoryAttachmentRealm? {
         
         didSet {
-            
+            var resultPhoto: String?
             if let news = news {
                 
                 if news.sourceID.value! > 0 {
@@ -53,8 +55,8 @@ class NewsTableViewCell: UITableViewCell {
             }
             
             if let type = copyHistoryAttachment?.type {
+                
                 let resultType = AttachmentTypeRealm(rawValue: type)
-                var url: URL?
                 
                 switch resultType {
                     
@@ -62,66 +64,64 @@ class NewsTableViewCell: UITableViewCell {
                     print("video")
                     
                     if let imageName = copyHistoryAttachment!.video?.photo1280 {
-                        url = URL(string: imageName)
+                        
+                        resultPhoto = imageName
                         
                     } else if let imageName = copyHistoryAttachment!.video?.photo800 {
-                        url = URL(string: imageName)
+                       resultPhoto = imageName
                         
                     } else if let imageName = copyHistoryAttachment!.video?.photo320 {
-                        url = URL(string: imageName)
+                        resultPhoto = imageName
                         
                     }
                     
-                    loadImage(url: url!)
+                    
                 case .doc:
                     
                     print("doc")
                     
                     
                     if let imageName = copyHistoryAttachment!.doc!.preview!.photo!.sizes[2].src {
-                        url = URL(string: imageName)
+                        resultPhoto = imageName
                         
                         
                     } else if let imageName = copyHistoryAttachment!.doc!.preview!.photo!.sizes[1].src {
-                        url = URL(string: imageName)
+                        resultPhoto = imageName
                         
                     } else if let imageName = copyHistoryAttachment!.doc!.preview!.photo!.sizes[0].src {
-                        url = URL(string: imageName)
+                       resultPhoto = imageName
                         
                     }
-                    loadImage(url: url!)
                     
                 case .link:
                     
                     print("link")
                     
                     if let imageName = copyHistoryAttachment!.link!.photo?.photo604 {
-                        url = URL(string: imageName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
+                       resultPhoto = imageName
                         
                     } else  if let imageName = copyHistoryAttachment!.link!.photo?.photo130 {
-                        url = URL(string: imageName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
+                        resultPhoto = imageName
                     }
                     
-                    loadImage(url: url!)
                     
                 case .photo:
                     print("photo")
                     
                     if let imageName = copyHistoryAttachment!.photo!.photo2560 {
-                        url = URL(string: imageName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
+                       resultPhoto = imageName
                         
                     } else if let imageName = copyHistoryAttachment!.photo!.photo1280 {
-                        url = URL(string: imageName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
+                       resultPhoto = imageName
                         
                     } else if let imageName = copyHistoryAttachment!.photo!.photo807 {
-                        url = URL(string: imageName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
+                        resultPhoto = imageName
                         
                     } else if let imageName = copyHistoryAttachment!.photo!.photo604 {
-                        url = URL(string: imageName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
+                        resultPhoto = imageName
                         
                     }
                     
-                    loadImage(url: url!)
                     
                 case .graffiti:
                     print("graffity")
@@ -155,22 +155,27 @@ class NewsTableViewCell: UITableViewCell {
                 case .none:
                     break
                 }
+                
+                guard let resultPhoto = resultPhoto else {return}
+                NetworkManager.shared.loadImageWithCashing(namePhoto: resultPhoto, photo: imageVIew, activity: nil)
             }
         }
     }
-    func loadImage(url: URL) {
-        
-        imageVIew.kf.setImage(with: url)
-        {
-            result in
-            switch result {
-                
-            case .success(_):
-                print("success")
-            case .failure(let error):
-                print(error)
-                
-            }
-        }
-    }
+    
+    
+//    func loadImage(url: URL) {
+//
+//        imageVIew.kf.setImage(with: url)
+//        {
+//            result in
+//            switch result {
+//
+//            case .success(_):
+//                print("success")
+//            case .failure(let error):
+//                print(error)
+//
+//            }
+//        }
+//    }
 }

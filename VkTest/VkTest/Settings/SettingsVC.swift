@@ -56,8 +56,8 @@ extension SettingsVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: "ElementMenu") as? ElementMenuTableViewCell {
-            cell.name = settings[indexPath.row].name
-            cell.picture = settings[indexPath.row].picture
+            
+            cell.elementMenu = settings[indexPath.row]
             
             
             return cell

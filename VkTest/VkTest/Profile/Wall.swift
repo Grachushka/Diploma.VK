@@ -49,7 +49,7 @@ class GroupRealm: Object, Codable {
     
 }
 // MARK: - Group
-struct Group: Codable {
+struct Group: Codable, SecondElementProtocol {
     let id: Int?
     let name, screenName: String?
     let isClosed: Int?

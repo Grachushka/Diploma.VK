@@ -8,6 +8,7 @@
 
 import UIKit
 import Kingfisher
+
 class OurFriendsVC: UIViewController {
     
     var id: Int?
@@ -32,7 +33,9 @@ class OurFriendsVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        
         table.isHidden = true
+        
         NetworkManager.shared.getOurFriends(id: id!) { result in
             
             switch result {
@@ -72,6 +75,7 @@ class OurFriendsVC: UIViewController {
         super.viewDidLoad()
         
         config()
+        
         table.isHidden = true
         
         NetworkManager.shared.getOurFriends(id: id!) { result in
@@ -121,8 +125,8 @@ extension OurFriendsVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: "SecondElementMenu") as? SecondElementTableViewCell {
-            cell.name = "\(ourFriends[indexPath.row].firstName!) \(ourFriends[indexPath.row].lastName!)"
-            cell.imageName = ourFriends[indexPath.row].photo100
+            
+            cell.object = ourFriends[indexPath.row]
             
             return cell
         }

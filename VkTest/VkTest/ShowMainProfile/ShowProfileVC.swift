@@ -87,12 +87,8 @@ extension ShowProfileVC: UITableViewDataSource {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "SecondElementMenu") as? SecondElementTableViewCell {
                 
                 
-                if let firstName = secondMenu?.firstName, let lastName = secondMenu?.lastName {
-                    cell.name = "\(firstName) \(lastName)"
-                }
-                
+                cell.object = secondMenu
                 cell.discription = "Открыть профиль"
-                cell.imageName = secondMenu?.photoMax
                 
                 return cell
             } 
@@ -102,8 +98,8 @@ extension ShowProfileVC: UITableViewDataSource {
         else if indexPath.section == 1 {
             
             if let cell = tableView.dequeueReusableCell(withIdentifier: "ElementMenu") as? ElementMenuTableViewCell {
-                cell.name = mainMenu[indexPath.row].name
-                cell.picture = mainMenu[indexPath.row].picture
+                
+                cell.elementMenu = mainMenu[indexPath.row]
                 
                 
                 return cell

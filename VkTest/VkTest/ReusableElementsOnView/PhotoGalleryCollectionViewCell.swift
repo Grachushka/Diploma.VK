@@ -13,27 +13,52 @@ class PhotoGalleryCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var photo: UIImageView!
     private weak var pictureTask: URLSessionDataTask?
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-    }
-    
-    var targetPhoto: String? {
+    var item: Item? {
         
         didSet {
             
-            if let photo = targetPhoto {
-                let photoURL = URL(string: "\(photo)")
+            guard let item = item else { return }
+            
+            var targetPhoto: String?
+            
+            
+            if let photo = item.photo2560 {
                 
-                if let resultPhoto = photoURL {
-                    
-                    self.photo.kf.setImage(
-                        with: resultPhoto
-                    )
-                }
+                targetPhoto = photo
                 
+            } else if let photo = item.photo1280 {
+                
+                targetPhoto = photo
+                
+            } else if let photo = item.photo807 {
+                
+                targetPhoto = photo
+                
+            } else if let photo = item.photo604 {
+                
+                targetPhoto = photo
+                
+            } else if let photo = item.photo130 {
+                
+                targetPhoto = photo
+                
+            } else if let photo = item.photo75 {
+                
+                targetPhoto = photo
             }
+            
+            guard let photo = targetPhoto else { return }
+            
+            NetworkManager.shared.loadImageWithCashing(namePhoto: photo, photo: self.photo, activity: nil)
+           
+            
+        
         }
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
     }
     
     override func prepareForReuse() {

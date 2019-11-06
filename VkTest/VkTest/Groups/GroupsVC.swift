@@ -98,15 +98,10 @@ extension GroupsVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         if let cell = tableView.dequeueReusableCell(withIdentifier: "SecondElementMenu") as? SecondElementTableViewCell {
             
-            if let name = groups[indexPath.row].name {
-                
-                cell.name = name
-            }
-            
-            cell.imageName = groups[indexPath.row].photo200
-            
+            cell.object = groups[indexPath.row]
             return cell
         }
         

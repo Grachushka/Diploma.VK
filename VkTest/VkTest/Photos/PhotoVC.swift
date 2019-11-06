@@ -82,30 +82,7 @@ extension PhotoVC: UICollectionViewDataSource {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoGalleryCollectionViewCell", for: indexPath) as! PhotoGalleryCollectionViewCell
         
-        if let photo = pictures[indexPath.row].photo2560 {
-            
-            cell.targetPhoto = photo
-        }
-        if let photo = pictures[indexPath.row].photo1280 {
-            
-            cell.targetPhoto = photo
-            
-        } else if let photo = pictures[indexPath.row].photo807 {
-            
-            cell.targetPhoto = photo
-            
-        } else if let photo = pictures[indexPath.row].photo604 {
-            
-            cell.targetPhoto = photo
-            
-        } else if let photo = pictures[indexPath.row].photo130 {
-            
-            cell.targetPhoto = photo
-            
-        } else if let photo = pictures[indexPath.row].photo75 {
-            
-            cell.targetPhoto = photo
-        }
+        cell.item = pictures[indexPath.row]
         
         return cell
     }

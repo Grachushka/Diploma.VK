@@ -21,7 +21,7 @@ struct Response1: Codable {
 }
 
 // MARK: - Item
-struct Friend: Codable {    
+struct Friend: Codable, SecondElementProtocol {    
     
     let id: Int
     let firstName, lastName: String?

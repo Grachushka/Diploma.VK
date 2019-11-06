@@ -122,12 +122,8 @@ extension InfoVC: UITableViewDataSource {
             
             if let cell = tableView.dequeueReusableCell(withIdentifier: "SecondElementMenu") as? SecondElementTableViewCell {
                 
-                if let firstName = object?.firstName, let lastName = object?.lastName {
-                    cell.name = "\(firstName) \(lastName)"
-                }
-                cell.discription = nil
-                cell.imageName = object?.photo100
-                
+                cell.object = object
+             
                 return cell
                 
             }
@@ -136,8 +132,8 @@ extension InfoVC: UITableViewDataSource {
             
             if let cell = tableView.dequeueReusableCell(withIdentifier: "InfoTableViewCell") as? InfoTableViewCell {
                 
-                cell.named = arrayInfo[indexPath.row].picture
-                cell.valued = arrayInfo[indexPath.row].name
+                cell.elementMenu = arrayInfo[indexPath.row]
+                
                 
                 
                 return cell

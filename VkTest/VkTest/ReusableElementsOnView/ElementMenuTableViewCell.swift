@@ -14,17 +14,14 @@ class ElementMenuTableViewCell: UITableViewCell {
     @IBOutlet weak var pictureMenu: UIImageView!
     @IBOutlet weak var nameMenu: UILabel!
     
-    var name: String? {
-        
-        didSet {
-            nameMenu.text = name
-        }
-    }
-    var picture: String? {
+    var elementMenu: ElementMenu? {
         
         didSet {
             
-            if let imageName = picture {
+            guard let elementMenu = self.elementMenu else {return}
+            nameMenu.text = elementMenu.name
+            
+            if let imageName = elementMenu.picture {
                 pictureMenu.image = UIImage(named: imageName)
             } else {
                 

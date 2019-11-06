@@ -19,26 +19,7 @@ class TargetPhotoVC: UIViewController {
     var timeValue: UIPinchGestureRecognizer?
     
     @IBOutlet weak var activity: UIActivityIndicatorView!
-    
-    func setPhoto(namePhoto: String) {
-        
-        let url = URL(string: namePhoto)
-        
-        self.photo.kf.setImage(with: url)
-        {
-            result in
-            switch result {
-                
-            case .success(_):
-                
-                self.activity.stopAnimating()
-                
-            case .failure(let error):
-                
-                print(error)
-            }
-        }
-    }
+
     func unwrappingPhoto(item: Item) -> String {
         
         var resultPhoto: String?
@@ -81,7 +62,7 @@ class TargetPhotoVC: UIViewController {
         
         if let photo = photoName {
             
-            setPhoto(namePhoto: photo)
+            NetworkManager.shared.loadImageWithCashing(namePhoto: photo, photo: self.photo, activity: activity)
             
         } else if let photoID = idPhoto {
             
@@ -89,7 +70,7 @@ class TargetPhotoVC: UIViewController {
                 
                 let photoName = unwrappingPhoto(item: pictures[photoID])
                 
-                setPhoto(namePhoto: photoName)
+                NetworkManager.shared.loadImageWithCashing(namePhoto: photoName, photo: self.photo, activity: activity)
                 
             }
         }
@@ -102,7 +83,6 @@ class TargetPhotoVC: UIViewController {
         let leftSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(leftSwipedByPhoto(_:)))
         leftSwipeGesture.direction = .left
         view.addGestureRecognizer(leftSwipeGesture)
-        
         
         let rightSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(rightSwipedByPhoto(_:)))
         rightSwipeGesture.direction = .right
@@ -141,7 +121,8 @@ class TargetPhotoVC: UIViewController {
         
         let photoName = unwrappingPhoto(item: pictures[id])
         self.activity.startAnimating()
-        setPhoto(namePhoto: photoName)
+        
+        NetworkManager.shared.loadImageWithCashing(namePhoto: photoName, photo: self.photo, activity: activity)
         
         idPhoto! += 1
     }
@@ -155,7 +136,8 @@ class TargetPhotoVC: UIViewController {
         self.activity.startAnimating()
         
         let photoName = unwrappingPhoto(item: pictures[id])
-        setPhoto(namePhoto: photoName)
+        
+        NetworkManager.shared.loadImageWithCashing(namePhoto: photoName, photo: self.photo, activity: activity)
         
         idPhoto! -= 1
         

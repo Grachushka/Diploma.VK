@@ -47,13 +47,13 @@ class NewsVC: UIViewController {
     private func config() {
         
         table.register(UINib(nibName: "NewsTableViewCell", bundle: nil), forCellReuseIdentifier: "NewsTableViewCell")
-        //table.isHidden = true
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         activityIndicator.isHidden = false
+        
         config()
         
         NetworkManager.shared.getReccomendNews { result in

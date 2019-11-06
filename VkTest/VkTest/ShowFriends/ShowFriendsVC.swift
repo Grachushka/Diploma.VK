@@ -21,6 +21,16 @@ class ShowFriendsVC: UIViewController {
     
     var id: Int?
     
+    private var friends: [Friend]  = []{
+        
+        didSet {
+            
+            table.reloadData()
+            activityIndicator.stopAnimating()
+            table.isHidden = false
+        }
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
@@ -43,15 +53,7 @@ class ShowFriendsVC: UIViewController {
         }
         
     }
-    private var friends: [Friend]  = []{
-        
-        didSet {
-            
-            table.reloadData()
-            activityIndicator.stopAnimating()
-            table.isHidden = false
-        }
-    }
+    
     func configureVC() {
         
         barButtonItem = toolbar.items?.first
@@ -174,19 +176,9 @@ extension ShowFriendsVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: "SecondElementMenu") as? SecondElementTableViewCell {
-            
-            cell.name = "\(friends[indexPath.row].firstName!) \(friends[indexPath.row].lastName!)"
-            cell.imageName = friends[indexPath.row].photo200_Orig
-            if friends[indexPath.row].online == 1 && friends[indexPath.row].onlineMobile == 1 {
-                
-                cell.isOnlineFromMobile = true
-                
-            } else if friends[indexPath.row].online == 1 && friends[indexPath.row].onlineMobile == nil {
-                
-                cell.isOnlineFromMobile = false
-                
-            } 
-            
+
+            cell.object = friends[indexPath.row]
+ 
             
             return cell
         }

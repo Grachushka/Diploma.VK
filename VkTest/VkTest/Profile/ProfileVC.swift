@@ -83,33 +83,8 @@ class ProfileVC: UIViewController {
         next.object = object
         self.navigationController?.pushViewController(next, animated: true)
     }
-    private func configDataOnView() {
-        
-        
-        if let photo = object?.photo200_Orig {
-            
-            let photoURL = URL(string: "\(photo)")
-            
-            loadPictureImage(url: photoURL!)
-        }
-        fullName.text = "\(object!.firstName!) \(object!.lastName!)"
-        
-        if object?.online == 1 {
-            
-            status.text = "online"
-            
-        } else if object?.online == 0 {
-            
-            let was = Date(timeIntervalSince1970: TimeInterval(object!.lastSeen!.time!))
-            
-            let calendarWas = Calendar.current.dateComponents([.year, .month,.day, .timeZone, .hour, .minute, .second],from: was)
-            
-            //            let currentCalendar = Calendar.current.dateComponents([.year, .month,.day, .timeZone, .hour, .minute, .second],from: Date())
-            //
-            status.text = "был в сети \(calendarWas.day!).\(calendarWas.month!) \(calendarWas.hour!):\(calendarWas.minute!)"
-        }
-        
-        ageCountry.text = object?.city?.title
+    
+    private func setTextOnButton() {
         
         if isMe == true && object?.friendStatus == 0 {
             
@@ -132,28 +107,40 @@ class ProfileVC: UIViewController {
             buttonIsFriend.setTitle("Подписан на вас", for: .normal)
         }
     }
-    
-    func loadPictureImage(url: URL) {
+    private func setStatusOfUser() {
         
-        let task = URLSession.shared.dataTask(with: url) { [weak self] data, _, _ in
-            guard let data = data else { return }
-            DispatchQueue.main.async { [weak self] in
-                self?.image.image = UIImage(data: data)
-                self!.image.layer.cornerRadius = self!.image.layer.preferredFrameSize().height/2
-                
-            }
+        if object?.online == 1 {
+                   
+                   status.text = "online"
+                   
+               } else if object?.online == 0 {
+                   
+                   let was = Date(timeIntervalSince1970: TimeInterval(object!.lastSeen!.time!))
+                   
+                   let calendarWas = Calendar.current.dateComponents([.year, .month,.day, .timeZone, .hour, .minute, .second],from: was)
+                   
+                   //            let currentCalendar = Calendar.current.dateComponents([.year, .month,.day, .timeZone, .hour, .minute, .second],from: Date())
+                   //
+                   status.text = "был в сети \(calendarWas.day!).\(calendarWas.month!) \(calendarWas.hour!):\(calendarWas.minute!)"
+               }
+    }
+    private func configDataOnView() {
+        
+        
+        if let photo = object?.photo200_Orig {
+            
+            NetworkManager.shared.loadImageWithCashing(namePhoto: photo, photo: image, activity: nil)
+            image.layer.cornerRadius = image.layer.preferredFrameSize().height/2
         }
         
-        pictureTask = task
-        task.resume()
+        fullName.text = "\(object!.firstName!) \(object!.lastName!)"
+        ageCountry.text = object?.city?.title
+        
+       setStatusOfUser()
+       setTextOnButton()
+        
     }
-    func config() {
-        
-        collectionPhoto.register(UINib.init(nibName: "PhotoGalleryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "PhotoGalleryCollectionViewCell")
-        
-        dataCollection.register(UINib.init(nibName: "DescriptionCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "DescriptionCollectionViewCell")
-        
-        buttonIsFriend.layer.cornerRadius = buttonIsFriend.layer.preferredFrameSize().height/2
+    private func configCollectionPhoto() {
         
         let layout2: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         
@@ -165,6 +152,18 @@ class ProfileVC: UIViewController {
         layout2.scrollDirection = UICollectionView.ScrollDirection.horizontal
         
         collectionPhoto.collectionViewLayout = layout2
+    }
+    
+    private func config() {
+        
+        collectionPhoto.register(UINib.init(nibName: "PhotoGalleryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "PhotoGalleryCollectionViewCell")
+        
+        dataCollection.register(UINib.init(nibName: "DescriptionCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "DescriptionCollectionViewCell")
+        
+        buttonIsFriend.layer.cornerRadius = buttonIsFriend.layer.preferredFrameSize().height/2
+    
+        configCollectionPhoto()
+        
         
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -401,9 +400,7 @@ class ProfileVC: UIViewController {
                     alert.addAction(cancelAction)
                     
                     let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 270, height: 80))
-                    
-                    let url = URL(string: (status.error?.captchaImg)!)
-                    imageView.kf.setImage(with: url)
+                    NetworkManager.shared.loadImageWithCashing(namePhoto: (status.error?.captchaImg)!, photo: imageView, activity: nil)
                     alert.view.addSubview(imageView)
                     
                     self.present(alert,
@@ -544,10 +541,7 @@ extension ProfileVC: UICollectionViewDataSource {
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoGalleryCollectionViewCell", for: indexPath) as! PhotoGalleryCollectionViewCell
             
-            if let photo = pictures[indexPath.row].photo604 {
-                
-                cell.targetPhoto = photo
-            }
+            cell.item = pictures[indexPath.row]
             
             return cell
             
@@ -555,8 +549,9 @@ extension ProfileVC: UICollectionViewDataSource {
         } else if collectionView == dataCollection {
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DescriptionCollectionViewCell", for: indexPath) as! DescriptionCollectionViewCell
-            cell.counted = profileMenu[indexPath.row].name
-            cell.dataCounted = profileMenu[indexPath.row].picture
+            
+            cell.elementMenu = profileMenu[indexPath.row]
+            
             
             return cell
             
@@ -572,6 +567,7 @@ extension ProfileVC: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
         let contentOffset = scrollView.contentOffset.y
+        
         if contentOffset > 2 {
             
             status.isHidden = true

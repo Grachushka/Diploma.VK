@@ -19,7 +19,7 @@ struct ResponseFollower: Codable {
 }
 
 // MARK: - Item
-struct Follower: Codable {
+struct Follower: Codable, SecondElementProtocol {
     let id: Int?
     let firstName, lastName: String?
     let isClosed, canAccessClosed: Bool?

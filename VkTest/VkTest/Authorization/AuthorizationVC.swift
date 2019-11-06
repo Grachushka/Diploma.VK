@@ -17,6 +17,7 @@ class AuthorizationVC: UIViewController, WKNavigationDelegate {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     deinit {
+        
         NotificationCenter.default.removeObserver(self)
     }
     func observePost() {

@@ -98,18 +98,9 @@ extension addFriendVC: UITableViewDataSource {
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: "SecondElementMenu") as? SecondElementTableViewCell {
             
-            cell.name = "\(recommendFriends[indexPath.row].firstName!) \(recommendFriends[indexPath.row].lastName!)"
-            cell.imageName = recommendFriends[indexPath.row].photo200_Orig
-            cell.discription = "Москва\nОбщих друзей: \(recommendFriends[indexPath.row].commonCount!)"
-            if recommendFriends[indexPath.row].online == 1 && recommendFriends[indexPath.row].onlineMobile == 1 {
-                
-                cell.isOnlineFromMobile = true
-                
-            } else if recommendFriends[indexPath.row].online == 1 && recommendFriends[indexPath.row].onlineMobile == nil {
-                
-                cell.isOnlineFromMobile = false
-                
-            }
+            cell.object = recommendFriends[indexPath.row]
+           
+           
             
             return cell
         }

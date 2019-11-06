@@ -87,6 +87,7 @@ extension FollowersVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let next: ProfileVC = self.storyboard?.instantiateViewController(withIdentifier: "profile") as! ProfileVC
+        
         next.id = followers[indexPath.row].id
         self.navigationController?.pushViewController(next, animated: true)
         
@@ -103,8 +104,7 @@ extension FollowersVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "SecondElementMenu") as? SecondElementTableViewCell {
             
-            cell.name = "\(followers[indexPath.row].firstName!) \(followers[indexPath.row].lastName!)"
-            cell.imageName = followers[indexPath.row].photo200
+            cell.object = followers[indexPath.row]
 
             return cell
         }
