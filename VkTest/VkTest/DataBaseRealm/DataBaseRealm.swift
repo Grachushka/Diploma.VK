@@ -30,5 +30,13 @@ class DataBaseRealmSwift {
             realm.add(news)
         }
     }
+    
+    func deleteNews(news: NewsRealm) {
+        
+        try! realm.write {
+            
+            realm.delete(news)
+        }
+    }
 }
 

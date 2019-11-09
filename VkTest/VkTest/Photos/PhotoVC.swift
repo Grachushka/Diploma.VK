@@ -26,10 +26,8 @@ class PhotoVC: UIViewController {
         
         collection.register(UINib.init(nibName: "PhotoGalleryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "PhotoGalleryCollectionViewCell")
     }
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        config()
+    
+    func configCollection() {
         
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
@@ -40,6 +38,13 @@ class PhotoVC: UIViewController {
         
         layout.itemSize = CGSize(width: width / 3, height: width / 3)
         collection.collectionViewLayout = layout
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        config()
+        configCollection()
         
         NetworkManager.shared.getWallPhotos(id: id!) { result in
             

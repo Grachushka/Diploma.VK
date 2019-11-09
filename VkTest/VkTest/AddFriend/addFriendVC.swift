@@ -28,6 +28,7 @@ class addFriendVC: UIViewController {
         
         table.register(UINib(nibName: "SecondElementTableViewCell", bundle: nil), forCellReuseIdentifier: "SecondElementMenu")
         table.isHidden = true
+        table.tableFooterView = UIView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -130,23 +131,11 @@ extension addFriendVC: UISearchBarDelegate {
         searchBar.text = nil
         searchBar.endEditing(true)
         searchBar.showsCancelButton = false
-        table.isHidden = true
+        //table.isHidden = true
         
-        activityIndicator.isHidden = false
+       // activityIndicator.isHidden = false
         
-        NetworkManager.shared.getRecommendFriends { result in
-            
-            switch result {
-                
-            case .success(let recommendFriends):
-                
-                self.recommendFriends = recommendFriends.response.items
-                
-            case .failure(let error):
-                print(error)
-                
-            }
-        }
+        
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {

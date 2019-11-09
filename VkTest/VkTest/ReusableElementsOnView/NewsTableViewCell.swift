@@ -161,21 +161,4 @@ class NewsTableViewCell: UITableViewCell {
             }
         }
     }
-    
-    
-//    func loadImage(url: URL) {
-//
-//        imageVIew.kf.setImage(with: url)
-//        {
-//            result in
-//            switch result {
-//
-//            case .success(_):
-//                print("success")
-//            case .failure(let error):
-//                print(error)
-//
-//            }
-//        }
-//    }
 }

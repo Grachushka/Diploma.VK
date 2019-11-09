@@ -20,6 +20,7 @@ class AuthorizationVC: UIViewController, WKNavigationDelegate {
         
         NotificationCenter.default.removeObserver(self)
     }
+    
     func observePost() {
         
         NotificationCenter.default.addObserver(self, selector: #selector(messageReceived(_:)), name: .post, object: nil)

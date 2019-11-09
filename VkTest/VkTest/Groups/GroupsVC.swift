@@ -39,6 +39,7 @@ class GroupsVC: UIViewController {
     func config() {
         
         table.register(UINib(nibName: "SecondElementTableViewCell", bundle: nil), forCellReuseIdentifier: "SecondElementMenu")
+        table.tableFooterView = UIView()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)

@@ -13,6 +13,7 @@ class DataBase {
     static let shared = DataBase()
     
     private init() {}
+    
     private var arrayElementsMainMenu: [ElementMenu] = []
     private var arrayElementProfileMenu: [ElementMenu] = []
     private var arrayElementInfoMenu: [ElementMenu] = []

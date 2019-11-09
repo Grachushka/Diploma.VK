@@ -20,10 +20,13 @@ class InfoVC: UIViewController {
         
         table.register(UINib(nibName: "SecondElementTableViewCell", bundle: nil), forCellReuseIdentifier: "SecondElementMenu")
         table.register(UINib(nibName: "InfoTableViewCell", bundle: nil), forCellReuseIdentifier: "InfoTableViewCell")
+        table.tableFooterView = UIView()
         
         
     }
-    
+    override func viewDidLayoutSubviews() {
+        table.reloadData()
+    }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
@@ -114,6 +117,7 @@ extension InfoVC: UITableViewDataSource {
             return 0
         }
     }
+    
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

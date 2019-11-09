@@ -73,8 +73,6 @@ class SecondElementTableViewCell: UITableViewCell {
 
                 }
                         
-                    
-                
                 
             case is Friend:
                 
@@ -94,9 +92,6 @@ class SecondElementTableViewCell: UITableViewCell {
                     pictureMenu.image = UIImage(named: "friends")
 
                 }
-                    
-                        
-                    
                     
                     if friend.online == 1 && friend.onlineMobile == 1 {
                         
@@ -185,10 +180,12 @@ class SecondElementTableViewCell: UITableViewCell {
             }
             
             guard let result = resultPhoto else {return}
-                                
-                NetworkManager.shared.loadImageWithCashing(namePhoto: result, photo: pictureMenu, activity: nil)
-  
-            self.pictureMenu.layer.cornerRadius = self.pictureMenu.layer.preferredFrameSize().height/2
+                                let cornerRadius = self.pictureMenu.layer.preferredFrameSize().height/2
+            print(cornerRadius)
+            
+           
+                NetworkManager.shared.loadImageWithCashing(namePhoto: result, photo: pictureMenu, activity: nil, cornerRadius: cornerRadius)
+            
             
         }
     }

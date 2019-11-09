@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,16 +18,16 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="W9i-Xe-6Ri">
-                        <rect key="frame" x="5" y="0.0" width="132" height="132"/>
+                        <rect key="frame" x="5" y="3" width="126" height="126"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="W9i-Xe-6Ri" secondAttribute="height" id="d7P-fb-EO2"/>
                         </constraints>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xQ6-JD-KI2">
-                        <rect key="frame" x="157" y="53" width="179" height="26"/>
+                        <rect key="frame" x="151" y="53" width="185" height="26"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="60V-7x-YOA">
-                                <rect key="frame" x="0.0" y="0.0" width="179" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="60V-7x-YOA">
+                                <rect key="frame" x="0.0" y="0.0" width="185" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="98j-bk-aim"/>
                                 </constraints>
@@ -36,7 +36,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bNr-1u-Cb7">
-                                <rect key="frame" x="0.0" y="26" width="179" height="0.0"/>
+                                <rect key="frame" x="0.0" y="26" width="185" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -54,7 +54,7 @@
                         </constraints>
                     </view>
                     <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pLH-d1-AGE">
-                        <rect key="frame" x="124" y="119" width="10" height="10"/>
+                        <rect key="frame" x="118" y="119" width="10" height="10"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="10" id="2Hf-9K-8kO"/>
                             <constraint firstAttribute="width" constant="10" id="EyB-SE-XtB"/>
@@ -62,12 +62,12 @@
                     </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="W9i-Xe-6Ri" secondAttribute="bottom" id="6Kp-uT-6N9"/>
+                    <constraint firstAttribute="bottom" secondItem="W9i-Xe-6Ri" secondAttribute="bottom" constant="3" id="6Kp-uT-6N9"/>
                     <constraint firstItem="xQ6-JD-KI2" firstAttribute="leading" secondItem="W9i-Xe-6Ri" secondAttribute="trailing" constant="20" id="8h1-Fx-0N6"/>
                     <constraint firstItem="W9i-Xe-6Ri" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="NDY-Rk-GQw"/>
                     <constraint firstItem="pLH-d1-AGE" firstAttribute="trailing" secondItem="W9i-Xe-6Ri" secondAttribute="trailing" constant="-3" id="fOW-pN-fML"/>
                     <constraint firstAttribute="trailing" secondItem="xQ6-JD-KI2" secondAttribute="trailing" id="lbJ-PP-6aT"/>
-                    <constraint firstItem="W9i-Xe-6Ri" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="mlU-TT-242"/>
+                    <constraint firstItem="W9i-Xe-6Ri" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="3" id="mlU-TT-242"/>
                     <constraint firstItem="xQ6-JD-KI2" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="uHc-2A-ZoU"/>
                 </constraints>
             </tableViewCellContentView>

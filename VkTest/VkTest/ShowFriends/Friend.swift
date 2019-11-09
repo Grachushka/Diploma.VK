@@ -91,9 +91,11 @@ struct Friend: Codable, SecondElementProtocol {
 //}
 
 enum EducationForm: String, Codable {
+    
     case заочноеОтделение = "Заочное отделение"
     case очноЗаочноеОтделение = "Очно-заочное отделение"
     case очноеОтделение = "Очное отделение"
+    case дистанционноеОбучение = "Дистанционное обучение"
 }
 
 // MARK: - LastSeen
@@ -103,8 +105,8 @@ enum EducationForm: String, Codable {
 
 // MARK: - RelationPartner
 struct RelationPartner: Codable {
-    let id: Int
-    let firstName, lastName: String
+    let id: Int?
+    let firstName, lastName: String?
     
     enum CodingKeys: String, CodingKey {
         case id

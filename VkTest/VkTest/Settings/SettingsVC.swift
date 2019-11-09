@@ -17,6 +17,7 @@ class SettingsVC: UIViewController {
     func config() {
         
         table.register(UINib(nibName: "ElementMenuTableViewCell", bundle: nil), forCellReuseIdentifier: "ElementMenu")
+        table.tableFooterView = UIView()
         
     }
     

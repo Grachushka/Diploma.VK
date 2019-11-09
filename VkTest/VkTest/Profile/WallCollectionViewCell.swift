@@ -22,7 +22,6 @@ class WallCollectionViewCell: UICollectionViewCell {
             if let copyHistoryAttachment = copyHistoryAttachment {
                 
                 var resultImageName: String?
-                
                 if let type = copyHistoryAttachment.type {
                                         
                     switch type {

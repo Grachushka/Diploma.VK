@@ -11,6 +11,7 @@ import Kingfisher
 
 class ProfileVC: UIViewController {
     
+    @IBOutlet weak var activity: UIActivityIndicatorView!
     @IBOutlet weak var tableWall: UITableView!
     @IBOutlet weak var status: UILabel!
     @IBOutlet weak var buttonIsFriend: UIButton!
@@ -30,11 +31,16 @@ class ProfileVC: UIViewController {
     @IBOutlet weak var buttonIsFriendConstr: NSLayoutConstraint!
     @IBOutlet weak var imageContr: NSLayoutConstraint!
     @IBOutlet weak var dataCollectionConstr: NSLayoutConstraint!
+    private var imagePicker: UIImagePickerController?
     private var object: MainProfile?
     private var profileMenu = DataBase.shared.getProfileMenu()
     
     var id: Int?
     
+    private enum Source {
+        case camera
+        case library
+    }
     var pictures: [Item] = []{
         
         didSet {
@@ -46,6 +52,7 @@ class ProfileVC: UIViewController {
         
         didSet {
             
+
             tableWall.reloadData()
         }
     }
@@ -110,34 +117,37 @@ class ProfileVC: UIViewController {
     private func setStatusOfUser() {
         
         if object?.online == 1 {
-                   
-                   status.text = "online"
-                   
-               } else if object?.online == 0 {
-                   
-                   let was = Date(timeIntervalSince1970: TimeInterval(object!.lastSeen!.time!))
-                   
-                   let calendarWas = Calendar.current.dateComponents([.year, .month,.day, .timeZone, .hour, .minute, .second],from: was)
-                   
-                   //            let currentCalendar = Calendar.current.dateComponents([.year, .month,.day, .timeZone, .hour, .minute, .second],from: Date())
-                   //
-                   status.text = "был в сети \(calendarWas.day!).\(calendarWas.month!) \(calendarWas.hour!):\(calendarWas.minute!)"
-               }
+            
+            status.text = "online"
+            
+        } else if object?.online == 0 {
+            
+            let was = Date(timeIntervalSince1970: TimeInterval(object!.lastSeen!.time!))
+            
+            let calendarWas = Calendar.current.dateComponents([.year, .month,.day, .timeZone, .hour, .minute, .second],from: was)
+            
+            //            let currentCalendar = Calendar.current.dateComponents([.year, .month,.day, .timeZone, .hour, .minute, .second],from: Date())
+            //
+            status.text = "был в сети \(calendarWas.day!).\(calendarWas.month!) \(calendarWas.hour!):\(calendarWas.minute!)"
+        }
     }
     private func configDataOnView() {
         
         
         if let photo = object?.photo200_Orig {
             
-            NetworkManager.shared.loadImageWithCashing(namePhoto: photo, photo: image, activity: nil)
-            image.layer.cornerRadius = image.layer.preferredFrameSize().height/2
+            let cornerRadius = image.layer.preferredFrameSize().height/2
+
+            NetworkManager.shared.loadImageWithCashing(namePhoto: photo, photo: image, activity: nil, cornerRadius: cornerRadius)
         }
         
         fullName.text = "\(object!.firstName!) \(object!.lastName!)"
         ageCountry.text = object?.city?.title
         
-       setStatusOfUser()
-       setTextOnButton()
+        setStatusOfUser()
+        setTextOnButton()
+        hiddenElementOnView(isHidden: false)
+
         
     }
     private func configCollectionPhoto() {
@@ -161,19 +171,130 @@ class ProfileVC: UIViewController {
         dataCollection.register(UINib.init(nibName: "DescriptionCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "DescriptionCollectionViewCell")
         
         buttonIsFriend.layer.cornerRadius = buttonIsFriend.layer.preferredFrameSize().height/2
-    
+        
         configCollectionPhoto()
+        tableWall.tableFooterView = UIView()
         
         
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
+    }
+    
+    @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
+    {
+        //let tappedImage = tapGestureRecognizer.view as! UIImageView
+        
+        let alert = UIAlertController(title: nil,
+                                      message: nil,
+                                      preferredStyle: .actionSheet)
+        
+        let saveAction = UIAlertAction(title: "Открыть фотографию",
+                                       style: .default) { (action: UIAlertAction!) -> Void in
+                                        
+                                        let next: TargetPhotoVC = self.storyboard?.instantiateViewController(withIdentifier: "TargetPhotoVC") as! TargetPhotoVC
+                                        
+                                        var resultPhoto: String?
+                                        
+                                        if let photo = self.object?.photoMaxOrig {
+                                            
+                                            resultPhoto = photo
+                                            
+                                        }
+                                        else if let photo = self.object?.photo400_Orig {
+                                            resultPhoto = photo
+                                            
+                                        } else if let photo = self.object?.photo200 {
+                                            resultPhoto = photo
+                                        } else if let photo = self.object?.photo100 {
+                                            resultPhoto = photo
+                                        } else if let photo = self.object?.photo50 {
+                                            resultPhoto = photo
+                                        }
+                                        guard let photo = resultPhoto else {return}
+                                        next.photoName = photo
+                                        
+                                        self.navigationController?.pushViewController(next, animated: true)
+                                        
+        }
+        let saveAction2 = UIAlertAction(title: "Изменить фотографию",
+                                        style: .default) { (action: UIAlertAction!) -> Void in
+                                            self.showChoose { [weak self] source in
+                      guard let source = source else { return }
+                      
+                      let picker = UIImagePickerController()
+                   picker.delegate = self!
+                      
+                      switch source {
+                      case .camera:
+                          picker.sourceType = .camera
+                          picker.cameraCaptureMode = .photo
+                      case .library:
+                          picker.sourceType = .photoLibrary
+                          picker.allowsEditing = true
+                      }
+                      
+                      self?.present(picker, animated: true)
+                      self?.imagePicker = picker
+                    print(picker)
+                      
+                  }
+        }
+        
+        let saveAction3 = UIAlertAction(title: "Удалить фотографию",
+                                        style: .destructive) { (action: UIAlertAction!) -> Void in
+                                            
+                                            
+        }
+        let cancelAction = UIAlertAction(title: "Отмена",
+                                         style: .cancel) { (action: UIAlertAction!) -> Void in
+        }
+        
+        
+        alert.addAction(saveAction)
+        alert.addAction(saveAction2)
+        alert.addAction(saveAction3)
+        alert.addAction(cancelAction)
+        
+        self.present(alert,
+                     animated: true,
+                     completion: nil)
+        
         
     }
+    
+    private func hiddenElementOnView(isHidden: Bool) {
+        
+        if isHidden {
+            
+            activity.startAnimating()
+            
+        } else if !isHidden {
+            
+            activity.stopAnimating()
+        }
+        dataCollection.isHidden = isHidden
+        buttonInfo.isHidden = isHidden
+        buttonIsFriend.isHidden = isHidden
+        ageCountry.isHidden = isHidden
+        status.isHidden = isHidden
+        fullName.isHidden = isHidden
+        image.isHidden = isHidden
+        collectionPhoto.isHidden = isHidden
+        tableWall.isHidden = isHidden
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        hiddenElementOnView(isHidden: true)
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
+        image.isUserInteractionEnabled = true
+        image.addGestureRecognizer(tapGestureRecognizer)
         
         config()
         
@@ -185,11 +306,14 @@ class ProfileVC: UIViewController {
                 
                 if let _ = profile.response[0].deactivated {
                     
+                    self.activity.stopAnimating()
+                    
                     self.deactivated.isHidden = false
                     self.tableWall.isHidden = true
                     self.collectionPhoto.isHidden = true
                     self.dataCollection.isHidden = true
                     self.buttonInfo.isHidden = true
+                    
                     return
                 }
                 self.object = profile.response[0]
@@ -513,9 +637,7 @@ extension ProfileVC: UICollectionViewDataSource {
                 next.id = id!
                 self.navigationController?.pushViewController(next, animated: true)
             }
-            
         }
-        
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
@@ -560,12 +682,32 @@ extension ProfileVC: UICollectionViewDataSource {
         return UICollectionViewCell()
     }
     
-}
+    private func showChoose(choosen: @escaping (Source?) -> Void) {
+
+        let alert = UIAlertController(title: "Choose source", message: nil, preferredStyle: .actionSheet)
+            if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                alert.addAction(UIAlertAction(title: "Camera", style: .default) { _ in
+                    choosen(.camera)
+                })
+            }
+            alert.addAction(UIAlertAction(title: "Library", style: .default) { _ in
+                choosen(.library)
+            })
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel) { _ in
+                choosen(nil)
+            })
+            
+            present(alert, animated: true)
+        }
+    }
+    
+
 
 extension ProfileVC: UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
+        print(scrollView.scrollIndicatorInsets)
         let contentOffset = scrollView.contentOffset.y
         
         if contentOffset > 2 {
@@ -585,10 +727,42 @@ extension ProfileVC: UIScrollViewDelegate {
             buttonInfo.isHidden = false
         }
         guard contentOffset < 85 else {return }
-        
+        print(contentOffset)
         imageContr.constant = (contentOffset * (-1)) * 2
         buttonIsFriendConstr.constant = (contentOffset * (-1)) * 5
         
     }
+    
+    
 }
 
+extension ProfileVC: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    
+    let cropped = info[.editedImage] as! UIImage
+        
+        NetworkManager.shared.getUploadMainPhotoServer(id: "\(id!)") { result in
+            
+            switch result {
+                
+            case .success(let resultUrl):
+                
+                print(resultUrl.response.uploadURL)
+                NetworkManager.shared.UploadMainPhotoToServer(image: cropped, url: resultUrl.response.uploadURL)
+
+            case .failure(let error):
+                print(error)
+                
+            }
+        }
+        
+    picker.dismiss(animated: true)
+    
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+           print("Cancel")
+           picker.dismiss(animated: true)
+       }
+}

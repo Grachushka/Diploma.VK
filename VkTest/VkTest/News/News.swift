@@ -80,7 +80,9 @@ class OneNewsRealm: Object, Codable {
     dynamic var date: RealmOptional<Int> = RealmOptional()
     @objc dynamic var text: String?
     //    dynamic var markedAsAds: RealmOptional<Int> = RealmOptional()
-    var attachments = List<CopyHistoryAttachmentRealm>()
+    var attachments: List<CopyHistoryAttachmentRealm>? = List<CopyHistoryAttachmentRealm>()
+    
+    
     //    @objc dynamic var postID: Int
     //    @objc dynamic var signerID: Int
     

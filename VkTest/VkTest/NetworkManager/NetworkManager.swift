@@ -11,7 +11,7 @@ import Alamofire
 
 class NetworkManager {
     
-    private let appId = "7192659"
+    private let appId = "7202540"
     private var user_id: Int = 0
     private var expiresIn: Int = 0
     private let version = 5.52
@@ -253,6 +253,7 @@ class NetworkManager {
             case .success(let data):
                 
                 do {
+                    
                     let news = try JSONDecoder().decode(NewsRealm.self, from: data )
                     result(.success(news))
                     
@@ -423,7 +424,7 @@ class NetworkManager {
         }
     }
     
-    func loadImageWithCashing(namePhoto: String, photo: UIImageView, activity: UIActivityIndicatorView?) {
+    func loadImageWithCashing(namePhoto: String, photo: UIImageView, activity: UIActivityIndicatorView?, cornerRadius: CGFloat? = nil) {
         
         let url = URL(string: namePhoto)
 
@@ -433,44 +434,100 @@ class NetworkManager {
             switch result {
                 
             case .success(_):
-                guard let activity = activity else {return}
-                activity.stopAnimating()
+                if let activity = activity {
+                    
+                     activity.stopAnimating()
+                }
+                
+                if let cornerRadius = cornerRadius {
+                    
+                    photo.layer.cornerRadius = cornerRadius
+
+                }
+                
+               
                 
                 
             case .failure(let error):
                 
                 print(error)
+//
             }
         }
     }
+    
+    
+    func getUploadMainPhotoServer(id: String, result: @escaping (Result<ServerUrl, Error>) -> Void) {
+        
+        let url="\(baseURL)photos.getOwnerPhotoUploadServer?&owner_id=\(id)&access_token=\(token)&v=\(version)"
+                       
+        AF.request(url).responseData { response in
+            
+            switch response.result {
+                
+            case .success(let data):
+                
+                do {
+                    
+                    let url = try JSONDecoder().decode(ServerUrl.self, from: data )
+                    result(.success(url))
+                    
+                } catch {
+                    print(error)
+                }
+            case .failure(let error):
+                result(.failure(error))
+                print(error)
+            }
+        }
+               
+    }
+    
+    func UploadMainPhotoToServer(image: UIImage, url: String) {
+        print(image)
+        let imgData = image.jpegData(compressionQuality: 1.0)!
+        print(imgData)
+
+        let headers: HTTPHeaders
+        headers = [
+            "Content-Type":"multipart/form-data; charset=utf-8;boundary=__X_PAW_BOUNDARY__",
+                   "Cookie":"remixlang=114",
+        ]
+        
+        AF.upload(multipartFormData: { (multipartFormData) in
+
+
+                multipartFormData.append(imgData, withName: "photo")
+
+
+        }, usingThreshold: UInt64.init(), to: "\(url)", method: .post, headers: headers).response { response in
+            
+            switch response.result {
+                
+            case .success(let result):
+                
+                do {
+                    guard let data = result else {break}
+                    let str = String(decoding: data, as: UTF8.self)
+                    print(str)
+                    
+//                    let url = try JSONDecoder().decode(ServerUrl.self, from: data )
+//                    result(.success(url))
+                    
+                } catch {
+                    print(error)
+                }
+            case .failure(let error):
+//                result(.failure(error))
+                print(error)
+            }
+            
+        }
+        
+    }
+    
+    
 }
 
-    
-    
-    
-//    func getGifts(id: String, result: @escaping (Result<ResponseGroups, Error>) -> Void) {
-//        
-//        let url="\(baseURL)groups.get?&extended=1&user_id=\(id)&access_token=\(token)&v=5.52"
-//        //let url2="https://api.vk.com/method/gifts.get?&access_token=e30d3f8960a1869d682e5bbbd7afdd0618d7384e2f2ebd5f99c0fa15ff6474bd8202c9e7b43f2b25285ca&v=5.52"
-//        AF.request(url).responseData { response in
-//            
-//            switch response.result {
-//                
-//            case .success(let data):
-//                
-//                do {
-//                    
-//                    let groups = try JSONDecoder().decode(ResponseGroups.self, from: data )
-//                    result(.success(groups))
-//                    
-//                } catch {
-//                    print(error)
-//                }
-//            case .failure(let error):
-//                result(.failure(error))
-//                print(error)
-//            }
-//        }
-//    }
-//}
+
 

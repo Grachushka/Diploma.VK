@@ -98,16 +98,111 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "CBDBC4D1-28C4-4534-8550-460440E2A8F8"
+            uuid = "FB4CD48C-2A9C-4193-9F21-3ABD3296C643"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "VkTest/News/NewsVC.swift"
+            filePath = "VkTest/NetworkManager/NetworkManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "91"
-            endingLineNumber = "91"
-            landmarkName = "refreshTable()"
+            startingLineNumber = "488"
+            endingLineNumber = "488"
+            landmarkName = "UploadMainPhotoToServer(image:url:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "16A063B1-83AB-4DE2-A2D4-E70514ED4B9A"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VkTest/NetworkManager/NetworkManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "500"
+            endingLineNumber = "500"
+            landmarkName = "UploadMainPhotoToServer(image:url:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "97D7BAC7-9AE0-4A89-AF06-2347A36C9183"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VkTest/NetworkManager/NetworkManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "503"
+            endingLineNumber = "503"
+            landmarkName = "UploadMainPhotoToServer(image:url:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "97D7BAC7-9AE0-4A89-AF06-2347A36C9183 - 3c0e17c863d554a8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "VkTest.NetworkManager.UploadMainPhotoToServer(image: __C.UIImage, url: Swift.String) -&gt; ()"
+                  moduleName = "VkTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/pavelprocenko/Diploma.VK/VkTest/VkTest/NetworkManager/NetworkManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "503"
+                  endingLineNumber = "503"
+                  offsetFromSymbolStart = "1180">
+               </Location>
+               <Location
+                  uuid = "97D7BAC7-9AE0-4A89-AF06-2347A36C9183 - 16e7595bc2bcd933"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Alamofire.MultipartFormData) -&gt; () in VkTest.NetworkManager.UploadMainPhotoToServer(image: __C.UIImage, url: Swift.String) -&gt; ()"
+                  moduleName = "VkTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/pavelprocenko/Diploma.VK/VkTest/VkTest/NetworkManager/NetworkManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "503"
+                  endingLineNumber = "503"
+                  offsetFromSymbolStart = "236">
+               </Location>
+               <Location
+                  uuid = "97D7BAC7-9AE0-4A89-AF06-2347A36C9183 - 58479f162fa2e1c5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Alamofire.DataResponse&lt;Swift.Optional&lt;Foundation.Data&gt;&gt;) -&gt; () in VkTest.NetworkManager.UploadMainPhotoToServer(image: __C.UIImage, url: Swift.String) -&gt; ()"
+                  moduleName = "VkTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/pavelprocenko/Diploma.VK/VkTest/VkTest/NetworkManager/NetworkManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "505"
+                  endingLineNumber = "505"
+                  offsetFromSymbolStart = "172">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "318202C6-8B0E-4B2F-A086-1460D2CA01E0"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VkTest/AddFriend/addFriendVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "101"
+            endingLineNumber = "101"
+            landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

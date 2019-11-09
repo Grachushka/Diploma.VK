@@ -61,6 +61,7 @@ class ShowFriendsVC: UIViewController {
         table.isHidden = true
         activityIndicator.startAnimating()
         table.register(UINib(nibName: "SecondElementTableViewCell", bundle: nil), forCellReuseIdentifier: "SecondElementMenu")
+        table.tableFooterView = UIView()
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -249,6 +250,7 @@ extension ShowFriendsVC: UISearchBarDelegate {
                 if self.barButtonItem == self.toolbar.items?.last {
                     
                     let orderByOnlineFriends = friends.response.items.filter { $0.online == 1 }
+                    
                     self.friends = orderByOnlineFriends
                     
                     

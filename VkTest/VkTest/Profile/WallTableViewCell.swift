@@ -24,7 +24,7 @@ class WallTableViewCell: UITableViewCell {
     override func prepareForReuse() {
         
         
-        wallCollection.reloadData()
+        //wallCollection.reloadData()
         textForCell.text = nil
         title.text = nil
         
@@ -46,21 +46,39 @@ class WallTableViewCell: UITableViewCell {
         didSet {
             
             wallCollection.reloadData()
+            if let title = wall?.text {
+                            self.title.text = title
+                       }
             
             let count = getCountOfCells()
             
-            guard let resultCount = count else {return}
             
-            let sizeOfOneCell = getSizeOfOneCell(resultCount: Double(resultCount))
+            if let resultCount = count {
                 
-            configOfCollectionWall(sizeOfOneCell: sizeOfOneCell)
+                self.title.numberOfLines = 1
+                self.textForCell.numberOfLines = 1
+                
+                let sizeOfOneCell = getSizeOfOneCell(resultCount: Double(resultCount))
+                configOfCollectionWall(sizeOfOneCell: sizeOfOneCell)
+
+
+            } else {
+                
+                self.title.numberOfLines = 0
+                self.textForCell.numberOfLines = 0
+            }
+            
+            
+            
+                
             setDateOfLastSeenUser()
             setWhoPost()
             setFromPost()
             
-            guard let title = wall?.text else {return}
+           
             
-            self.title.text = title
+            
+           
             
         }
     }
@@ -215,10 +233,11 @@ extension WallTableViewCell: UICollectionViewDataSource {
                          fullName.text = "\(item.firstName!) \(item.lastName!)"
                          
                          if let imageName = item.photo100 {
+                            
+                             let cornerRadius = avatar.layer.preferredFrameSize().height/2
+
+                            NetworkManager.shared.loadImageWithCashing(namePhoto: imageName, photo: avatar, activity: nil, cornerRadius: cornerRadius)
                              
-                             NetworkManager.shared.loadImageWithCashing(namePhoto: imageName, photo: avatar, activity: nil)
-                             
-                             avatar.layer.cornerRadius = avatar.layer.preferredFrameSize().height/2
                          }
                      }
        }
@@ -240,13 +259,10 @@ extension WallTableViewCell: UICollectionViewDataSource {
                    fullNameFrom.text = "\(fromProfile![0].firstName!) \(fromProfile![0].lastName!)"
                    
                    if let imageName = fromProfile![0].photo100 {
-                       
-                      NetworkManager.shared.loadImageWithCashing(namePhoto: imageName, photo: avatarFrom, activity: nil)
-                               
-                               avatarFrom.layer.cornerRadius = avatarFrom.layer.preferredFrameSize().height/2
-                               
-                               
-                       
+                    
+                       let cornerRadius = avatarFrom.layer.preferredFrameSize().height/2
+                    
+                    NetworkManager.shared.loadImageWithCashing(namePhoto: imageName, photo: avatarFrom, activity: nil, cornerRadius: cornerRadius)
                            }
                        
                    
@@ -272,12 +288,11 @@ extension WallTableViewCell: UICollectionViewDataSource {
                            fullNameFrom.text = "\(fromGroup![0].name!)"
                            
                            if let imageName = fromGroup![0].photo100 {
-                               
-                               NetworkManager.shared.loadImageWithCashing(namePhoto: imageName, photo: avatarFrom, activity: nil)
                             
-                                       avatarFrom.layer.cornerRadius = avatarFrom.layer.preferredFrameSize().height/2
-                                       
-                                  
+                               let cornerRadius = avatarFrom.layer.preferredFrameSize().height/2
+
+                            NetworkManager.shared.loadImageWithCashing(namePhoto: imageName, photo: avatarFrom, activity: nil, cornerRadius: cornerRadius)
+                                                              
                                    }
                                }
                            }

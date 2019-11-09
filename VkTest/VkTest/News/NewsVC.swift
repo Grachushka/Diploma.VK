@@ -52,15 +52,25 @@ class NewsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
         
         config()
+        table.allowsSelection = false
         
         NetworkManager.shared.getReccomendNews { result in
             
             switch result {
                 
             case .success(let news):
+                
+                let lastNews = DataBaseRealmSwift.shared.getNews()
+                
+                if let lastNews = lastNews?.last {
+                    
+                    DataBaseRealmSwift.shared.deleteNews(news: lastNews)
+                    
+                }
+                
                 DataBaseRealmSwift.shared.addNews(news: news)
                 print(news)
                 self.responseNews = DataBaseRealmSwift.shared.getNews()?.last._rlmInferWrappedType().response
@@ -86,6 +96,15 @@ class NewsVC: UIViewController {
             switch result {
                 
             case .success(let news):
+                
+                let lastNews = DataBaseRealmSwift.shared.getNews()
+                
+                if let lastNews = lastNews?.last {
+                    
+                    DataBaseRealmSwift.shared.deleteNews(news: lastNews)
+                    
+                }
+                
                 
                 DataBaseRealmSwift.shared.addNews(news: news)
                 
@@ -126,12 +145,14 @@ extension NewsVC: UITableViewDataSource {
             cell.groups = groups
             cell.news = news[indexPath.row]
             
-            cell.copyHistoryAttachment = news[indexPath.row].attachments.first
+            if let attach = news[indexPath.row].attachments {
+                
+                cell.copyHistoryAttachment = attach.first
+                
+            }
             return cell
         }
         return UITableViewCell()
     }
-    
-    
     
 }

@@ -14,20 +14,34 @@ class ShowProfileVC: UIViewController {
     @IBOutlet weak var table: UITableView!
     private let mainMenu = DataBase.shared.getMainMenu()
     
+    @IBOutlet weak var activity: UIActivityIndicatorView!
+    
     private var secondMenu: MainProfile? {
         
         didSet {
+            
+            activity.stopAnimating()
+            
             table.reloadData()
         }
     }
     
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    private func configTable() {
         
         table.register(UINib(nibName: "ElementMenuTableViewCell", bundle: nil), forCellReuseIdentifier: "ElementMenu")
         
         table.register(UINib(nibName: "SecondElementTableViewCell", bundle: nil), forCellReuseIdentifier: "SecondElementMenu")
+        
+        table.tableFooterView = UIView()
+        
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        activity.startAnimating()
+        
+        configTable()
         
         NetworkManager.shared.getInfoAboutMyProfile(id: "") { result in
             
@@ -121,8 +135,12 @@ extension ShowProfileVC: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        
-        if indexPath == IndexPath(item: 0, section: 1) {
+        if indexPath == IndexPath(item: 1, section: 1) {
+            
+            let next: GroupsVC = self.storyboard?.instantiateViewController(withIdentifier: "GroupsVC") as! GroupsVC
+            next.id = "\(secondMenu!.id)"
+            self.navigationController?.pushViewController(next, animated: true)        
+        } else if indexPath == IndexPath(item: 0, section: 1) {
             
             let next: ShowFriendsVC = self.storyboard?.instantiateViewController(withIdentifier: "friends") as! ShowFriendsVC
             next.id = secondMenu!.id
